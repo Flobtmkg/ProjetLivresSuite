@@ -22,11 +22,13 @@ public class ServicePret extends Service{
         newPretInput.setRenduPret(rendupret);
         monDaoPret.ajouterPret(newPretInput);
     }
+
     @WebMethod
     public ArrayList<Pret> listerInfosPretUtilisateur(int idutilisateur){
         ArrayList<Pret> OutputList=monDaoPret.listerInfosPretUtilisateur(idutilisateur);
         return OutputList;
     }
+
     @WebMethod
     public ArrayList<Reservation> listerUtilisateursPretsNonRendus(){
         ArrayList<Reservation> OutputList=monDaoPret.listerUtilisateursPretsNonRendus();

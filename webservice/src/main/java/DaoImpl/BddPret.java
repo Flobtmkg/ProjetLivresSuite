@@ -25,7 +25,7 @@ public class BddPret implements DaoPret {
     @Autowired
     private PlatformTransactionManager ptm;
     @Autowired
-    public void affectationJdbcTemplate(DataSource dataSource){
+    private void affectationJdbcTemplate(DataSource dataSource){
         this.jdbcTemplate= new JdbcTemplate(dataSource);
     }
 

@@ -15,9 +15,9 @@ public class ServiceLivre extends Service {
     }
 
     @WebMethod
-    public void ajouterLivre(int idLivre,String titreLivre,String auteurLivre,String editeurLivre,String datePublicationLivre,String indexationLivre){
+    public void ajouterLivre(String titreLivre,String auteurLivre,String editeurLivre,String datePublicationLivre,String indexationLivre){
         Livre newLivreInput= new Livre();
-        newLivreInput.setIdLivre(idLivre);
+        newLivreInput.setIdLivre(0);
         newLivreInput.setTitreLivre(titreLivre);
         newLivreInput.setAuteurLivre(auteurLivre);
         newLivreInput.setEditeurLivre(editeurLivre);

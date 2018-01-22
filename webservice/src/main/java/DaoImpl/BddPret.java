@@ -2,16 +2,12 @@ package DaoImpl;
 
 import DaoInterfaces.DaoPret;
 import beans.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.sql.DataSource;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,16 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class BddPret implements DaoPret {
+public class BddPret extends Impl implements DaoPret {
     //
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
-    private PlatformTransactionManager ptm;
-    @Autowired
-    private void affectationJdbcTemplate(DataSource dataSource){
-        this.jdbcTemplate= new JdbcTemplate(dataSource);
-    }
-
     @Override
     public void ajouterPret(Pret newPret) {
         //Conversion de date

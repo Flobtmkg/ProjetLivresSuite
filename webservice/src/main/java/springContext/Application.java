@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import javax.swing.*;
 
 
-@ComponentScan(basePackages = {"beans","DaoInterfaces","webservice.allplatform","DaoImpl","springContext"})
+@ComponentScan(basePackages = {"beans","DaoInterfaces","webservice.allplatform","DaoImpl","springContext","jbcrypt"})
 @PropertySource("classpath:application.properties")
 @Configuration
 public class Application {

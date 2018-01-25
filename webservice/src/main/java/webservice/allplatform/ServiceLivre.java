@@ -1,15 +1,10 @@
 package webservice.allplatform;
 
 import beans.Livre;
-import beans.Recherche;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
 
 @WebService
 public class ServiceLivre extends Service {
@@ -34,38 +29,44 @@ public class ServiceLivre extends Service {
     }
 
     @WebMethod
-    public ArrayList<Livre> rechercherLivreComplxe(boolean modeRecherche,String titreLivre, int idExemplaire, String inputType, String inputDomaine, String inputTheme){
+    public ArrayList<Livre> rechercherLivreComplxe(boolean modeRecherche,String titreLivre, String auteurLivre, String editeurLivre, int idExemplaire, String inputType, String inputDomaine, String inputTheme){
         //def des ArrayList
         ArrayList<Livre> listParExemplaire;
         ArrayList<Livre> listParTitre;
         ArrayList<Livre> listParType;
         ArrayList<Livre> listParDomaine;
         ArrayList<Livre> listParTheme;
+        ArrayList<Livre> listParAuteur;
+        ArrayList<Livre> listParEditeur;
+        //
         //ArrayList des ArrayList<Livres> non nulls
         ArrayList<ArrayList<Livre>> listDesLists=new ArrayList<>();
         // Traitement des NULL
-        if(idExemplaire==0){
-        }else{
+        if(idExemplaire!=0){
             listParExemplaire=rechercheParExemplaire(idExemplaire);
             listDesLists.add(listParExemplaire);
         }
-        if(titreLivre==null){
-        }else{
+        if(titreLivre!=null){
             listParTitre=rechercheParTitreLivre(titreLivre);
             listDesLists.add(listParTitre);
         }
-        if(inputType==null){
-        }else{
+        if(auteurLivre!=null){
+            listParAuteur=rechercheParAuteurLivre(auteurLivre);
+            listDesLists.add(listParAuteur);
+        }
+        if(editeurLivre!=null){
+            listParEditeur=rechercheParEditeurLivre(editeurLivre);
+            listDesLists.add(listParEditeur);
+        }
+        if(inputType!=null){
             listParType=rechercheParType(inputType);
             listDesLists.add(listParType);
         }
-        if(inputDomaine==null){
-        }else{
+        if(inputDomaine!=null){
             listParDomaine=rechercheParDomaine(inputDomaine);
             listDesLists.add(listParDomaine);
         }
-        if(inputTheme==null){
-        }else{
+        if(inputTheme!=null){
             listParTheme=rechercheParTheme(inputTheme);
             listDesLists.add(listParTheme);
         }
@@ -74,14 +75,21 @@ public class ServiceLivre extends Service {
         //
         if(modeRecherche==false){//  OR
             //OR
-            ArrayList<Livre> listLivres = new ArrayList<>();
+            ArrayList<Livre> listLivres0 = new ArrayList<>();
             for (ArrayList<Livre> chaqueList:listDesLists) {//On fusionne les Arrays
-                listLivres.addAll(chaqueList);
+                listLivres0.addAll(chaqueList);
+            }
+            //On verifie que les résulats ne sont présent qu'une seule fois
+            ArrayList<Integer> listID= new ArrayList<>();
+            ArrayList<Livre> listLivres =new ArrayList<>();
+            for (Livre chaqueLivre:listLivres0) {
+                if(listID.contains(chaqueLivre.getIdLivre())==false){
+                        listLivres.add(chaqueLivre);
+                        listID.add(chaqueLivre.getIdLivre());
+                }
             }
             //
-            Set livreSet= new HashSet();//On def un Set
-            livreSet.addAll(listLivres);//On place les elements de la list fusionnée dans le set ce qui élimine les doublons
-            outputLivres= new ArrayList(livreSet);//On rebascule le résultat dans un array
+            outputLivres = listLivres;//On rebascule le résultat dans un array
             //
         }else{//  AND
             //AND
@@ -89,7 +97,13 @@ public class ServiceLivre extends Service {
             for (Livre chaqueLivre:listDesLists.get(0)) {//On se place par defaut dans la premiere liste issue d'un parametre non-null
                 int i=0;
                 for (ArrayList<Livre> chaqueList:listDesLists) {//On check chaque list pour verifier si elles contiennent toutes l'élément de réference en cours, lui même issu de la premiere liste issue d'un parametre non-null
-                    if(chaqueList.contains(chaqueLivre)){
+                    boolean presentDansLaListe=false;
+                    for (Livre chaqueLivre2:chaqueList){
+                        if(chaqueLivre2.getIdLivre()==chaqueLivre.getIdLivre()){
+                            presentDansLaListe=true;
+                        }
+                    }
+                    if(presentDansLaListe==true){
                         i=i+1;
                     }
                 }
@@ -104,6 +118,16 @@ public class ServiceLivre extends Service {
     @WebMethod
     public ArrayList<Livre> rechercheParTitreLivre(String titreLivre){
         ArrayList<Livre> OutputLivre=monDaoLivre.rechercheTitre(titreLivre);
+        return OutputLivre;
+    }
+    @WebMethod
+    public ArrayList<Livre> rechercheParAuteurLivre(String auteurLivre){
+        ArrayList<Livre> OutputLivre=monDaoLivre.rechercheAuteur(auteurLivre);
+        return OutputLivre;
+    }
+    @WebMethod
+    public ArrayList<Livre> rechercheParEditeurLivre(String EditeurLivre){
+        ArrayList<Livre> OutputLivre=monDaoLivre.rechercheEditeur(EditeurLivre);
         return OutputLivre;
     }
     @WebMethod

@@ -2,7 +2,6 @@ package DaoImpl;
 
 import DaoInterfaces.DaoLivre;
 import beans.Livre;
-import beans.Recherche;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -78,6 +77,72 @@ public class BddLivre extends Impl implements DaoLivre {
                 final String LIVRES = "SELECT * FROM livre WHERE UPPER(titrelivre) LIKE ? OR UPPER(descriptionLivre) LIKE ?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {motcle2,motcle2});
+                ArrayList<Livre> lesLivres = new ArrayList<Livre>();
+                for (Map row : rows) {
+                    Livre leLivre=new Livre();
+                    leLivre.setIdLivre((int)(row.get("idlivre")));
+                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
+                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
+                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
+                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
+                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    lesLivres.add(leLivre);
+                }
+                //
+                return lesLivres;
+            }
+        });
+        //
+        return livreOutput;
+    }
+
+    @Override
+    public ArrayList<Livre> rechercheAuteur(String motcle) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //pré-traitement mot clé
+        final String motcle2="%" + motcle.toUpperCase() + "%";
+        //
+        ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
+            @Override
+            public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
+                final String LIVRES = "SELECT * FROM livre WHERE UPPER(auteurlivre) LIKE ? ;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {motcle2});
+                ArrayList<Livre> lesLivres = new ArrayList<Livre>();
+                for (Map row : rows) {
+                    Livre leLivre=new Livre();
+                    leLivre.setIdLivre((int)(row.get("idlivre")));
+                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
+                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
+                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
+                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
+                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    lesLivres.add(leLivre);
+                }
+                //
+                return lesLivres;
+            }
+        });
+        //
+        return livreOutput;
+    }
+
+    @Override
+    public ArrayList<Livre> rechercheEditeur(String motcle) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //pré-traitement mot clé
+        final String motcle2="%" + motcle.toUpperCase() + "%";
+        //
+        ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
+            @Override
+            public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
+                final String LIVRES = "SELECT * FROM livre WHERE UPPER(editeurlivre) LIKE ? ;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();

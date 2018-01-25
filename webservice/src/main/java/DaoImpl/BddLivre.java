@@ -66,53 +66,6 @@ public class BddLivre extends Impl implements DaoLivre {
     }
 
     @Override
-    public ArrayList<Livre> rechercheLivreSimple(Recherche rechercheInput) {
-            //
-            TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
-            //
-            ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
-                @Override
-                public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                    String LIVRES = "SELECT * FROM livre WHERE idlivre=? AND idexemplaire=? AND titrelivre=?";
-                    //
-                    if(rechercheInput.getIdLivre()==0){
-                        LIVRES.replace("idlivre=? AND ","0=? AND ");
-                    }
-                    if(rechercheInput.getIdExemplaire()==0){
-                        LIVRES.replace("idexemplaire=? AND ","0=? AND ");
-                    }
-                    if(rechercheInput.getTitreLivre().equals("")){
-                        rechercheInput.setTitreLivre("0");
-                        LIVRES.replace("titrelivre=?","0=? AND ");
-                    }
-                    if(LIVRES.substring(LIVRES.length()-4).equals("AND ")){
-                        LIVRES.replace("titrelivre=?","");
-                    }
-                    //
-                    List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {rechercheInput.getIdLivre(),rechercheInput.getIdExemplaire(), rechercheInput.getTitreLivre()});
-                    ArrayList<Livre> lesLivres=new ArrayList<Livre>();
-                    for (Map row : rows) {
-                        Livre leLivre = new Livre();
-                        //
-                        leLivre.setIdLivre((int)(row.get("idlivre")));
-                        leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                        leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                        leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
-                        leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                        leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                        leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
-                        //
-                        lesLivres.add(leLivre);
-                    }
-                    //
-                    return lesLivres;
-                }
-            });
-            //
-            return livreOutput;
-    }
-
-    @Override
     public ArrayList<Livre> rechercheTitre(String motcle) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);

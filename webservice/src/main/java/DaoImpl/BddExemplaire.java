@@ -27,7 +27,7 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
         Exemplaire exemplaireOutput=vTransactionTemplate.execute(new TransactionCallback<Exemplaire>() {
             @Override
             public Exemplaire doInTransaction(TransactionStatus transactionStatus) {
-                final String PREMIEREXEMPLAIRE = "SELECT * FROM (SELECT * FROM pret FULL JOIN exemplaire ON pret.idexemplaire=exemplaire.idexemplaire WHERE rendupret=false or rendupret IS NULL ORDER BY datefinpret DESC) AS derniersprets WHERE idlivre=1 AND ((datefinpret<CURRENT_DATE AND rendupret=true) OR (datefinpret>CURRENT_DATE AND rendupret=true)) OR (datefinpret IS NULL) ORDER BY datefinpret DESC LIMIT 1;";
+                final String PREMIEREXEMPLAIRE = "SELECT * FROM (SELECT * FROM pret FULL JOIN exemplaire ON pret.idexemplaire=exemplaire.idexemplaire WHERE rendupret=false or rendupret IS NULL ORDER BY datefinpret DESC) AS derniersprets WHERE idlivre=? AND (((datefinpret<CURRENT_DATE AND rendupret=true) OR (datefinpret>CURRENT_DATE AND rendupret=true)) OR (datefinpret IS NULL)) ORDER BY datefinpret DESC LIMIT 1;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(PREMIEREXEMPLAIRE,new Object[] {idLivre});
                 Exemplaire lExemplaire=new Exemplaire();

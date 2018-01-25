@@ -10,6 +10,15 @@ public class Livre {
     private String editeurLivre;
     private String datepublicationLivre;
     private String indexationLivre;
+    private String descriptionLivre;
+
+    public String getDescriptionLivre() {
+        return descriptionLivre;
+    }
+
+    public void setDescriptionLivre(String descriptionLivre) {
+        this.descriptionLivre = descriptionLivre;
+    }
 
     public int getIdLivre() {
         return idLivre;

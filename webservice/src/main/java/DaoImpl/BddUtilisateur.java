@@ -2,6 +2,7 @@ package DaoImpl;
 
 import DaoInterfaces.DaoUtilisateur;
 import beans.Utilisateur;
+import classesTravail.CodageGuillemets;
 import jbcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
@@ -32,10 +33,10 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 Utilisateur lUtilisateur=new Utilisateur();
                 for (Map row : rows) {
                     lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    lUtilisateur.setNomUtilisateur((String)(row.get("nomutilisateur")));
-                    lUtilisateur.setPrenomUtilisateur((String)(row.get("prenomutilisateur")));
-                    lUtilisateur.setEmailUtilisateur((String)(row.get("emailutilisateur")));
-                    lUtilisateur.setMdpUtilisateur((String)(row.get("mdputilisateur")));
+                    lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
+                    lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+                    lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+                    lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
                     lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
                 }
                 //
@@ -73,7 +74,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 final String AJOUTUTILISATEUR = "INSERT INTO utilisateur(nomutilisateur,prenomutilisateur,emailutilisateur,mdputilisateur,datenaissanceutilisateur) VALUES(?,?,?,?,?);";
-                jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{inputUtilisateur.getNomUtilisateur(),inputUtilisateur.getPrenomUtilisateur(),inputUtilisateur.getEmailUtilisateur(),inputUtilisateur.getMdpUtilisateur(),sqlDate1});
+                jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getMdpUtilisateur()),sqlDate1});
             }
         });
         //

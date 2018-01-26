@@ -2,6 +2,7 @@ package DaoImpl;
 
 import DaoInterfaces.DaoLivre;
 import beans.Livre;
+import classesTravail.CodageGuillemets;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -31,12 +32,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 Livre leLivre=new Livre();
                 for (Map row : rows) {
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                 }
                 //
                 return leLivre;
@@ -58,7 +59,7 @@ public class BddLivre extends Impl implements DaoLivre {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 final String AJOUTLIVRE = "INSERT INTO livre(idlivre,titrelivre,auteurlivre,editeurlivre,datepublicationlivre,indexationlivre) VALUES(?,?,?,?,?,?)";
-                jdbcTemplate.update(AJOUTLIVRE,new Object[]{newLivre.getIdLivre(),newLivre.getTitreLivre(),newLivre.getAuteurLivre(),newLivre.getEditeurLivre(),sqlDate1,newLivre.getIndexationLivre()});
+                jdbcTemplate.update(AJOUTLIVRE,new Object[]{newLivre.getIdLivre(), CodageGuillemets.getTexteEncode(newLivre.getTitreLivre()),CodageGuillemets.getTexteEncode(newLivre.getAuteurLivre()),CodageGuillemets.getTexteEncode(newLivre.getEditeurLivre()),sqlDate1,CodageGuillemets.getTexteEncode(newLivre.getIndexationLivre())});
             }
         });
         //
@@ -76,17 +77,17 @@ public class BddLivre extends Impl implements DaoLivre {
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
                 final String LIVRES = "SELECT * FROM livre WHERE UPPER(titrelivre) LIKE ? OR UPPER(descriptionLivre) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {motcle2,motcle2});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LIVRES,new Object[] {(motcle2),(motcle2)});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -114,12 +115,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -147,12 +148,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -178,12 +179,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -208,7 +209,7 @@ public class BddLivre extends Impl implements DaoLivre {
                 ArrayList<String> lesString = new ArrayList<String>();
                 for (Map row : rows) {
                     String valueType;
-                    valueType=((String)(row.get("valueindexation")));
+                    valueType=(CodageGuillemets.getTexteDecode((String)(row.get("valueindexation"))));
                     lesString.add(valueType);
                 }
                 //
@@ -257,12 +258,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -288,12 +289,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //
@@ -319,12 +320,12 @@ public class BddLivre extends Impl implements DaoLivre {
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
                     leLivre.setIdLivre((int)(row.get("idlivre")));
-                    leLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    leLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    leLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    leLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    leLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    leLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     leLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    leLivre.setIndexationLivre((String)(row.get("indexationlivre")));
-                    leLivre.setDescriptionLivre((String)(row.get("descriptionlivre")));
+                    leLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String)(row.get("indexationlivre"))));
+                    leLivre.setDescriptionLivre(CodageGuillemets.getTexteDecode((String)(row.get("descriptionlivre"))));
                     lesLivres.add(leLivre);
                 }
                 //

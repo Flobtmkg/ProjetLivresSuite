@@ -2,6 +2,7 @@ package DaoImpl;
 
 import DaoInterfaces.DaoPret;
 import beans.*;
+import classesTravail.CodageGuillemets;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -97,27 +98,27 @@ public class BddPret extends Impl implements DaoPret {
                     Utilisateur chaqueUtilisateur=new Utilisateur();
                     //
                     chaqueUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaqueUtilisateur.setNomUtilisateur((String) (row.get("nomutilisateur")));
-                    chaqueUtilisateur.setPrenomUtilisateur((String)(row.get("prenomutilisateur")));
-                    chaqueUtilisateur.setEmailUtilisateur((String)(row.get("emailutilisateur")));
-                    chaqueUtilisateur.setMdpUtilisateur((String)(row.get("mdputilisateur")));
+                    chaqueUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String) (row.get("nomutilisateur"))));
+                    chaqueUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+                    chaqueUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+                    chaqueUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
                     chaqueUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
                     //
                     Exemplaire chaqueExemplaire=new Exemplaire();
                     //
                     chaqueExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
                     chaqueExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    chaqueExemplaire.setCoteExemplaire((String) (row.get("coteexemplaire")));
-                    chaqueExemplaire.setRemarqueExemplaire((String) (row.get("remarqueexemplaire")));
+                    chaqueExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
+                    chaqueExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
                     //
                     Livre chaqueLivre=new Livre();
                     //
                     chaqueLivre.setIdLivre((int)(row.get("idlivre")));
-                    chaqueLivre.setTitreLivre((String) (row.get("titrelivre")));
-                    chaqueLivre.setAuteurLivre((String)(row.get("auteurlivre")));
-                    chaqueLivre.setEditeurLivre((String)(row.get("editeurlivre")));
+                    chaqueLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+                    chaqueLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+                    chaqueLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
                     chaqueLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    chaqueLivre.setIndexationLivre((String) (row.get("indexationlivre")));
+                    chaqueLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String) (row.get("indexationlivre"))));
                     //
                     chaqueReservation.setPretReservation(chaquePret);
                     chaqueReservation.setUtilisateurReservation(chaqueUtilisateur);

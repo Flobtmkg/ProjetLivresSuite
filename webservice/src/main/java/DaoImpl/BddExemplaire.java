@@ -2,6 +2,7 @@ package DaoImpl;
 
 import DaoInterfaces.DaoExemplaire;
 import beans.Exemplaire;
+import classesTravail.CodageGuillemets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -34,8 +35,8 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                 for (Map row : rows) {
                     lExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
                     lExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    lExemplaire.setCoteExemplaire((String)(row.get("coteexemplaire")));
-                    lExemplaire.setRemarqueExemplaire((String)(row.get("remarqueexemplaire")));
+                    lExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
+                    lExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
                 }
                 //
                 return lExemplaire;
@@ -61,8 +62,8 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                     Exemplaire newexemplaire=new Exemplaire();
                     newexemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
                     newexemplaire.setIdLivre((int)(row.get("idlivre")));
-                    newexemplaire.setCoteExemplaire((String)(row.get("coteexemplaire")));
-                    newexemplaire.setRemarqueExemplaire((String)(row.get("remarqueexemplaire")));
+                    newexemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
+                    newexemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
                     lesExemplaires.add(newexemplaire);
                 }
                 //
@@ -81,7 +82,7 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 final String AJOUTEXEMPLAIRE = "INSERT INTO exemplaire(idlivre,coteexemplaire,remarqueexemplaire) VALUES(?,?,?)";
-                jdbcTemplate.update(AJOUTEXEMPLAIRE,new Object[]{exemplaireInput.getIdLivre(),exemplaireInput.getCoteExemplaire(),exemplaireInput.getRemarqueExemplaire()});
+                jdbcTemplate.update(AJOUTEXEMPLAIRE,new Object[]{exemplaireInput.getIdLivre(), CodageGuillemets.getTexteEncode(exemplaireInput.getCoteExemplaire()),CodageGuillemets.getTexteEncode(exemplaireInput.getRemarqueExemplaire())});
             }
         });
         //

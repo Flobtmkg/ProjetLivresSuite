@@ -5,14 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.TransactionStatus;
 
 import javax.sql.DataSource;
-import javax.swing.*;
 
 
 @ComponentScan(basePackages = {"beans","DaoInterfaces","webservice.allplatform","DaoImpl","springContext","jbcrypt"})
@@ -29,9 +24,9 @@ public class Application {
     @Value("${bdd.username}")
     private String jdbcUsername;
     //
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         //ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-    }
+    //}
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

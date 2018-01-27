@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.sql.Date;
 
-@Component
+
 public class Pret {
     private int idPret;
     private int idUtilisateur;

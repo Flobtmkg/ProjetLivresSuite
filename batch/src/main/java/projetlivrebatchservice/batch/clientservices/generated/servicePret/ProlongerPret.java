@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "prolongerPret", propOrder = {
+@XmlType(name = "prolongerPret1", propOrder = {
     "arg0"
 })
 public class ProlongerPret {

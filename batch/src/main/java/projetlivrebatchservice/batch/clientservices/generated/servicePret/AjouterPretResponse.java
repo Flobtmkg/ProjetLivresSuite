@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ajouterPretResponse")
+@XmlType(name = "ajouterPretResponse1")
 public class AjouterPretResponse {
 
 

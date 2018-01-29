@@ -11,11 +11,14 @@ import java.util.List;
 
 @Component
 public class task1 {
-    @Scheduled(fixedRate=1000)
+    @Scheduled(fixedRate=20000)
     public void work() {
         ServicePretService monservice= new ServicePretService();
         ServicePret accesPret=monservice.getServicePretPort();
         List<Reservation> pretsNonRendus=accesPret.listerUtilisateursPretsNonRendus();
-        System.out.println(pretsNonRendus);
+        for (Reservation res:pretsNonRendus) {
+            System.out.println(res.getUtilisateurReservation().getEmailUtilisateur());
+        }
+
     }
 }

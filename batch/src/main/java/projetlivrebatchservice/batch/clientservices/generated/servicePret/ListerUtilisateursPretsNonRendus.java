@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listerUtilisateursPretsNonRendus")
+@XmlType(name = "listerUtilisateursPretsNonRendus1")
 public class ListerUtilisateursPretsNonRendus {
 
 

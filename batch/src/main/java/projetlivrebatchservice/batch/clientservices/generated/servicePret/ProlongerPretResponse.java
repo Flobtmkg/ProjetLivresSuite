@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "prolongerPretResponse")
+@XmlType(name = "prolongerPretResponse1")
 public class ProlongerPretResponse {
 
 

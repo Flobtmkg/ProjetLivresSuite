@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listerInfosPretUtilisateurResponse", propOrder = {
+@XmlType(name = "listerInfosPretUtilisateurResponse1", propOrder = {
     "_return"
 })
 public class ListerInfosPretUtilisateurResponse {

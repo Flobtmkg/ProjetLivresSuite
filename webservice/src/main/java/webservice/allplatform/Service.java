@@ -2,6 +2,7 @@ package webservice.allplatform;
 
 import DaoImpl.*;
 import DaoInterfaces.*;
+import beans.ReferenceDuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,4 +15,5 @@ public class Service {
     protected DaoExemplaire monDaoExemplaire=(BddExemplaire)context.getBean("bddExemplaire");
     protected DaoUtilisateur monDaoUtilisateur=(BddUtilisateur)context.getBean("bddUtilisateur");
     protected DaoNotation monDaoNotation=(BddNotation)context.getBean("bddNotation");
+    protected ReferenceDuration borrowWeekDuration=(ReferenceDuration)context.getBean("configReferenceDuration");
 }

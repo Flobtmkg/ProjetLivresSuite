@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import projetlivrebatchservice.batch.beans.EmailConnexion;
+import projetlivrebatchservice.batch.beans.WsdlLocationObject;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @EnableScheduling
@@ -18,7 +19,7 @@ import projetlivrebatchservice.batch.beans.EmailConnexion;
 @Configuration
 public class BatchApplication {
 
-    //récup des properties
+    //récup des properties email
     @Value("${emailHost}")
     private String emailHost;
     @Value("${emailFromWho}")
@@ -29,11 +30,34 @@ public class BatchApplication {
     private String emailPassword;
     @Value("${pauseInterEmail}")
     private long pauseInterEmail;
+    //récup des properties WSDLLocation
+    @Value("${WSDLLocationUtilisateur}")
+    private String wsdlLocationUtilisateur;
+    @Value("${WSDLLocationLivres}")
+    private String wsdlLocationLivre;
+    @Value("${WSDLLocationNotation}")
+    private String wsdlLocationNotation;
+    @Value("${WSDLLocationExemplaire}")
+    private String wsdlLocationExemplaire;
+    @Value("${WSDLLocationPret}")
+    private String wsdlLocationPret;
     //
 
     public static void main(String[] args) {
 		SpringApplication.run(BatchApplication.class, args);
 	}
+
+
+    @Bean
+    public WsdlLocationObject configWsdl(){
+        WsdlLocationObject wsdlConfig= new WsdlLocationObject();
+        wsdlConfig.setWsdlLocationUtilisateur(wsdlLocationUtilisateur);
+        wsdlConfig.setWsdlLocationLivre(wsdlLocationLivre);
+        wsdlConfig.setWsdlLocationNotation(wsdlLocationNotation);
+        wsdlConfig.setWsdlLocationExemplaire(wsdlLocationExemplaire);
+        wsdlConfig.setWsdlLocationPret(wsdlLocationPret);
+        return wsdlConfig;
+    }
 
     @Bean
 	public EmailConnexion configEmail(){

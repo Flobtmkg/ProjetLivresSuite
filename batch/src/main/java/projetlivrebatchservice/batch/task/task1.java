@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import projetlivrebatchservice.batch.beans.EmailConnexion;
+import projetlivrebatchservice.batch.beans.WsdlLocationObject;
 import projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation;
 import projetlivrebatchservice.batch.clientservices.generated.servicePret.ServicePret;
 import projetlivrebatchservice.batch.clientservices.generated.servicePret.ServicePretService;
 import projetlivrebatchservice.batch.objetsTravail.EnvoiEmail;
 
+import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,14 +18,22 @@ import java.util.List;
 
 @Component
 public class task1 {
-
     @Autowired
     EmailConnexion emailAEnvoyer;
     String separateur=System.getProperty("line.separator");
+    @Autowired
+    private WsdlLocationObject wsdl1;
+    private URL testUrl;
 
-    @Scheduled(cron="0 0 2 * * *")//  cron="0 0 2 * * *"   Tout les jours à 2h00
+    @Scheduled(cron="0 0 2 * * *")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
     public void work() {
-        ServicePretService monservice= new ServicePretService();
+        try{
+            testUrl=new URL(wsdl1.getWsdlLocationPret());
+        }catch(Exception e){
+
+        }
+        System.out.println("--> "+LocalDateTime.now()+"; Récupétation des données via le webservice.");
+        ServicePretService monservice= new ServicePretService(testUrl);
         ServicePret accesPret=monservice.getServicePretPort();
         List<Reservation> pretsNonRendus=accesPret.listerUtilisateursPretsNonRendus();
         long actualTime;
@@ -60,7 +70,4 @@ public class task1 {
         return outputDate;
     }
 
-    //public static String toCron(String mins, String hrs, String dayOfMonth, String month, String dayOfWeek, String year) {
-    //    return String.format("%s %s %s %s %s %s", mins, hrs, dayOfMonth, month, dayOfWeek, year);
-    //}
 }

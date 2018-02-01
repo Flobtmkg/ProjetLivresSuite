@@ -10,6 +10,6 @@ public interface DaoPret {
     ArrayList<Pret> listerInfosPretUtilisateur(int idutilisateur);
     ArrayList<Reservation> listerUtilisateursPretsNonRendus();
     Pret etatPret(int idPret);
-    void prolongerPret(int idPret);
+    void prolongerPret(int idPret,String datefinpret);
     void retourPret(int idPret);
 }

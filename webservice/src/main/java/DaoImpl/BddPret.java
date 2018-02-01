@@ -22,7 +22,7 @@ public class BddPret extends Impl implements DaoPret {
     public void ajouterPret(Pret newPret) {
         //Conversion de date
         LocalDate date1=LocalDate.parse(newPret.getDateDebutPret());
-        LocalDate date2=LocalDate.parse(newPret.getDateFinPret());;
+        LocalDate date2=LocalDate.parse(newPret.getDateFinPret());
         long millisecondsSince1970A =date1.toEpochDay()*86400000;
         long millisecondsSince1970B =date2.toEpochDay()*86400000;
         java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
@@ -165,13 +165,16 @@ public class BddPret extends Impl implements DaoPret {
     }
 
     @Override
-    public void prolongerPret(int idPret) {
+    public void prolongerPret(int idPret,String datefinpret) {
+        LocalDate date1=LocalDate.parse(datefinpret);
+        long millisecondsSince1970A =date1.toEpochDay()*86400000;
+        java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
-                final String PROLONGERPRET = "UPDATE pret SET prolongepret=true WHERE idpret=?;";
-                jdbcTemplate.update(PROLONGERPRET,new Object[]{idPret});
+                final String PROLONGERPRET = "UPDATE pret SET prolongepret=true, datefinpret=? WHERE idpret=?;";
+                jdbcTemplate.update(PROLONGERPRET,new Object[]{sqlDate1,idPret});
             }
         });
         //

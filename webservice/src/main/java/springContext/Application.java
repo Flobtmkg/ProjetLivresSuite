@@ -1,4 +1,5 @@
 package springContext;
+import beans.ReferenceDuration;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,14 +24,20 @@ public class Application {
     private String jdbcPassword;
     @Value("${bdd.username}")
     private String jdbcUsername;
+    @Value("${dureeReferencePret}")
+    private String weekReferenceDuration;
     //
-    //public static void main(String[] args) {
-        //ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-    //}
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public ReferenceDuration configReferenceDuration(){
+        ReferenceDuration newreference = new ReferenceDuration();
+        newreference.setDureePret(Integer.valueOf(weekReferenceDuration));
+        return newreference;
     }
 
     @Bean

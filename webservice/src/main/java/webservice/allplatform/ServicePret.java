@@ -1,7 +1,10 @@
 package webservice.allplatform;
 
 import beans.Pret;
+import beans.ReferenceDuration;
 import beans.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
+import springContext.Application;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -12,12 +15,14 @@ import java.util.ArrayList;
 public class ServicePret extends Service{
 
     @WebMethod
-    public void ajouterPret(int idexemplaire,int idutilisateur,String datedebutpret,String datefinpret,boolean prolongepret,boolean rendupret){
+    public void ajouterPret(int idexemplaire,int idutilisateur,String datedebutpret,boolean prolongepret,boolean rendupret){
         Pret newPretInput= new Pret();
         newPretInput.setIdExemplaire(idexemplaire);
         newPretInput.setIdUtilisateur(idutilisateur);
         newPretInput.setDateDebutPret(LocalDate.parse(datedebutpret));
-        newPretInput.setDateFinPret(LocalDate.parse(datefinpret));
+        LocalDate ld=LocalDate.parse(datedebutpret);
+        ld=ld.plusWeeks(borrowWeekDuration.getDureePret());
+        newPretInput.setDateFinPret(ld);
         newPretInput.setProlongePret(prolongepret);
         newPretInput.setRenduPret(rendupret);
         monDaoPret.ajouterPret(newPretInput);
@@ -43,11 +48,15 @@ public class ServicePret extends Service{
 
     @WebMethod
     public void prolongerPret(int idPret){
-        monDaoPret.prolongerPret(idPret);
+        Pret pretActuel = etatPret(idPret);
+        LocalDate ld = LocalDate.parse(pretActuel.getDateFinPret());
+        ld=ld.plusWeeks(borrowWeekDuration.getDureePret());
+        monDaoPret.prolongerPret(idPret,ld.toString());
     }
 
     @WebMethod
     public void retourPret(int idPret){
         monDaoPret.retourPret(idPret);
     }
+
 }

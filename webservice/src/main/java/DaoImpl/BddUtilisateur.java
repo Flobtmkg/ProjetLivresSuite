@@ -12,6 +12,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,36 +25,37 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
-        Utilisateur utilisateurOutput=vTransactionTemplate.execute(new TransactionCallback<Utilisateur>() {
+        ArrayList<Utilisateur> utilisateursOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Utilisateur>>() {
             @Override
-            public Utilisateur doInTransaction(TransactionStatus transactionStatus) {
+            public ArrayList<Utilisateur> doInTransaction(TransactionStatus transactionStatus) {
                 final String AUTENTIFIER = "SELECT * FROM utilisateur WHERE emailutilisateur=?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(AUTENTIFIER,new Object[] {emailInput});
-                Utilisateur lUtilisateur=new Utilisateur();
+                ArrayList<Utilisateur> multiAdressesPourTest = new ArrayList<Utilisateur>();
                 for (Map row : rows) {
+                    Utilisateur lUtilisateur=new Utilisateur();
                     lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
                     lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
                     lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
                     lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
                     lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
                     lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+                    multiAdressesPourTest.add(lUtilisateur);
                 }
                 //
-                return lUtilisateur;
+                return multiAdressesPourTest;
             }
         });
-        //
-        if(utilisateurOutput.getMdpUtilisateur()!=null){
-            if(BCrypt.checkpw(mdpInput,utilisateurOutput.getMdpUtilisateur())==false){
-                return new Utilisateur();
-            }else{
-                return utilisateurOutput;
+        //Plusieurs adresses email peuvent être identiques notement en situation de test, ce cas est donc traité ici
+        Utilisateur newUtilisateur=new Utilisateur();
+        for (Utilisateur chaqueUtilisateur:utilisateursOutput) {
+            if(chaqueUtilisateur.getMdpUtilisateur()!=null){
+                if(BCrypt.checkpw(mdpInput,chaqueUtilisateur.getMdpUtilisateur())==true){
+                    newUtilisateur=chaqueUtilisateur;
+                }
             }
-        }else{
-            return new Utilisateur();
         }
-
+        return newUtilisateur;
         //
     }
 

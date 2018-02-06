@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="package1" extends="struts-default" namespace= "/">
+        <default-action-ref name="accueil"></default-action-ref>
+        <!--Actions redirections-->
+        <action name="accueil">
+            <result>/WEB-INF/accueil.jsp</result>
+        </action>
+        <action name="login">
+            <result>/WEB-INF/LoginForm.jsp</result>
+        </action>
+        <!--Actions spécifiques-->
+        <action name="loginRedirection" class="loginActionBean">
+            <result name="input">/WEB-INF/LoginForm.jsp</result>
+            <result name="success">/WEB-INF/LoginSuccess.jsp</result>
+            <result name="error">/WEB-INF/LoginError.jsp</result>
+        </action>
+    </package>
+</struts>

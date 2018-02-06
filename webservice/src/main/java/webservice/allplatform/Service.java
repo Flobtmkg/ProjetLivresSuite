@@ -2,8 +2,7 @@ package webservice.allplatform;
 
 import DaoImpl.*;
 import DaoInterfaces.*;
-import beans.ReferenceDuration;
-import org.springframework.beans.factory.annotation.Autowired;
+import beans.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import springContext.Application;

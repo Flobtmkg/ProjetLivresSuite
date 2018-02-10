@@ -5,7 +5,6 @@ nav#barre{background: rgba(255, 255, 255, 0.2); z-index: 2 ; box-shadow: rgba(0,
 /**/
 label#connecte{color:rgba(255, 255, 255, 1); margin-right:6px}
 /**/
-img#barreseparation{margin-left:55px}
 /**/
 ul#listutilisateur{display:none; top:-20px;z-index:10}
 /**/
@@ -15,7 +14,26 @@ a#btnFermer{margin-top:22px}
 /**/
 p#texterreur{color:rgba(0, 0, 0, 1)}
 /**/
+button#boutonhome{padding-bottom: 8px}
 /**/
+a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+}
+.liensMenu{
+    margin-right: 40px;
+    color:rgba(255, 255, 255, 0.75);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.liensMenu2{
+    margin-right: 40px;
+    color:rgba(0, 0, 0, 1)
+}
+/*Surcharge de bootstrap*/
+.navbar-nav{
+    flex-direction: row;
+}
 /*Modification de la classe pour le message modal full CSS*/
 .cModal {
     overflow-y: initial;
@@ -48,13 +66,16 @@ p#texterreur{color:rgba(0, 0, 0, 1)}
 /**/
 /*modification de la classe pour le bouton rond*/
 .btn-xs {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 23px;
 }
 /*modification de la classe pour appliquer une rotation au logo*/
+.rotatelogo:hover {
+    box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.2);
+}
 .rotatelogo {
-    position: absolute;
+    border-radius: 25px;
     -webkit-animation:spin 200ms linear;
     -moz-animation:spin 200ms linear;
     animation:spin 200ms linear;

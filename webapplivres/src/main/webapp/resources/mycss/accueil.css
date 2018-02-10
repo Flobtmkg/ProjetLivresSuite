@@ -1,5 +1,6 @@
-body{background-repeat:repeat-y; background-attachment: fixed;background-size: 100% auto;min-width: 510px}
-h1{color:rgba(255, 255, 255, 1);font-weight:100;font-size:350%;text-shadow:0px 2px 4px rgba(0, 0, 0, 1)}
-h2{color:rgba(255, 255, 255, 1);font-weight:500;font-size:180%; text-shadow:0px 2px 4px rgba(0, 0, 0, 1)}
-div#presentation{margin-left:10%; position:relative; top:250px}
+body{background-repeat: no-repeat; background-attachment: fixed;min-width: 510px}
+h1{color:rgba(255, 255, 255, 1);font-weight:100;font-size:350%;text-shadow:0px 3px 5px rgba(0, 0, 0, 1)}
+/*h2{margin-right:25%;color:rgba(255, 255, 255, 1);font-weight:500;font-size:180%; text-shadow:0px 3px 5px rgba(0, 0, 0, 1); text-align: right}*/
+div#presentation{position:relative; top:220px;}
+#groupRecherche{margin-top: 30px}
 .imagePrechargee{display: none}

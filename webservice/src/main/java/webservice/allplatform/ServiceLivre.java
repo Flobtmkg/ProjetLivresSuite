@@ -1,6 +1,6 @@
 package webservice.allplatform;
 
-import beans.Livre;
+import ServicesBeans.Livre;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -140,7 +140,10 @@ public class ServiceLivre extends Service {
         //
         ArrayList<String> elementsIndexation =monDaoLivre.chercheElementIndexation();
         int nbchr = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("type")+1);
-        valeurType=valeurType.substring(0,nbchr);
+        if(valeurType.length()>nbchr){
+            valeurType=valeurType.substring(0,nbchr);
+        }
+        //
         ArrayList<Livre> OutputLivre=monDaoLivre.rechercheType(valeurType,nbchr);
         return OutputLivre;
     }
@@ -148,7 +151,9 @@ public class ServiceLivre extends Service {
     public ArrayList<Livre> rechercheParDomaine(String valeurDomaine){
         ArrayList<String> elementsIndexation =monDaoLivre.chercheElementIndexation();
         int nbchr2 = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("domaine")+1);
-        valeurDomaine=valeurDomaine.substring(0,nbchr2);
+        if(valeurDomaine.length()>nbchr2){
+            valeurDomaine=valeurDomaine.substring(0,nbchr2);
+        }
         //
         int departChr = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("type")+1)+1;
         //
@@ -160,7 +165,9 @@ public class ServiceLivre extends Service {
     public ArrayList<Livre> rechercheParTheme(String valeurTheme){
         ArrayList<String> elementsIndexation =monDaoLivre.chercheElementIndexation();
         int nbchr3 = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("theme")+1);
-        valeurTheme=valeurTheme.substring(0,nbchr3);
+        if(valeurTheme.length()>nbchr3){
+            valeurTheme=valeurTheme.substring(0,nbchr3);
+        }
         //
         int departChr = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("domaine")+1)+ monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("type")+1)+1;
         //

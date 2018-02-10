@@ -1,7 +1,7 @@
 package DaoInterfaces;
 
-import beans.Pret;
-import beans.Reservation;
+import ServicesBeans.Pret;
+import ServicesBeans.Reservation;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,7 @@
 package webservice.allplatform;
 
-import beans.Pret;
-import beans.ReferenceDuration;
-import beans.Reservation;
-import org.springframework.beans.factory.annotation.Autowired;
-import springContext.Application;
+import ServicesBeans.Pret;
+import ServicesBeans.Reservation;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

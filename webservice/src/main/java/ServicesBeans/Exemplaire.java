@@ -1,4 +1,4 @@
-package beans;
+package ServicesBeans;
 
 public class Exemplaire {
     //

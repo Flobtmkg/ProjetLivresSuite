@@ -1,5 +1,5 @@
 package springContext;
-import beans.ReferenceDuration;
+import ServicesBeans.ReferenceDuration;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 
-@ComponentScan(basePackages = {"beans","DaoInterfaces","webservice.allplatform","DaoImpl","springContext","jbcrypt"})
+@ComponentScan(basePackages = {"ServicesBeans","DaoInterfaces","webservice.allplatform","DaoImpl","springContext","jbcrypt"})
 @PropertySource("classpath:application.properties")
 @Configuration
 public class Application {

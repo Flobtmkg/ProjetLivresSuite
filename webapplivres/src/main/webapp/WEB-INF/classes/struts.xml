@@ -5,20 +5,28 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <constant name="struts.custom.i18n.resources" value="application" />
     <package name="package1" extends="struts-default" namespace= "/">
         <default-action-ref name="accueil"></default-action-ref>
+        <!---->
         <!--Actions redirections-->
+        <!---->
         <action name="accueil">
             <result>/WEB-INF/accueil.jsp</result>
         </action>
         <action name="login">
             <result>/WEB-INF/LoginForm.jsp</result>
         </action>
+        <!---->
         <!--Actions spécifiques-->
+        <!---->
         <action name="loginRedirection" class="loginActionBean">
             <result name="input">/WEB-INF/LoginForm.jsp</result>
             <result name="success">/WEB-INF/LoginSuccess.jsp</result>
             <result name="error">/WEB-INF/LoginError.jsp</result>
+        </action>
+        <action name="rechercheSimple" class="rechercheSimpleActionBean">
+            <result name="success">/WEB-INF/recherches.jsp</result>
         </action>
     </package>
 </struts>

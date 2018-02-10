@@ -1,7 +1,7 @@
 package DaoImpl;
 
 import DaoInterfaces.DaoLivre;
-import beans.Livre;
+import ServicesBeans.Livre;
 import classesTravail.CodageGuillemets;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
@@ -248,12 +248,15 @@ public class BddLivre extends Impl implements DaoLivre {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
+        //pré-traitement mot clé
+        final String motcle2="%" + valueType.toUpperCase() + "%";
+        //
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE SUBSTR(indexationlivre,1,?)=?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,1,?)) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {valueNbChr,valueType});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {valueNbChr,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
@@ -279,12 +282,15 @@ public class BddLivre extends Impl implements DaoLivre {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
+        //pré-traitement mot clé
+        final String motcle2="%" + valueDomaine.toUpperCase() + "%";
+        //
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE SUBSTR(indexationlivre,?,?)=?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,?,?)) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr2,valueDomaine});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr2,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
@@ -310,12 +316,15 @@ public class BddLivre extends Impl implements DaoLivre {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
+        //pré-traitement mot clé
+        final String motcle2="%" + valueTheme.toUpperCase() + "%";
+        //
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE SUBSTR(indexationlivre,?,?)=?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,?,?)) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr3,valueTheme});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr3,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();

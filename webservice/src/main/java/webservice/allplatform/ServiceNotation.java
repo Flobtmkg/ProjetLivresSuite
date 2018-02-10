@@ -1,7 +1,7 @@
 package webservice.allplatform;
 
 
-import beans.Notation;
+import ServicesBeans.Notation;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

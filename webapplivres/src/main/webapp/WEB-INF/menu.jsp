@@ -1,18 +1,18 @@
 <nav id="barre" class="form-inline navbar navbar-default container-fluid">
     <div class="navbar-header">
-        <a href="./accueil" ><img class="navbar-btn rotatelogo" src="../resources/img/livre.png" width="49" height="35"></a>
-        <img id="barreseparation" class="navbar-btn" src="../resources/img/barreverticale.png">
+        <a href="./accueil" ><img class="navbar-btn rotatelogo" src="../resources/img/livre8.png" width="50" height="46"></a>
     </div>
-    <div id="liensmenu" class="col-xs-offset-1">
+    <div class="col-xs-offset-1">
         <ul class="nav navbar-nav">
-            <li><a href="./livres"><span class="glyphicon glyphicon-search"></span> Rechercher livres</a></li>
-            <li><a href="./contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
-            <li><a href="./inscription"><span class="glyphicon glyphicon-edit"></span> Inscrivez vous ici !</a></li>
+            <li><a href="./livres" class="liensMenu"><i class="fas fa-search-plus fa-lg"></i> Rechercher livres</a></li>
+            <li><a href="./contact" class="liensMenu"><i class="far fa-address-card fa-lg"></i> Contact</a></li>
+            <li></li>
         </ul>
     </div>
     <div id="connexion" class="navbar-right">
                 <div id="blockconnexion" class="form-group navbar-btn">
-                    <a href="./espaceutilisateur"><button id="boutonhome" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-user"></span></button></a>
+                    <a href="./inscription" class="liensMenu"><i class="fas fa-sign-in-alt fa-lg"></i> Inscription/Connexion</a>
+                    <a href="./espaceutilisateur"><button id="boutonhome" class="btn btn-xs btn-primary"><span class="fas fa-user fa-lg"></span></button></a>
                 </div>
     </div>
 </nav>

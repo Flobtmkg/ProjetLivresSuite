@@ -29,7 +29,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rechercherLivreComplxeResponse", propOrder = {
+@XmlType(name = "rechercherLivreComplxeResponse1", propOrder = {
     "_return"
 })
 public class RechercherLivreComplxeResponse {

@@ -1,7 +1,7 @@
 package DaoImpl;
 
 import DaoInterfaces.DaoUtilisateur;
-import beans.Utilisateur;
+import ServicesBeans.Utilisateur;
 import classesTravail.CodageGuillemets;
 import jbcrypt.BCrypt;
 import org.springframework.stereotype.Repository;

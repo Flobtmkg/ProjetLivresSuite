@@ -1,6 +1,6 @@
 package DaoInterfaces;
 
-import beans.Notation;
+import ServicesBeans.Notation;
 
 public interface DaoNotation {
     void ajouterNotation(Notation notationInput);

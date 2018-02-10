@@ -1,6 +1,6 @@
 package DaoInterfaces;
 
-import beans.Utilisateur;
+import ServicesBeans.Utilisateur;
 
 public interface DaoUtilisateur {
     Utilisateur autentifier(String emailInput, String mdpInput);

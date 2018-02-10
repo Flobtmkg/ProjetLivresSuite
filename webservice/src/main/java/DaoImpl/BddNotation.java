@@ -1,7 +1,7 @@
 package DaoImpl;
 
 import DaoInterfaces.DaoNotation;
-import beans.Notation;
+import ServicesBeans.Notation;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;

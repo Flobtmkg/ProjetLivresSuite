@@ -1,6 +1,6 @@
 package webservice.allplatform;
 
-import beans.Utilisateur;
+import ServicesBeans.Utilisateur;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

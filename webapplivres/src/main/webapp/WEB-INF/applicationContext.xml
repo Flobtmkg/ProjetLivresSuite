@@ -2,9 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    Beans Actions
+    -->
     <bean id="loginActionBean" class="webAppProjetLivre.strutsAction.LoginAction">
         <property name="userDAO" ref="userDAO" />
     </bean>
-
+    <bean id="rechercheSimpleActionBean" class="webAppProjetLivre.strutsAction.RechercheSimpleAction">
+        <property name="recherche" ref="rechercheSimpleDao" />
+    </bean>
+    <!--
+    Beans DAO (action implementation)
+    -->
     <bean id="userDAO" class="webAppProjetLivre.classesTravail.UserDao" />
+    <bean id="rechercheSimpleDao" class="webAppProjetLivre.classesTravail.RechercheSimpleDao" />
 </beans>

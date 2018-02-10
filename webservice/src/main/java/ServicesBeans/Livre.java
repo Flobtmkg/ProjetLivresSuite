@@ -1,4 +1,4 @@
-package beans;
+package ServicesBeans;
 
 import java.sql.Date;
 import java.time.LocalDate;

@@ -1,6 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../resources/img/livre_icon.png"/>
     <link type="text/css" href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link type="text/css" href="../resources/mycss/menu.css" rel="stylesheet">
     <link type="text/css" href="../resources/mycss/accueil.css" rel="stylesheet">
     <script type="text/javascript" src="../resources/myjs/ecran.js"></script>
-    <title></title>
+    <title>Services en ligne de votre biliothèque</title>
 </head>
-<body onload="changeImage()">
-<img id="imageHd" class="imagePrechargee" src="../resources/img/livreLargeHD.jpg"></img>
-<img id="imagenormale" class="imagePrechargee" src="../resources/img/livreLarge.jpg"></img>
+<body onresize="changeImage()" onload="changeImage()">
+<!-- Necessaire au système d'adaptation d'images automatique controlé en javascript -->
+<!-- Affiche toujours l'image de fond en optimisé quelque soit les tailles d'écrans (du smartphone à la 4K) -->
+<img id="imageHd" class="imagePrechargee" src="../resources/img/livreHD_conforme.jpg">
+<img id="image4K" class="imagePrechargee" src="../resources/img/livre4k_conforme.jpg">
+<!-- -->
+<!-- -->
 <%@ include file="menu.jsp" %>
-<div id="presentation">
-    <h1>Vous aimez la lecture?</h1>
-    <h2><br><br><br>Nous aussi!</h2>
+<div id="presentation" class="container-fluid">
+    <s:form class="form-group col-sm-8 offset-sm-2" action="rechercheSimple" method="POST">
+        <h1>Envie de lecture?</h1>
+        <div id="groupRecherche" class="input-group">
+            <input type="search" name="motCles" class="form-control" placeholder="Recherchez un ouvrage, un auteur, un éditeur...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary btn-lg"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </s:form>
 </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
-package beans;
+package ServicesBeans;
 
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.sql.Date;

@@ -33,11 +33,40 @@ function getWindowWidth() {
     //
      var ny=getWindowHeight();
      var nx=getWindowWidth();
-     var rapport=nx/ny;
-     if(rapport>1.83){
-         document.body.style.backgroundImage="url('" + document.getElementById('imageHd').src + "')";
+     if(1920/nx<1 || 1080/ny<1){
+         //base 4k
+         var rapportZoomL=4096/nx;
+         var rapportZoomH=2160/ny;
+         if(rapportZoomL<rapportZoomH){
+             //le ratio de dézoom est rapportZoomL
+             document.body.style.backgroundImage="url('" + document.getElementById('image4K').src + "')";
+             document.body.style.backgroundSize="100% auto";
+             //recentrage
+             document.body.style.backgroundPositionY="center";
+         }else{
+             //le ratio de dézoom est rapportZoomH
+             document.body.style.backgroundImage="url('" + document.getElementById('image4K').src + "')";
+             document.body.style.backgroundSize="auto 100%";
+             //recentrage
+             document.body.style.backgroundPositionX="center";
+         }
      }else{
-         document.body.style.backgroundImage="url('" + document.getElementById('imagenormale').src + "')";
+         //base fullHD
+         var rapportZoomL=1920/nx;
+         var rapportZoomH=1080/ny;
+         if(rapportZoomL<rapportZoomH){
+             //le ratio de dézoom est rapportZoomL
+             document.body.style.backgroundImage="url('" + document.getElementById('imageHd').src + "')";
+             document.body.style.backgroundSize="100% auto";
+             //recentrage
+             document.body.style.backgroundPositionY="center";
+         }else{
+             //le ratio de dézoom est rapportZoomH
+             document.body.style.backgroundImage="url('" + document.getElementById('imageHd').src + "')";
+             document.body.style.backgroundSize="auto 100%";
+             //recentrage
+             document.body.style.backgroundPositionX="center";
+         }
      }
  }
 

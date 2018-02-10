@@ -1,7 +1,7 @@
 package DaoImpl;
 
 import DaoInterfaces.DaoPret;
-import beans.*;
+import ServicesBeans.*;
 import classesTravail.CodageGuillemets;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;

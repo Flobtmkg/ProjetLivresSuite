@@ -1,6 +1,6 @@
 package DaoInterfaces;
 
-import beans.Exemplaire;
+import ServicesBeans.Exemplaire;
 
 import java.util.ArrayList;
 

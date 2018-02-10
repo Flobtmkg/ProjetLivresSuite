@@ -1,6 +1,6 @@
 package DaoInterfaces;
 
-import beans.Livre;
+import ServicesBeans.Livre;
 
 import java.util.ArrayList;
 

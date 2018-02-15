@@ -344,4 +344,72 @@ public class BddLivre extends Impl implements DaoLivre {
         //
         return livreOutput;
     }
+
+    @Override
+    public ArrayList<String> listerTypes() {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //
+        ArrayList<String> typesOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
+            @Override
+            public ArrayList<String> doInTransaction(TransactionStatus transactionStatus) {
+                final String TYPES = "SELECT nomtype FROM type;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(TYPES);
+                ArrayList<String> lesTypes = new ArrayList<String>();
+                for (Map row : rows) {
+                    lesTypes.add(CodageGuillemets.getTexteDecode((String) (row.get("nomtype"))));
+                }
+                //
+                return lesTypes;
+            }
+        });
+        //
+        return typesOutput;
+    }
+
+    public ArrayList<String> listerDomaines() {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //
+        ArrayList<String> domaineOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
+            @Override
+            public ArrayList<String> doInTransaction(TransactionStatus transactionStatus) {
+                final String DOMAINES = "SELECT nomdomaine FROM domaine;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(DOMAINES);
+                ArrayList<String> lesDomaines = new ArrayList<String>();
+                for (Map row : rows) {
+                    lesDomaines.add(CodageGuillemets.getTexteDecode((String) (row.get("nomdomaine"))));
+                }
+                //
+                return lesDomaines;
+            }
+        });
+        //
+        return domaineOutput;
+    }
+
+    @Override
+    public ArrayList<String> listerThemes() {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //
+        ArrayList<String> themeOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
+            @Override
+            public ArrayList<String> doInTransaction(TransactionStatus transactionStatus) {
+                final String THEME = "SELECT nomtheme FROM theme;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(THEME);
+                ArrayList<String> lesThemes = new ArrayList<String>();
+                for (Map row : rows) {
+                    lesThemes.add(CodageGuillemets.getTexteDecode((String) (row.get("nomtheme"))));
+                }
+                //
+                return lesThemes;
+            }
+        });
+        //
+        return themeOutput;
+    }
 }

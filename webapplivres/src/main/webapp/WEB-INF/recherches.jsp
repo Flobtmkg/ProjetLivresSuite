@@ -1,4 +1,5 @@
-<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
         <!--  -->
         <!--  Formulaire de recherche-->
         <!--  -->
-        <form action="sites" method="post" id="blockdescription3" class="panel offset-sm-0 col-12 form-group">
+        <form action="rechercheComplexe" method="post" id="blockdescription3" class="card offset-sm-0 col-12 form-group">
             <div class="offset-sm-0 col-12">
                 <div class="form-group col-sm-10 offset-sm-1 col-12 offset-0 aligneAGauche">
                     <legend class="label1">Recherchez:</legend>
@@ -42,7 +43,7 @@
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-sliders-h"></i></span>
                                 </div>
-                                <select name="Mode" class="form-control">
+                                <select name="ouOuEt" class="form-control">
                                     <option>OU</option>
                                     <option>ET</option>
                                 </select>
@@ -55,7 +56,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-quote-left"></i></span>
                             </div>
-                            <input name="search" type="text" class="form-control" placeholder="Titre de l'ouvrage..." value="${rechsearch}">
+                            <input name="titre" type="text" class="form-control" placeholder="Titre de l'ouvrage..." value="${rechsearch}">
                         </div>
                     </div>
                     <div class="col-sm-4 col-12 aligneAGauche">
@@ -64,7 +65,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-address-book"></i></span>
                             </div>
-                            <input name="search" type="text" class="form-control" placeholder="Auteur de l'ouvrage..." value="${rechsearch}">
+                            <input name="auteur" type="text" class="form-control" placeholder="Auteur de l'ouvrage..." value="${rechsearch}">
                         </div>
                     </div>
                     <div class="col-sm-4 col-12 aligneAGauche">
@@ -73,7 +74,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-building"></i></span>
                             </div>
-                            <input name="search" type="text" class="form-control" placeholder="Editeur de l'ouvrage..." value="${rechsearch}">
+                            <input name="editeur" type="text" class="form-control" placeholder="Editeur de l'ouvrage..." value="${rechsearch}">
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,11 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-crop"></i></span>
                             </div>
-                            <select name="cotMin" class="form-control">
+                            <select name="leType" class="form-control">
+                                    <option>Selectionnez un type</option>
+                                    <c:forEach items="${types}" var="chaqueType">
+                                        <option>${chaqueType}</option>
+                                    </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -94,7 +99,11 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-object-group"></i></span>
                             </div>
-                            <select name="cotMin" class="form-control">
+                            <select name="leDomaine" class="form-control">
+                                <option>Selectionnez un domaine</option>
+                                <c:forEach items="${domaines}" var="chaquedomaine">
+                                    <option>${chaquedomaine}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -104,7 +113,11 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-tags"></i></span>
                             </div>
-                            <select name="cotMin" class="form-control">
+                            <select name="leTheme" class="form-control">
+                                <option>Selectionnez un thème</option>
+                                <c:forEach items="${themes}" var="chaquetheme">
+                                    <option>${chaquetheme}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -116,13 +129,38 @@
         </form>
         <!--  -->
         <!--  Formulaire de recherche-->
+        <!---->
+        <!---->
+        <!---->
+        <!--Boucle de résultats-->
+        <c:forEach items="${listeLivre}" var="chaquelivre">
+            <!--Elements d'affichage des livres-->
+            <form id="blockdescription" class="card offset-sm-1 col-sm-10 col-12 form-group">
+                <div id="paneldescription" class="card-body">
+                    <legend class="label1">${chaquelivre.titreLivre}<a id="liensDuHaut" target="_blank" href=""></a></legend>
+                    <!-- imgPath -->
+                    <c:if test="${empty voie.photopath}">
+                        <div class="cadrephoto" class="card">
+                            <a target="_blank" href=""><img class="cadrephoto" src="../resources/img/livre8.png"></a>
+                        </div>
+                    </c:if>
+                    <!-- imgPath -->
+                    <div id="infosDroiteImage" class="col-8">
+                        <p class="petittextsurnoir">Auteur: ${chaquelivre.auteurLivre}</p>
+                        <p class="petittextsurnoir">Editeur: ${chaquelivre.editeurLivre}</p>
+                        <p class="petittextsurnoir">Date de publication: ${chaquelivre.datepublicationLivre}</p>
+                        <p class="petittextsurnoir">Indexation: ${chaquelivre.indexationLivre}</p>
+                    </div>
+                    <div class="input-group col-12">
+                        <label class="infossurnoir">Description:</label>
+                        <textarea readonly name="description" rows="3" id="textDescription0" class="form-control" maxlength="1000" placeholder="..." disabled>${chaquelivre.descriptionLivre}</textarea>
+                    </div>
+                </div>
+            </form>
+        </c:forEach>
     <!---->
     <!---->
     <!---->
-    <!--Boucle de résultats-->
-    <s:forEach items="${listeLivre}" var="chaquelivre">
-        <!--Elements d'affichage des livres-->
-        <s:out value="${chaquelivre.titreLivre}"/>
-    </s:forEach>
+    </div>
 </body>
 </html>

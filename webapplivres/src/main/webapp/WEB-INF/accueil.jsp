@@ -31,6 +31,7 @@
                 <button type="submit" class="btn btn-secondary btn-lg"><i class="fas fa-search"></i></button>
             </div>
         </div>
+        <h4 id="commentairePresentation">Votre bibliothèque vous accueille.</h4>
     </s:form>
 </div>
 </body>

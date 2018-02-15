@@ -208,4 +208,27 @@ public interface ServiceLivre {
             @WebParam(name = "arg5", targetNamespace = "")
                     String arg5);
 
+
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listerDomaines", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.ListerDomaines")
+    @ResponseWrapper(localName = "listerDomainesResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.ListerDomainesResponse")
+    @Action(input = "http://allplatform.webservice/ServiceLivre/listerDomainesRequest", output = "http://allplatform.webservice/ServiceLivre/listerDomainesResponse")
+    public List<String> listerDomaines();
+
+
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listerThemes", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.ListerThemes")
+    @ResponseWrapper(localName = "listerThemesResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.listerThemesResponse")
+    @Action(input = "http://allplatform.webservice/ServiceLivre/listerThemesRequest", output = "http://allplatform.webservice/ServiceLivre/listerThemesResponse")
+    public List<String> listerThemes();
+
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listerType", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.listerType")
+    @ResponseWrapper(localName = "listerTypeResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceLivre.listerTypeResponse")
+    @Action(input = "http://allplatform.webservice/ServiceLivre/listerTypeRequest", output = "http://allplatform.webservice/ServiceLivre/listerTypeResponse")
+    public List<String> listerType();
+
 }

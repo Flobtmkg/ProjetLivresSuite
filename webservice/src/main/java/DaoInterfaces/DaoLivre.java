@@ -17,4 +17,7 @@ public interface DaoLivre {
     ArrayList<Livre> rechercheType(String valueType, int valueNbChr);
     ArrayList<Livre> rechercheDomaine(String valueDomaine,int nbchrdepart, int valueNbChr2);
     ArrayList<Livre> rechercheTheme(String valueTheme,int nbchrdepart, int valueNbChr3);
+    ArrayList<String> listerTypes();
+    ArrayList<String> listerDomaines();
+    ArrayList<String> listerThemes();
 }

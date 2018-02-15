@@ -28,5 +28,8 @@
         <action name="rechercheSimple" class="rechercheSimpleActionBean">
             <result name="success">/WEB-INF/recherches.jsp</result>
         </action>
+        <action name="rechercheComplexe" class="rechercheComplexeActionBean">
+            <result name="success">/WEB-INF/recherches.jsp</result>
+        </action>
     </package>
 </struts>

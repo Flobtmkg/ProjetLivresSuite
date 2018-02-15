@@ -44,7 +44,12 @@ public class ObjectFactory {
     private final static QName _AjouterLivre_QNAME = new QName("http://allplatform.webservice/", "ajouterLivre");
     private final static QName _InfoLivreResponse_QNAME = new QName("http://allplatform.webservice/", "infoLivreResponse");
     private final static QName _RechercheParTitreLivre_QNAME = new QName("http://allplatform.webservice/", "rechercheParTitreLivre");
-
+    private final static QName _ListerDomaines_QNAME = new QName("http://allplatform.webservice/", "ListerDomaines");
+    private final static QName _ListerDomainesResponse_QNAME = new QName("http://allplatform.webservice/", "ListerDomainesResponse");
+    private final static QName _ListerType_QNAME = new QName("http://allplatform.webservice/", "ListerType");
+    private final static QName _ListerTypeResponse_QNAME = new QName("http://allplatform.webservice/", "ListerTypeResponse");
+    private final static QName _ListerThemes_QNAME = new QName("http://allplatform.webservice/", "ListerThemes");
+    private final static QName _ListerThemesResponse_QNAME = new QName("http://allplatform.webservice/", "ListerThemesResponse");
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceLivre
      * 
@@ -211,10 +216,51 @@ public class ObjectFactory {
     public RechercheParTitreLivre createRechercheParTitreLivre() {
         return new RechercheParTitreLivre();
     }
-
+    /**
+     * Create an instance of {@link ListerDomaines }
+     *
+     */
+    public ListerDomaines createListerDomaines() {
+        return new ListerDomaines();
+    }
+    /**
+     * Create an instance of {@link ListerDomainesResponse }
+     *
+     */
+    public ListerDomainesResponse createListerDomainesResponse() {
+        return new ListerDomainesResponse();
+    }
+    /**
+     * Create an instance of {@link ListerType }
+     *
+     */
+    public ListerType createListerType() {
+        return new ListerType();
+    }
+    /**
+     * Create an instance of {@link ListerTypeResponse }
+     *
+     */
+    public ListerTypeResponse createListerTypeResponse() {
+        return new ListerTypeResponse();
+    }
+    /**
+     * Create an instance of {@link ListerThemes }
+     *
+     */
+    public ListerThemes createListerThemes() {
+        return new ListerThemes();
+    }
+    /**
+     * Create an instance of {@link ListerThemesResponse }
+     *
+     */
+    public ListerThemesResponse createListerThemesResponse() {
+        return new ListerThemesResponse();
+    }
     /**
      * Create an instance of {@link Livre }
-     * 
+     *
      */
     public Livre createLivre() {
         return new Livre();
@@ -400,4 +446,52 @@ public class ObjectFactory {
         return new JAXBElement<RechercheParTitreLivre>(_RechercheParTitreLivre_QNAME, RechercheParTitreLivre.class, null, value);
     }
 
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerDomaines }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerDomaines")
+    public JAXBElement<ListerDomaines> createListerDomaines(ListerDomaines value) {
+        return new JAXBElement<ListerDomaines>(_ListerDomaines_QNAME, ListerDomaines.class, null, value);
+    }
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerDomainesResponse }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerDomainesResponse")
+    public JAXBElement<ListerDomainesResponse> createListerDomainesResponse(ListerDomainesResponse value) {
+        return new JAXBElement<ListerDomainesResponse>(_ListerDomainesResponse_QNAME, ListerDomainesResponse.class, null, value);
+    }
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerType }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerType")
+    public JAXBElement<ListerType> createListerType(ListerType value) {
+        return new JAXBElement<ListerType>(_ListerType_QNAME, ListerType.class, null, value);
+    }
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerTypeResponse }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerTypeResponse")
+    public JAXBElement<ListerTypeResponse> createListerTypeResponse(ListerTypeResponse value) {
+        return new JAXBElement<ListerTypeResponse>(_ListerTypeResponse_QNAME, ListerTypeResponse.class, null, value);
+    }
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerThemes }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerThemes")
+    public JAXBElement<ListerThemes> createListerThemes(ListerThemes value) {
+        return new JAXBElement<ListerThemes>(_ListerThemes_QNAME, ListerThemes.class, null, value);
+    }
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerThemesResponse }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ListerThemesResponse")
+    public JAXBElement<ListerThemesResponse> createListerThemesResponse(ListerThemesResponse value) {
+        return new JAXBElement<ListerThemesResponse>(_ListerThemesResponse_QNAME, ListerThemesResponse.class, null, value);
+    }
 }

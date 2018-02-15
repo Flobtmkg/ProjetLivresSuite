@@ -46,27 +46,27 @@ public class ServiceLivre extends Service {
             listParExemplaire=rechercheParExemplaire(idExemplaire);
             listDesLists.add(listParExemplaire);
         }
-        if(titreLivre!=null){
+        if(titreLivre!=null && titreLivre.equals("")==false){
             listParTitre=rechercheParTitreLivre(titreLivre);
             listDesLists.add(listParTitre);
         }
-        if(auteurLivre!=null){
+        if(auteurLivre!=null && auteurLivre.equals("")==false){
             listParAuteur=rechercheParAuteurLivre(auteurLivre);
             listDesLists.add(listParAuteur);
         }
-        if(editeurLivre!=null){
+        if(editeurLivre!=null && editeurLivre.equals("")==false){
             listParEditeur=rechercheParEditeurLivre(editeurLivre);
             listDesLists.add(listParEditeur);
         }
-        if(inputType!=null){
+        if(inputType!=null && inputType.equals("")==false){
             listParType=rechercheParType(inputType);
             listDesLists.add(listParType);
         }
-        if(inputDomaine!=null){
+        if(inputDomaine!=null && inputDomaine.equals("")==false){
             listParDomaine=rechercheParDomaine(inputDomaine);
             listDesLists.add(listParDomaine);
         }
-        if(inputTheme!=null){
+        if(inputTheme!=null && inputTheme.equals("")==false){
             listParTheme=rechercheParTheme(inputTheme);
             listDesLists.add(listParTheme);
         }
@@ -148,6 +148,11 @@ public class ServiceLivre extends Service {
         return OutputLivre;
     }
     @WebMethod
+    public ArrayList<String> listerType(){
+        ArrayList<String> listDesTypes=monDaoLivre.listerTypes();
+        return listDesTypes;
+    }
+    @WebMethod
     public ArrayList<Livre> rechercheParDomaine(String valeurDomaine){
         ArrayList<String> elementsIndexation =monDaoLivre.chercheElementIndexation();
         int nbchr2 = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("domaine")+1);
@@ -162,6 +167,11 @@ public class ServiceLivre extends Service {
         return OutputLivre;
     }
     @WebMethod
+    public ArrayList<String> listerDomaines(){
+        ArrayList<String> listDesDomaines=monDaoLivre.listerDomaines();
+        return listDesDomaines;
+    }
+    @WebMethod
     public ArrayList<Livre> rechercheParTheme(String valeurTheme){
         ArrayList<String> elementsIndexation =monDaoLivre.chercheElementIndexation();
         int nbchr3 = monDaoLivre.nbchrElementIndexation(elementsIndexation.indexOf("theme")+1);
@@ -174,5 +184,10 @@ public class ServiceLivre extends Service {
         ArrayList<Livre> OutputLivre=monDaoLivre.rechercheTheme(valeurTheme,departChr,nbchr3);
         //
         return OutputLivre;
+    }
+    @WebMethod
+    public ArrayList<String> listerThemes(){
+        ArrayList<String> listDesThemes=monDaoLivre.listerThemes();
+        return listDesThemes;
     }
 }

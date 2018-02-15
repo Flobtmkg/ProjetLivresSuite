@@ -10,10 +10,16 @@
     </bean>
     <bean id="rechercheSimpleActionBean" class="webAppProjetLivre.strutsAction.RechercheSimpleAction">
         <property name="recherche" ref="rechercheSimpleDao" />
+        <property name="listes" ref="ListerDao" />
+    </bean>
+    <bean id="rechercheComplexeActionBean" class="webAppProjetLivre.strutsAction.RechercheComplexeAction">
+        <property name="recherche" ref="rechercheSimpleDao" />
+        <property name="listes" ref="ListerDao" />
     </bean>
     <!--
     Beans DAO (action implementation)
     -->
     <bean id="userDAO" class="webAppProjetLivre.classesTravail.UserDao" />
     <bean id="rechercheSimpleDao" class="webAppProjetLivre.classesTravail.RechercheSimpleDao" />
+    <bean id="ListerDao" class="webAppProjetLivre.classesTravail.ListerDao" />
 </beans>

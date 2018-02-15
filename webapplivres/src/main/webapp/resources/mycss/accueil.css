@@ -4,3 +4,4 @@ h1{color:rgba(255, 255, 255, 1);font-weight:100;font-size:350%;text-shadow:0px 3
 div#presentation{position:relative; top:220px;}
 #groupRecherche{margin-top: 30px}
 .imagePrechargee{display: none}
+#commentairePresentation{font-weight:100;color:rgba(255, 255, 255, 0.8);text-shadow:0px 3px 5px rgba(0, 0, 0, 1);float: right;margin-right:55px; margin-top:20px}

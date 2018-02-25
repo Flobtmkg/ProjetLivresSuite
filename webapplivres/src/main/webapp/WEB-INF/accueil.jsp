@@ -26,7 +26,7 @@
     <s:form class="form-group col-sm-8 offset-sm-2" action="rechercheSimple" method="POST">
         <h1>Envie de lecture?</h1>
         <div id="groupRecherche" class="input-group">
-            <input type="search" name="motCles" class="form-control" placeholder="Recherchez un ouvrage, un auteur, un éditeur...">
+            <input type="search" name="motCles" class="form-control" placeholder="Recherchez un ouvrage, un auteur, un éditeur..." maxlength="100" pattern="[^\x22]+">
             <div class="input-group-append">
                 <button type="submit" class="btn btn-secondary btn-lg"><i class="fas fa-search"></i></button>
             </div>

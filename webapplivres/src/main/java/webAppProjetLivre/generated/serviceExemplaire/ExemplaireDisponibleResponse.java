@@ -5,15 +5,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * <p>Classe Java pour premierExemplaireDisponibleResponse complex type.
+ * <p>Classe Java pour ExemplaireDisponibleResponse complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="premierExemplaireDisponibleResponse">
+ * &lt;complexType name="ExemplaireDisponibleResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,23 +29,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "premierExemplaireDisponibleResponse", propOrder = {
+@XmlType(name = "ExemplaireDisponibleResponse1", propOrder = {
     "_return"
 })
-public class PremierExemplaireDisponibleResponse {
+public class ExemplaireDisponibleResponse {
 
     @XmlElement(name = "return")
-    protected Exemplaire _return;
+    protected List<Exemplaire> _return;
 
     /**
      * Obtient la valeur de la propri�t� return.
      * 
      * @return
      *     possible object is
-     *     {@link Exemplaire }
+     *     {@link List<Exemplaire> }
      *     
      */
-    public Exemplaire getReturn() {
+    public List<Exemplaire> getReturn() {
+        if (_return == null) {
+            _return = new ArrayList<Exemplaire>();
+        }
         return _return;
     }
 
@@ -52,10 +57,10 @@ public class PremierExemplaireDisponibleResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Exemplaire }
+     *     {@link List<Exemplaire> }
      *     
      */
-    public void setReturn(Exemplaire value) {
+    public void setReturn(List<Exemplaire> value) {
         this._return = value;
     }
 

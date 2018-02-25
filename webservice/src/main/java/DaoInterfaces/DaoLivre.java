@@ -1,5 +1,6 @@
 package DaoInterfaces;
 
+import ServicesBeans.IndexConstitution;
 import ServicesBeans.Livre;
 
 import java.util.ArrayList;
@@ -15,8 +16,10 @@ public interface DaoLivre {
     ArrayList<String> chercheElementIndexation();
     int nbchrElementIndexation(int elementIndexation);
     ArrayList<Livre> rechercheType(String valueType, int valueNbChr);
-    ArrayList<Livre> rechercheDomaine(String valueDomaine,int nbchrdepart, int valueNbChr2);
-    ArrayList<Livre> rechercheTheme(String valueTheme,int nbchrdepart, int valueNbChr3);
+    ArrayList<Livre> rechercheDomaine(String valueDomaine, int valueNbChr2);
+    ArrayList<Livre> rechercheTheme(String valueTheme,int valueNbChr3);
+    ArrayList<IndexConstitution> rechercheIndexConstitution();
+    String reference(String ref, String typeRef);
     ArrayList<String> listerTypes();
     ArrayList<String> listerDomaines();
     ArrayList<String> listerThemes();

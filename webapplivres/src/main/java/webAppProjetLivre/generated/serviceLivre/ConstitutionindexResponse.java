@@ -1,25 +1,25 @@
 
-package webAppProjetLivre.generated.serviceExemplaire;
+package webAppProjetLivre.generated.serviceLivre;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
- * <p>Classe Java pour listerExemplaireResponse complex type.
+ * <p>Classe Java pour constitutionindexResponse complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="listerExemplaireResponse">
+ * &lt;complexType name="constitutionindexResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://allplatform.webservice/}exemplaire" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://allplatform.webservice/}indexConstitution" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,13 +29,13 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listerExemplaireResponse1", propOrder = {
+@XmlType(name = "constitutionindexResponse1", propOrder = {
     "_return"
 })
-public class ListerExemplaireResponse {
+public class ConstitutionindexResponse {
 
     @XmlElement(name = "return")
-    protected List<Exemplaire> _return;
+    protected List<IndexConstitution> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class ListerExemplaireResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Exemplaire }
+     * {@link IndexConstitution }
      * 
      * 
      */
-    public List<Exemplaire> getReturn() {
+    public List<IndexConstitution> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<Exemplaire>();
+            _return = new ArrayList<IndexConstitution>();
         }
         return this._return;
     }

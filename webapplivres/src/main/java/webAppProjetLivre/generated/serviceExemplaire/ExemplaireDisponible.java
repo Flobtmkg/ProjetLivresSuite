@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour premierExemplaireDisponible complex type.
+ * <p>Classe Java pour ExemplaireDisponible complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="premierExemplaireDisponible">
+ * &lt;complexType name="ExemplaireDisponible">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,18 +26,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "premierExemplaireDisponible", propOrder = {
-    "arg0"
+@XmlType(name = "ExemplaireDisponible1", propOrder = {
+    "arg0", "arg1"
 })
-public class PremierExemplaireDisponible {
+public class ExemplaireDisponible {
 
-    protected int arg0;
-
+    protected boolean arg0;
+    protected int arg1;
     /**
      * Obtient la valeur de la propri�t� arg0.
      * 
      */
-    public int getArg0() {
+    public boolean getArg0() {
         return arg0;
     }
 
@@ -45,8 +45,15 @@ public class PremierExemplaireDisponible {
      * D�finit la valeur de la propri�t� arg0.
      * 
      */
-    public void setArg0(int value) {
+    public void setArg0(boolean value) {
         this.arg0 = value;
+    }
+
+    public int getArg1() {
+        return arg1;
+    }
+    public void setArg1(int value) {
+        this.arg1 = value;
     }
 
 }

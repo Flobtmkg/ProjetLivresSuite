@@ -41,18 +41,20 @@ import javax.xml.bind.annotation.XmlType;
     "arg4",
     "arg5",
     "arg6",
-    "arg7"
+    "arg7",
+    "arg8"
 })
 public class RechercherLivreComplxe {
 
     protected boolean arg0;
-    protected String arg1;
+    protected boolean arg1;
     protected String arg2;
     protected String arg3;
-    protected int arg4;
-    protected String arg5;
+    protected String arg4;
+    protected int arg5;
     protected String arg6;
     protected String arg7;
+    protected String arg8;
 
     /**
      * Obtient la valeur de la propri�t� arg0.
@@ -78,36 +80,36 @@ public class RechercherLivreComplxe {
      *     {@link String }
      *     
      */
-    public String getArg1() {
+    /**
+     * Obtient la valeur de la propri�t� arg0.
+     *
+     */
+    public boolean isArg1() {
         return arg1;
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg1.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * D�finit la valeur de la propri�t� arg0.
+     *
      */
-    public void setArg1(String value) {
+    public void setArg1(boolean value) {
         this.arg1 = value;
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg2.
-     * 
+     * Obtient la valeur de la propri�t� arg1.
+     *
      * @return
      *     possible object is
      *     {@link String }
-     *     
+     *
      */
     public String getArg2() {
         return arg2;
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg2.
+     * D�finit la valeur de la propri�t� arg1.
      * 
      * @param value
      *     allowed object is
@@ -119,7 +121,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg3.
+     * Obtient la valeur de la propri�t� arg2.
      * 
      * @return
      *     possible object is
@@ -131,7 +133,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg3.
+     * D�finit la valeur de la propri�t� arg2.
      * 
      * @param value
      *     allowed object is
@@ -143,47 +145,47 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg4.
-     * 
-     */
-    public int getArg4() {
-        return arg4;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� arg4.
-     * 
-     */
-    public void setArg4(int value) {
-        this.arg4 = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� arg5.
+     * Obtient la valeur de la propri�t� arg3.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getArg5() {
-        return arg5;
+    public String getArg4() {
+        return arg4;
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg5.
+     * D�finit la valeur de la propri�t� arg3.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setArg5(String value) {
+    public void setArg4(String value) {
+        this.arg4 = value;
+    }
+
+    /**
+     * Obtient la valeur de la propri�t� arg4.
+     * 
+     */
+    public int getArg5() {
+        return arg5;
+    }
+
+    /**
+     * D�finit la valeur de la propri�t� arg4.
+     * 
+     */
+    public void setArg5(int value) {
         this.arg5 = value;
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg6.
+     * Obtient la valeur de la propri�t� arg5.
      * 
      * @return
      *     possible object is
@@ -195,7 +197,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg6.
+     * D�finit la valeur de la propri�t� arg5.
      * 
      * @param value
      *     allowed object is
@@ -207,7 +209,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg7.
+     * Obtient la valeur de la propri�t� arg6.
      * 
      * @return
      *     possible object is
@@ -219,7 +221,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg7.
+     * D�finit la valeur de la propri�t� arg6.
      * 
      * @param value
      *     allowed object is
@@ -228,6 +230,30 @@ public class RechercherLivreComplxe {
      */
     public void setArg7(String value) {
         this.arg7 = value;
+    }
+
+    /**
+     * Obtient la valeur de la propri�t� arg7.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArg8() {
+        return arg8;
+    }
+
+    /**
+     * D�finit la valeur de la propri�t� arg7.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArg8(String value) {
+        this.arg8 = value;
     }
 
 }

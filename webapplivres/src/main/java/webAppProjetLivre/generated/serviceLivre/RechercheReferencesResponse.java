@@ -1,5 +1,5 @@
 
-package webAppProjetLivre.generated.serviceUtilisateur;
+package webAppProjetLivre.generated.serviceLivre;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour autentifierResponse complex type.
+ * <p>Classe Java pour rechercheReferencesResponse complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="autentifierResponse">
+ * &lt;complexType name="rechercheReferencesResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://allplatform.webservice/}utilisateur" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,23 +27,23 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "autentifierResponse1", propOrder = {
+@XmlType(name = "rechercheReferencesResponse1", propOrder = {
     "_return"
 })
-public class AutentifierResponse {
+public class RechercheReferencesResponse {
 
     @XmlElement(name = "return")
-    protected Utilisateur _return;
+    protected String _return;
 
     /**
      * Obtient la valeur de la propri�t� return.
      * 
      * @return
      *     possible object is
-     *     {@link Utilisateur }
+     *     {@link String }
      *     
      */
-    public Utilisateur getReturn() {
+    public String getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class AutentifierResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Utilisateur }
+     *     {@link String }
      *     
      */
-    public void setReturn(Utilisateur value) {
+    public void setReturn(String value) {
         this._return = value;
     }
 

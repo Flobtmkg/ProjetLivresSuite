@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class ServiceExemplaire extends Service {
 
     @WebMethod
-    public Exemplaire premierExemplaireDisponible(int idLivre){
-        Exemplaire outputExemplaire=monDaoExemplaire.premierExemplaireDisponible(idLivre);
-        return outputExemplaire;
+    public ArrayList<Exemplaire> ExemplaireDisponible(boolean outputMode,int idLivre){
+        ArrayList<Exemplaire> outputExemplaires=monDaoExemplaire.ExemplaireDisponible(outputMode,idLivre);
+        return outputExemplaires;
     }
 
     @WebMethod

@@ -1,10 +1,14 @@
 
 package webAppProjetLivre.generated.serviceLivre;
 
-import javax.xml.namespace.QName;
-import javax.xml.ws.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+import javax.xml.ws.WebEndpoint;
+import javax.xml.ws.WebServiceClient;
+import javax.xml.ws.WebServiceException;
+import javax.xml.ws.WebServiceFeature;
 
 
 /**
@@ -13,7 +17,7 @@ import java.net.URL;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ServiceLivreService", targetNamespace = "http://allplatform.webservice/")
+@WebServiceClient(name = "ServiceLivreService", targetNamespace = "http://allplatform.webservice/", wsdlLocation = "http://lfr017644:8080/webservice/ServiceLivreService?wsdl")
 public class ServiceLivreService
     extends Service
 {

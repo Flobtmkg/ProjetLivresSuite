@@ -24,10 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PremierExemplaireDisponibleResponse_QNAME = new QName("http://allplatform.webservice/", "premierExemplaireDisponibleResponse");
+    private final static QName _ExemplaireDisponibleResponse_QNAME = new QName("http://allplatform.webservice/", "ExemplaireDisponibleResponse");
     private final static QName _AjouterExemplaire_QNAME = new QName("http://allplatform.webservice/", "AjouterExemplaire");
     private final static QName _AjouterExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "AjouterExemplaireResponse");
-    private final static QName _PremierExemplaireDisponible_QNAME = new QName("http://allplatform.webservice/", "premierExemplaireDisponible");
+    private final static QName _ExemplaireDisponible_QNAME = new QName("http://allplatform.webservice/", "ExemplaireDisponible");
     private final static QName _ListerExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "listerExemplaireResponse");
     private final static QName _ListerExemplaire_QNAME = new QName("http://allplatform.webservice/", "listerExemplaire");
 
@@ -39,11 +39,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PremierExemplaireDisponibleResponse }
+     * Create an instance of {@link ExemplaireDisponibleResponse }
      * 
      */
-    public PremierExemplaireDisponibleResponse createPremierExemplaireDisponibleResponse() {
-        return new PremierExemplaireDisponibleResponse();
+    public ExemplaireDisponibleResponse createExemplaireDisponibleResponse() {
+        return new ExemplaireDisponibleResponse();
     }
 
     /**
@@ -63,11 +63,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PremierExemplaireDisponible }
+     * Create an instance of {@link ExemplaireDisponible }
      * 
      */
-    public PremierExemplaireDisponible createPremierExemplaireDisponible() {
-        return new PremierExemplaireDisponible();
+    public ExemplaireDisponible createExemplaireDisponible() {
+        return new ExemplaireDisponible();
     }
 
     /**
@@ -95,12 +95,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PremierExemplaireDisponibleResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExemplaireDisponibleResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "premierExemplaireDisponibleResponse")
-    public JAXBElement<PremierExemplaireDisponibleResponse> createPremierExemplaireDisponibleResponse(PremierExemplaireDisponibleResponse value) {
-        return new JAXBElement<PremierExemplaireDisponibleResponse>(_PremierExemplaireDisponibleResponse_QNAME, PremierExemplaireDisponibleResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ExemplaireDisponibleResponse")
+    public JAXBElement<ExemplaireDisponibleResponse> createExemplaireDisponibleResponse(ExemplaireDisponibleResponse value) {
+        return new JAXBElement<ExemplaireDisponibleResponse>(_ExemplaireDisponibleResponse_QNAME, ExemplaireDisponibleResponse.class, null, value);
     }
 
     /**
@@ -122,12 +122,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PremierExemplaireDisponible }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExemplaireDisponible }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "premierExemplaireDisponible")
-    public JAXBElement<PremierExemplaireDisponible> createPremierExemplaireDisponible(PremierExemplaireDisponible value) {
-        return new JAXBElement<PremierExemplaireDisponible>(_PremierExemplaireDisponible_QNAME, PremierExemplaireDisponible.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ExemplaireDisponible")
+    public JAXBElement<ExemplaireDisponible> createExemplaireDisponible(ExemplaireDisponible value) {
+        return new JAXBElement<ExemplaireDisponible>(_ExemplaireDisponible_QNAME, ExemplaireDisponible.class, null, value);
     }
 
     /**

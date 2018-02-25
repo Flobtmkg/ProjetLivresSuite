@@ -14,19 +14,33 @@
         <action name="accueil">
             <result>/WEB-INF/accueil.jsp</result>
         </action>
-        <action name="login">
-            <result>/WEB-INF/LoginForm.jsp</result>
+        <action name="contact">
+            <result>/WEB-INF/contact.jsp</result>
         </action>
         <!---->
         <!--Actions spécifiques-->
         <!---->
-        <action name="loginRedirection" class="loginActionBean">
-            <result name="input">/WEB-INF/LoginForm.jsp</result>
-            <result name="success">/WEB-INF/LoginSuccess.jsp</result>
-            <result name="error">/WEB-INF/LoginError.jsp</result>
+        <action name="newEnvoiEmail" class="envoiEmailBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+            <result name="error" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
         </action>
         <action name="rechercheSimple" class="rechercheSimpleActionBean">
             <result name="success">/WEB-INF/recherches.jsp</result>
+        </action>
+        <action name="connexionUtilisateur" class="connexionActionBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+            <result name="error" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
+        <action name="redirectionLivre" class="redirectionLivreActionBean">
+            <result name="success">/WEB-INF/livre.jsp</result>
         </action>
         <action name="rechercheComplexe" class="rechercheComplexeActionBean">
             <result name="success">/WEB-INF/recherches.jsp</result>

@@ -1,6 +1,7 @@
 package DaoImpl;
 
 import DaoInterfaces.DaoLivre;
+import ServicesBeans.IndexConstitution;
 import ServicesBeans.Livre;
 import classesTravail.CodageGuillemets;
 import org.springframework.stereotype.Repository;
@@ -254,7 +255,7 @@ public class BddLivre extends Impl implements DaoLivre {
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,1,?)) LIKE ?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,((SELECT SUM(nbrchrconstitutionindex) FROM constitutionindex WHERE idelementindexation<=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='type'))-(SELECT nbrchrconstitutionindex FROM constitutionindex WHERE idelementindexation=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='type'))+1)::int,?)) LIKE ?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {valueNbChr,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
@@ -278,7 +279,7 @@ public class BddLivre extends Impl implements DaoLivre {
     }
 
     @Override
-    public ArrayList<Livre> rechercheDomaine(String valueDomaine,int nbchrdepart, int valueNbChr2) {
+    public ArrayList<Livre> rechercheDomaine(String valueDomaine, int valueNbChr2) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
@@ -288,9 +289,9 @@ public class BddLivre extends Impl implements DaoLivre {
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,?,?)) LIKE ?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,((SELECT SUM(nbrchrconstitutionindex) FROM constitutionindex WHERE idelementindexation<=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='domaine'))-(SELECT nbrchrconstitutionindex FROM constitutionindex WHERE idelementindexation=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='domaine'))+1)::int,?)) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr2,motcle2});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {valueNbChr2,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
@@ -312,7 +313,7 @@ public class BddLivre extends Impl implements DaoLivre {
     }
 
     @Override
-    public ArrayList<Livre> rechercheTheme(String valueTheme, int nbchrdepart, int valueNbChr3) {
+    public ArrayList<Livre> rechercheTheme(String valueTheme, int valueNbChr3) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
@@ -322,9 +323,9 @@ public class BddLivre extends Impl implements DaoLivre {
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
             public ArrayList<Livre> doInTransaction(TransactionStatus transactionStatus) {
-                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,?,?)) LIKE ?;";
+                final String INDEXATION = "SELECT * FROM livre WHERE UPPER(SUBSTR(indexationlivre,((SELECT SUM(nbrchrconstitutionindex) FROM constitutionindex WHERE idelementindexation<=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='theme'))-(SELECT nbrchrconstitutionindex FROM constitutionindex WHERE idelementindexation=(SELECT idelementindexation FROM elementindexation WHERE valueindexation='theme'))+1)::int,?)) LIKE ?;";
                 //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {nbchrdepart,valueNbChr3,motcle2});
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(INDEXATION,new Object[] {valueNbChr3,motcle2});
                 ArrayList<Livre> lesLivres = new ArrayList<Livre>();
                 for (Map row : rows) {
                     Livre leLivre=new Livre();
@@ -343,6 +344,68 @@ public class BddLivre extends Impl implements DaoLivre {
         });
         //
         return livreOutput;
+    }
+
+    @Override
+    public ArrayList<IndexConstitution> rechercheIndexConstitution() {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //
+        ArrayList<IndexConstitution> constitutionOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<IndexConstitution>>() {
+            @Override
+            public ArrayList<IndexConstitution> doInTransaction(TransactionStatus transactionStatus) {
+                final String CONSTITUTION = "SELECT * FROM constitutionindex ORDER BY idconstitutionindex ASC;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(CONSTITUTION);
+                ArrayList<IndexConstitution> lesindex = new ArrayList<IndexConstitution>();
+                for (Map row : rows) {
+                    IndexConstitution newIndexConstitution= new IndexConstitution();
+                    newIndexConstitution.setIdIndexation((int)row.get("idelementindexation"));
+                    newIndexConstitution.setNbrChr((int)row.get("nbrchrconstitutionindex"));
+                    lesindex.add(newIndexConstitution);
+                }
+                //
+                return lesindex;
+            }
+        });
+        //
+        return constitutionOutput;
+    }
+
+    @Override
+    public String reference(String ref, String typeRef) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        //pré-traitement mot clé
+        String motcle;
+        if(typeRef.equals("theme")==false){
+            motcle="%" + ref.toUpperCase() + "%";
+        }else{
+            motcle=ref.toUpperCase();
+        }
+
+        //
+        String refOutput=vTransactionTemplate.execute(new TransactionCallback<String>() {
+            @Override
+            public String doInTransaction(TransactionStatus transactionStatus) {
+                final String REFERENCE;
+                if(typeRef!="theme"){
+                    REFERENCE= "SELECT nom"+typeRef+" FROM "+typeRef+" WHERE UPPER(nom"+typeRef+") LIKE ?;";
+                }else{
+                    REFERENCE= "SELECT nom"+typeRef+" FROM "+typeRef+" WHERE UPPER(nom"+typeRef+") = ?;";
+                }
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(REFERENCE,new Object[] {motcle});
+                String valeurChamp="";
+                for (Map row : rows) {
+                    valeurChamp=CodageGuillemets.getTexteDecode((String) (row.get("nom"+typeRef)));
+                }
+                //
+                return valeurChamp;
+            }
+        });
+        //
+        return refOutput;
     }
 
     @Override

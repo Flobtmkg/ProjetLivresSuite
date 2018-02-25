@@ -5,21 +5,31 @@
     <!--
     Beans Actions
     -->
-    <bean id="loginActionBean" class="webAppProjetLivre.strutsAction.LoginAction">
-        <property name="userDAO" ref="userDAO" />
+    <bean id="envoiEmailBean" class="webAppProjetLivre.strutsAction.SendContactAction">
+        <property name="sendEmail" ref="envoiEmailDao" />
     </bean>
     <bean id="rechercheSimpleActionBean" class="webAppProjetLivre.strutsAction.RechercheSimpleAction">
         <property name="recherche" ref="rechercheSimpleDao" />
         <property name="listes" ref="ListerDao" />
+    </bean>
+    <bean id="redirectionLivreActionBean" class="webAppProjetLivre.strutsAction.RedirectionLivreAction">
+        <property name="infosLivre" ref="requestLivreDao" />
+        <property name="lesExemplaires" ref="requestExemplaireDao"/>
+    </bean>
+    <bean id="connexionActionBean" class="webAppProjetLivre.strutsAction.ConnexionAction">
+        <property name="autentificationDao" ref="requestUtilisateurDao"/>
     </bean>
     <bean id="rechercheComplexeActionBean" class="webAppProjetLivre.strutsAction.RechercheComplexeAction">
         <property name="recherche" ref="rechercheSimpleDao" />
         <property name="listes" ref="ListerDao" />
     </bean>
     <!--
-    Beans DAO (action implementation)
+    Beans DAO (action implementation) et Bean d'objets de travail
     -->
-    <bean id="userDAO" class="webAppProjetLivre.classesTravail.UserDao" />
+    <bean id="requestUtilisateurDao" class="webAppProjetLivre.classesTravail.RequestAutentificationDao" />
+    <bean id="requestLivreDao" class="webAppProjetLivre.classesTravail.RequestLivreDao" />
+    <bean id="requestExemplaireDao" class="webAppProjetLivre.classesTravail.RequestExemplaireDao" />
     <bean id="rechercheSimpleDao" class="webAppProjetLivre.classesTravail.RechercheSimpleDao" />
     <bean id="ListerDao" class="webAppProjetLivre.classesTravail.ListerDao" />
+    <bean id="envoiEmailDao" class="webAppProjetLivre.classesTravail.EnvoiEmail" />
 </beans>

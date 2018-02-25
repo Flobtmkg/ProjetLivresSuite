@@ -28,17 +28,20 @@ public interface ServiceExemplaire {
     /**
      * 
      * @param arg0
+     * @param arg1
      * @return
      *     returns generated.serviceExemplaire.Exemplaire
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "premierExemplaireDisponible", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.PremierExemplaireDisponible")
-    @ResponseWrapper(localName = "premierExemplaireDisponibleResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.PremierExemplaireDisponibleResponse")
-    @Action(input = "http://allplatform.webservice/ServiceExemplaire/premierExemplaireDisponibleRequest", output = "http://allplatform.webservice/ServiceExemplaire/premierExemplaireDisponibleResponse")
-    public Exemplaire premierExemplaireDisponible(
+    @RequestWrapper(localName = "ExemplaireDisponible", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.ExemplaireDisponible")
+    @ResponseWrapper(localName = "ExemplaireDisponibleResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.ExemplaireDisponibleResponse")
+    @Action(input = "http://allplatform.webservice/ServiceExemplaire/ExemplaireDisponibleRequest", output = "http://allplatform.webservice/ServiceExemplaire/ExemplaireDisponibleResponse")
+    public List<Exemplaire> ExemplaireDisponible(
             @WebParam(name = "arg0", targetNamespace = "")
-                    int arg0);
+                boolean arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                int arg1);
 
     /**
      *

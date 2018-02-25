@@ -40,13 +40,34 @@
                         <div class="col-sm-3 col-12 aligneAGauche">
                             <label class="infossurnoir">Mode de recherche: </label>
                             <div class="input-group col-12 aligneAGauche">
-                                    <div class="input-group-prepend">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-sliders-h"></i></span>
                                 </div>
                                 <select name="ouOuEt" class="form-control">
-                                    <option>OU</option>
-                                    <option>ET</option>
+                                    <c:if test="${ouOuEt=='ET'}">
+                                        <option>OU</option>
+                                        <option selected>ET</option>
+                                    </c:if>
+                                    <c:if test="${ouOuEt!='ET'}">
+                                        <option selected>OU</option>
+                                        <option>ET</option>
+                                    </c:if>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 offset-sm-1 col-12 aligneAGauche">
+                            <label class="infossurnoir">Type de mots clés: </label>
+                            <div class="custom-control custom-checkbox">
+                                <div id="blockCheck">
+                                    <c:if test="${expressionStricte=='true'}">
+                                        <input id="checkboxStrictValue" name="expressionStricte" type="checkbox" class="custom-control-input" value="true" checked>
+                                    </c:if>
+                                    <c:if test="${expressionStricte!='true'}">
+                                        <input id="checkboxStrictValue" name="expressionStricte" type="checkbox" class="custom-control-input" value="true">
+                                    </c:if>
+                                    <input id="checkboxStrictValue" name="expressionStricte" type="checkbox" class="custom-control-input" value="true">
+                                    <label id="labelCheck" class="custom-control-label infossurnoir" for="checkboxStrictValue">Expression exacte</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,7 +77,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-quote-left"></i></span>
                             </div>
-                            <input name="titre" type="text" class="form-control" placeholder="Titre de l'ouvrage..." value="${rechsearch}">
+                            <input name="titre" type="text" class="form-control" placeholder="Titre de l'ouvrage..." value="${titre}" maxlength="100" pattern="[^\x22]+">
                         </div>
                     </div>
                     <div class="col-sm-4 col-12 aligneAGauche">
@@ -65,7 +86,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-address-book"></i></span>
                             </div>
-                            <input name="auteur" type="text" class="form-control" placeholder="Auteur de l'ouvrage..." value="${rechsearch}">
+                            <input name="auteur" type="text" class="form-control" placeholder="Auteur de l'ouvrage..." value="${auteur}" maxlength="100" pattern="[^\x22]+">
                         </div>
                     </div>
                     <div class="col-sm-4 col-12 aligneAGauche">
@@ -74,7 +95,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-building"></i></span>
                             </div>
-                            <input name="editeur" type="text" class="form-control" placeholder="Editeur de l'ouvrage..." value="${rechsearch}">
+                            <input name="editeur" type="text" class="form-control" placeholder="Editeur de l'ouvrage..." value="${editeur}" maxlength="100" pattern="[^\x22]+">
                         </div>
                     </div>
                 </div>
@@ -88,7 +109,12 @@
                             <select name="leType" class="form-control">
                                     <option>Selectionnez un type</option>
                                     <c:forEach items="${types}" var="chaqueType">
-                                        <option>${chaqueType}</option>
+                                        <c:if test="${leType==chaqueType}">
+                                            <option selected>${chaqueType}</option>
+                                        </c:if>
+                                        <c:if test="${leType!=chaqueType}">
+                                            <option>${chaqueType}</option>
+                                        </c:if>
                                     </c:forEach>
                             </select>
                         </div>
@@ -102,7 +128,12 @@
                             <select name="leDomaine" class="form-control">
                                 <option>Selectionnez un domaine</option>
                                 <c:forEach items="${domaines}" var="chaquedomaine">
-                                    <option>${chaquedomaine}</option>
+                                    <c:if test="${leDomaine==chaquedomaine}">
+                                        <option selected>${chaquedomaine}</option>
+                                    </c:if>
+                                    <c:if test="${leDomaine!=chaquedomaine}">
+                                        <option>${chaquedomaine}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
@@ -116,7 +147,12 @@
                             <select name="leTheme" class="form-control">
                                 <option>Selectionnez un thème</option>
                                 <c:forEach items="${themes}" var="chaquetheme">
-                                    <option>${chaquetheme}</option>
+                                    <c:if test="${leTheme==chaquetheme}">
+                                        <option selected>${chaquetheme}</option>
+                                    </c:if>
+                                    <c:if test="${leTheme!=chaquetheme}">
+                                        <option>${chaquetheme}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
@@ -137,13 +173,11 @@
             <!--Elements d'affichage des livres-->
             <form id="blockdescription" class="card offset-sm-1 col-sm-10 col-12 form-group">
                 <div id="paneldescription" class="card-body">
-                    <legend class="label1">${chaquelivre.titreLivre}<a id="liensDuHaut" target="_blank" href=""></a></legend>
+                    <legend class="label1">${chaquelivre.titreLivre}<a id="liensDuHaut" target="_blank" href="redirectionLivre?id=${chaquelivre.idLivre}"></a></legend>
                     <!-- imgPath -->
-                    <c:if test="${empty voie.photopath}">
                         <div class="cadrephoto" class="card">
-                            <a target="_blank" href=""><img class="cadrephoto" src="../resources/img/livre8.png"></a>
+                            <a target="_blank" href="redirectionLivre?id=${chaquelivre.idLivre}"><img class="cadrephoto" src="../resources/img/livre8.png"></a>
                         </div>
-                    </c:if>
                     <!-- imgPath -->
                     <div id="infosDroiteImage" class="col-8">
                         <p class="petittextsurnoir">Auteur: ${chaquelivre.auteurLivre}</p>

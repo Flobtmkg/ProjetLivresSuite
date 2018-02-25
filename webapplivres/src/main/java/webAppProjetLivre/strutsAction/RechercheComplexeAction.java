@@ -16,7 +16,22 @@ public class RechercheComplexeAction extends ActionSupport {
     private String leDomaine;
     private String leTheme;
     private String ouOuEt;
+    private boolean expressionStricte;
     private boolean mode;
+    //
+    //
+    //
+    public boolean isExpressionStricte() {
+        return expressionStricte;
+    }
+
+    public void setExpressionStricte(boolean expressionStricte) {
+        this.expressionStricte = expressionStricte;
+    }
+
+    public void setMode(boolean mode) {
+        this.mode = mode;
+    }
 
     public boolean isMode() {
         return mode;
@@ -149,7 +164,7 @@ public class RechercheComplexeAction extends ActionSupport {
         if(listeLivre!=null){
             listeLivre.clear();
         }
-        //
+        //Pré-traitement pour les valeurs par defaut
         if(this.leType.equals("Selectionnez un type")==true){
             this.setLeType("");
         }
@@ -159,10 +174,13 @@ public class RechercheComplexeAction extends ActionSupport {
         if(this.leTheme.equals("Selectionnez un thème")==true){
             this.setLeTheme("");
         }
-        this.setListeLivre(this.getRecherche().rechercheComplexe(mode,titre,auteur,editeur,leType,leDomaine,leTheme,getText("WSDLLocationLivres")));
+        //
+        this.setListeLivre(this.getRecherche().rechercheComplexe(mode,expressionStricte,titre,auteur,editeur,leType,leDomaine,leTheme,getText("WSDLLocationLivres")));
         this.setDomaines(this.getListes().rechercherListDomaines(getText("WSDLLocationLivres")));
         this.setThemes(this.getListes().rechercherListTheme(getText("WSDLLocationLivres")));
         this.setTypes(this.getListes().rechercherListType(getText("WSDLLocationLivres")));
+        //La réinitialisation de cette variable est indipensable:
+        expressionStricte=false;
         return SUCCESS;
     }
 }

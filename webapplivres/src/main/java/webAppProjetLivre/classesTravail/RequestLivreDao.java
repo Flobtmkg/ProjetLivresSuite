@@ -1,19 +1,19 @@
 package webAppProjetLivre.classesTravail;
+
 import webAppProjetLivre.generated.serviceLivre.Livre;
 import webAppProjetLivre.generated.serviceLivre.ServiceLivre;
 import webAppProjetLivre.generated.serviceLivre.ServiceLivreService;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
-public class RechercheSimpleDao {
-    private List<Livre> resultat;
+public class RequestLivreDao {
+    private Livre resultat;
+    private List<String> resultat2;
     private URL urlWsdl;
-    public List<Livre> recherche(String motsClés, String wsdlAdress){
-        //
-        if(resultat!=null){
-            resultat.clear();
-        }
+
+    public Livre infoLivre(int idLivre, String wsdlAdress){
         //
         try{
             urlWsdl=new URL(wsdlAdress);
@@ -23,15 +23,12 @@ public class RechercheSimpleDao {
         //
         ServiceLivreService monservice= new ServiceLivreService(urlWsdl);
         ServiceLivre accesLivre=monservice.getServiceLivrePort();
-        resultat=accesLivre.rechercherLivreComplxe(false,false,motsClés,motsClés,motsClés,0,motsClés,motsClés,motsClés);
+        resultat=accesLivre.infoLivre(idLivre);
         //
         return resultat;
     }
 
-    public List<Livre> rechercheComplexe(boolean ouEt,boolean expressionExacte, String titre,String auteur,String editeur,String type,String domaine,String theme, String wsdlAdress){
-        if(resultat!=null){
-            resultat.clear();
-        }
+    public List<String> infosDesindexee(int idLivreInput, String wsdlAdress){
         try{
             urlWsdl=new URL(wsdlAdress);
         }catch(Exception e){
@@ -40,8 +37,8 @@ public class RechercheSimpleDao {
         //
         ServiceLivreService monservice= new ServiceLivreService(urlWsdl);
         ServiceLivre accesLivre=monservice.getServiceLivrePort();
-        resultat=accesLivre.rechercherLivreComplxe(ouEt,expressionExacte,titre,auteur,editeur,0,type,domaine,theme);
+        resultat2=accesLivre.desindexation(idLivreInput);
         //
-        return resultat;
+        return resultat2;
     }
 }

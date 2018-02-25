@@ -17,29 +17,57 @@ import java.util.Map;
 public class BddExemplaire extends Impl implements DaoExemplaire {
     //
     @Override
-    public Exemplaire premierExemplaireDisponible(int idLivre) {
+    public ArrayList<Exemplaire> ExemplaireDisponible(boolean mode,int idLivre) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
         //
-        Exemplaire exemplaireOutput=vTransactionTemplate.execute(new TransactionCallback<Exemplaire>() {
-            @Override
-            public Exemplaire doInTransaction(TransactionStatus transactionStatus) {
-                final String PREMIEREXEMPLAIRE = "SELECT * FROM (SELECT * FROM pret FULL JOIN exemplaire ON pret.idexemplaire=exemplaire.idexemplaire WHERE rendupret=false or rendupret IS NULL ORDER BY datefinpret DESC) AS derniersprets WHERE idlivre=? AND (((datefinpret<CURRENT_DATE AND rendupret=true) OR (datefinpret>CURRENT_DATE AND rendupret=true)) OR (datefinpret IS NULL)) ORDER BY datefinpret DESC LIMIT 1;";
-                //
-                List<Map<String,Object>> rows = jdbcTemplate.queryForList(PREMIEREXEMPLAIRE,new Object[] {idLivre});
-                Exemplaire lExemplaire=new Exemplaire();
-                for (Map row : rows) {
-                    lExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
-                    lExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    lExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
-                    lExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
+        if(mode==true) { //mode1: un seul exemplaire est sorti, le premier disponible...
+            Exemplaire exemplaireOutput = vTransactionTemplate.execute(new TransactionCallback<Exemplaire>() {
+                @Override
+                public Exemplaire doInTransaction(TransactionStatus transactionStatus) {
+                    final String PREMIEREXEMPLAIRE = "SELECT * FROM (SELECT resultatexemplaire.idexemplaire,idlivre,coteexemplaire,remarqueexemplaire,idpret,idutilisateur,datedebutpret,datefinpret,prolongepret,rendupret FROM(SELECT * FROM exemplaire WHERE idlivre=?) AS resultatexemplaire FULL JOIN pret ON pret.idexemplaire=resultatexemplaire.idexemplaire WHERE idlivre IS NOT NULL) AS resultatpret FULL JOIN (SELECT pret.idexemplaire AS lexemplaire,MAX(pret.datefinpret) FROM pret GROUP BY pret.idexemplaire) AS maxdate ON resultatpret.idexemplaire=maxdate.lexemplaire WHERE idlivre IS NOT NULL AND (datefinpret=max OR max IS NULL) AND (rendupret=true OR rendupret IS NULL) ORDER BY datefinpret ASC LIMIT 1;";
+                    //
+                    List<Map<String, Object>> rows = jdbcTemplate.queryForList(PREMIEREXEMPLAIRE, new Object[]{idLivre});
+                    Exemplaire lExemplaire = new Exemplaire();
+                    for (Map row : rows) {
+                        lExemplaire.setIdExemplaire((int) (row.get("idexemplaire")));
+                        lExemplaire.setIdLivre((int) (row.get("idlivre")));
+                        lExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
+                        lExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
+                    }
+                    //
+                    return lExemplaire;
                 }
-                //
-                return lExemplaire;
-            }
-        });
-        //
-        return exemplaireOutput;
+            });
+            //
+            //Création d'une liste bidon pour se conformer au type de sortie
+            ArrayList<Exemplaire> listExemplaireOutput = new ArrayList<Exemplaire>();
+            listExemplaireOutput.add(exemplaireOutput);
+            return listExemplaireOutput;
+        }else{ //mode0: sort tout les exemplaires disponibles
+
+            ArrayList<Exemplaire> exemplaireOutput2=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Exemplaire>>() {
+                @Override
+                public ArrayList<Exemplaire> doInTransaction(TransactionStatus transactionStatus) {
+                    final String EXEMPLAIRESDISPO = "SELECT * FROM (SELECT resultatexemplaire.idexemplaire,idlivre,coteexemplaire,remarqueexemplaire,idpret,idutilisateur,datedebutpret,datefinpret,prolongepret,rendupret FROM(SELECT * FROM exemplaire WHERE idlivre=?) AS resultatexemplaire FULL JOIN pret ON pret.idexemplaire=resultatexemplaire.idexemplaire WHERE idlivre IS NOT NULL) AS resultatpret FULL JOIN (SELECT pret.idexemplaire AS lexemplaire,MAX(pret.datefinpret) FROM pret GROUP BY pret.idexemplaire) AS maxdate ON resultatpret.idexemplaire=maxdate.lexemplaire WHERE idlivre IS NOT NULL AND (datefinpret=max OR max IS NULL) AND (rendupret=true OR rendupret IS NULL) ORDER BY datefinpret ASC;";
+                    //
+                    List<Map<String,Object>> rows = jdbcTemplate.queryForList(EXEMPLAIRESDISPO,new Object[] {idLivre});
+                    ArrayList<Exemplaire> lesExemplaires=new ArrayList<Exemplaire>();
+                    for (Map row : rows) {
+                        Exemplaire newexemplaire=new Exemplaire();
+                        newexemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
+                        newexemplaire.setIdLivre((int)(row.get("idlivre")));
+                        newexemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
+                        newexemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
+                        lesExemplaires.add(newexemplaire);
+                    }
+                    //
+                    return lesExemplaires;
+                }
+            });
+            //
+            return exemplaireOutput2;
+        }
     }
 
     @Override

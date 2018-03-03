@@ -5,11 +5,20 @@ nav#barre{background: rgba(255, 255, 255, 0.2); z-index: 2 ; box-shadow: rgba(0,
  */
 .imagePrechargee{display: none}
 /**/
+#menuConnexion{display: none; position: fixed; margin-right: auto; width: 100%; z-index: 999;}
+/**/
+.elementdelisteMenu{background-color: rgba(255,255,255,0.2)}
+.elementdelisteMenu:hover{
+    background-color: rgba(0,0,0,0.3)
+}
+/**/
 label#connecte{color:rgba(255, 255, 255, 1); margin-right:6px}
 /**/
 .floaterLeft{float:left}
 /**/
 ul#listutilisateur{display:none; top:-20px;z-index:10}
+/**/
+.centerMenu{margin-left: auto;margin-right: auto}
 /**/
 .modalHeader{margin-top: 10px;text-shadow:0px 2px 4px rgba(0, 0, 0, 0.2); color:rgba(0, 0, 0, 1); border-bottom:1px; border-bottom-color:rgba(0,0,0,0.1); border-bottom-style: solid;}
 /**/
@@ -47,10 +56,10 @@ button#boutonhome{padding-bottom: 8px}
     margin-right: 40px;
     color:rgba(0, 0, 0, 1)
 }
-/*Surcharge de bootstrap*/
+/*Surcharge de bootstrap
 .navbar-nav{
     flex-direction: row;
-}
+}*/
 /*Modification de la classe pour le message modal full CSS*/
 .cModal {
     overflow-y: initial;

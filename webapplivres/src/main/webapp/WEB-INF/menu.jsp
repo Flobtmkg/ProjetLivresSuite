@@ -1,26 +1,38 @@
-<nav id="barre" class="form-inline navbar navbar-light navbar-expand-sm container-fluid">
+<nav id="barre" class="navbar navbar-light navbar-expand-md container-fluid" role="navigation" onmousemove="editPriorite(false)">
     <div class="navbar-header">
         <a href="./accueil" ><img class="navbar-btn rotatelogo" src="../resources/img/livre8.png" width="50" height="46"></a>
     </div>
-    <div class="offset-1">
-        <ul class="nav navbar-nav">
-            <li><a href="rechercheSimple?motCles=" class="liensMenu"><i class="fas fa-search-plus fa-lg"></i> Rechercher livres</a></li>
-            <li><a href="./contact" class="liensMenu"><i class="far fa-address-card fa-lg"></i> Contact</a></li>
-            <li></li>
-        </ul>
-    </div>
-    <div id="connexion" class="navbar-right">
-                <div id="blockconnexion" class="form-group navbar-btn">
-                    <c:if test="${sessionScope.userGuest.idUtilisateur==0 || empty sessionScope.userGuest.idUtilisateur}">
-                        <a href="#ModalConnexion" class="liensMenu"><i class="fas fa-sign-in-alt fa-lg"></i> Inscription/Connexion</a>
-                    </c:if>
-                    <c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur}">
-                        <p class="textMenu">Bonjour ${sessionScope.userGuest.prenomUtilisateur}</p>
-                        <a href="./espaceutilisateur"><button id="boutonhome" class="btn btn-xs btn-primary"><span class="fas fa-user fa-lg"></span></button></a>
-                    </c:if>
-                </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav centerMenu">
+                    <li class="nav-item mt-4 mt-md-0 border-bottom-sm-1"><a href="rechercheSimple?motCles=" class="liensMenu"><i class="fas fa-search-plus fa-lg"></i> Rechercher livres</a></li>
+                    <li class="nav-item mt-3 mt-md-0"><a href="./contact" class="liensMenu"><i class="far fa-address-card fa-lg"></i> Contact</a></li>
+                </ul>
+            <div id="connexion" class="navbar-right">
+                        <div id="blockconnexion" class="form-group navbar-nav mt-4 mt-md-0 align-items-md-center">
+                            <c:if test="${sessionScope.userGuest.idUtilisateur==0 || empty sessionScope.userGuest.idUtilisateur}">
+                                <a href="#ModalConnexion" class="nav-item liensMenu"><i class="fas fa-sign-in-alt fa-lg"></i> Inscription/Connexion</a>
+                            </c:if>
+                            <c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur}">
+                                <p class="textMenu d-none d-md-block">Bonjour ${sessionScope.userGuest.prenomUtilisateur}</p>
+                                <a href="redirectionEspaceUtilisateur"><button id="boutonhome" onmousemove="editPriorite(true)" onmouseout="setTimeout(hideMenu,500)" class="btn btn-xs btn-primary"><span class="fas fa-user fa-lg"></span></button></a>
+                            </c:if>
+                        </div>
+            </div>
     </div>
 </nav>
+<div id="menuConnexion" onmouseout="setTimeout(hideMenu,500);editPriorite(false)">
+    <div class="row">
+        <div class="col-md-3 offset-md-9 col-12 offset-0">
+            <div class="list-group" id="list-tab" role="tablist" onmousemove="editPriorite(true)">
+                <a class="list-group-item list-group-item-action elementdelisteMenu liensMenu" href="redirectionEspaceUtilisateur" role="tab"><i class="fas fa-user-circle"></i> Espace utilisateur</a>
+                <a class="list-group-item list-group-item-action elementdelisteMenu liensMenu" href="deconnexion" role="tab"><i class="fas fa-power-off"></i> Déconnexion</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="ModalErreur" class="cModal">
     <div>
         <header>
@@ -39,12 +51,12 @@
 </div>
 <div id="ModalConnexion" class="cModal">
     <div>
-    <form action="connexionUtilisateur.action" method="post">
+    <form action="connexionUtilisateur" method="post">
         <header>
-            <h2 class="modalHeader">Connexion</h2>
+            <h2 class="modalHeader"><i class="fas fa-sign-in-alt"></i> Connexion</h2>
         </header>
         <div class="form-group modalMargin">
-            <a href="./inscription"><i class="fas fa-edit"></i> Vous n'avez pas de Compte? Inscrivez-vous!</a>
+            <a href="inscription"><i class="fas fa-edit"></i> Vous n'avez pas de Compte? Inscrivez-vous!</a>
         </div>
         <div class="form-group modalMargin">
             <label for="inputEmail">E-mail</label>

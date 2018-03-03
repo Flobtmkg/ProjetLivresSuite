@@ -15,7 +15,7 @@ public class ServiceUtilisateur extends Service {
     }
 
     @WebMethod
-    public void ajoutUtilisateur(String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
+    public boolean ajoutUtilisateur(String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
         Utilisateur utilisateurInput= new Utilisateur();
         utilisateurInput.setIdUtilisateur(0);
         utilisateurInput.setNomUtilisateur(nomUtilisateur);
@@ -23,7 +23,17 @@ public class ServiceUtilisateur extends Service {
         utilisateurInput.setEmailUtilisateur(emailUtilisateur);
         utilisateurInput.setMdpUtilisateur(mdpUtilisateur);
         utilisateurInput.setDateNaissanceUtilisateur(datenaissanceutilisateur);
-        monDaoUtilisateur.ajouterUtilisateur(utilisateurInput);
+        if(isEmailExist(emailUtilisateur)==false){ // si pas présent dans la base alors on peut inscrire
+            monDaoUtilisateur.ajouterUtilisateur(utilisateurInput);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isEmailExist(String emailInput){
+        boolean isExist=monDaoUtilisateur.isEmailExistInBase(emailInput);
+        return isExist;
     }
 
 }

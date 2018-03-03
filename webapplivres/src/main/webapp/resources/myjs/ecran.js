@@ -1,4 +1,5 @@
- function getWindowHeight() {
+var prioriteButton;
+function getWindowHeight() {
             var windowHeight=0;
             if (typeof(window.innerHeight)=='number') {
                 windowHeight=window.innerHeight;
@@ -70,3 +71,19 @@ function getWindowWidth() {
      }
  }
 
+ function hideMenu() {
+    var menu=document.getElementById('menuConnexion');
+    if(prioriteButton==false){
+        menu.style.display='none';
+    }
+
+ }
+ function editPriorite(priorite){
+    if(priorite==true){
+        document.getElementById('menuConnexion').style.display='block';
+        prioriteButton=true;
+    }else{
+        prioriteButton=false;
+    }
+
+}

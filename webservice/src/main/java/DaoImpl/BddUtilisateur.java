@@ -81,4 +81,38 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
         });
         //
     }
+
+    @Override
+    public boolean isEmailExistInBase(String inputEmail) {
+            //
+            TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            //
+            Utilisateur utilisateurOutput=vTransactionTemplate.execute(new TransactionCallback<Utilisateur>() {
+                @Override
+                public Utilisateur doInTransaction(TransactionStatus transactionStatus) {
+                    final String TESTEREMAIL = "SELECT * FROM utilisateur WHERE emailutilisateur=?;";
+                    //
+                    List<Map<String,Object>> rows = jdbcTemplate.queryForList(TESTEREMAIL,new Object[] {inputEmail});
+                    Utilisateur lUtilisateur=new Utilisateur();
+                    for (Map row : rows) {
+                        lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
+                        lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
+                        lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+                        lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+                        lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
+                        lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+                    }
+                    //
+                    return lUtilisateur;
+                }
+            });
+            // Test si l'utilisateur existe
+            if(utilisateurOutput.getIdUtilisateur()!=0){
+                //utilisateur existe
+                return true;
+            }else{
+                //utilisateur n'existe pas
+                return false;
+            }
+    }
 }

@@ -28,6 +28,8 @@ public class ObjectFactory {
     private final static QName _AjoutUtilisateur_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateur");
     private final static QName _Autentifier_QNAME = new QName("http://allplatform.webservice/", "autentifier");
     private final static QName _AjoutUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateurResponse");
+    private final static QName _IsEmailExistResponse_QNAME = new QName("http://allplatform.webservice/", "isEmailExistResponse");
+    private final static QName _IsEmailExist_QNAME = new QName("http://allplatform.webservice/", "isEmailExist");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceUtilisateur
@@ -66,6 +68,22 @@ public class ObjectFactory {
      */
     public AjoutUtilisateurResponse createAjoutUtilisateurResponse() {
         return new AjoutUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link IsEmailExistResponse }
+     * 
+     */
+    public IsEmailExistResponse createIsEmailExistResponse() {
+        return new IsEmailExistResponse();
+    }
+
+    /**
+     * Create an instance of {@link IsEmailExist }
+     * 
+     */
+    public IsEmailExist createIsEmailExist() {
+        return new IsEmailExist();
     }
 
     /**
@@ -110,6 +128,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajoutUtilisateurResponse")
     public JAXBElement<AjoutUtilisateurResponse> createAjoutUtilisateurResponse(AjoutUtilisateurResponse value) {
         return new JAXBElement<AjoutUtilisateurResponse>(_AjoutUtilisateurResponse_QNAME, AjoutUtilisateurResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IsEmailExistResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "isEmailExistResponse")
+    public JAXBElement<IsEmailExistResponse> createIsEmailExistResponse(IsEmailExistResponse value) {
+        return new JAXBElement<IsEmailExistResponse>(_IsEmailExistResponse_QNAME, IsEmailExistResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IsEmailExist }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "isEmailExist")
+    public JAXBElement<IsEmailExist> createIsEmailExist(IsEmailExist value) {
+        return new JAXBElement<IsEmailExist>(_IsEmailExist_QNAME, IsEmailExist.class, null, value);
     }
 
 }

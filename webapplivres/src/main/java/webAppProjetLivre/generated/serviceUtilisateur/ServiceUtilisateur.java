@@ -19,7 +19,7 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "ServiceUtilisateur", targetNamespace = "http://allplatform.webservice/")
 @XmlSeeAlso({
-        ObjectFactory.class
+    ObjectFactory.class
 })
 public interface ServiceUtilisateur {
 
@@ -43,18 +43,21 @@ public interface ServiceUtilisateur {
                     String arg1);
 
     /**
-     *
+     * 
      * @param arg3
      * @param arg2
      * @param arg4
      * @param arg1
      * @param arg0
+     * @return
+     *     returns boolean
      */
     @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "ajoutUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.AjoutUtilisateur")
     @ResponseWrapper(localName = "ajoutUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.AjoutUtilisateurResponse")
     @Action(input = "http://allplatform.webservice/ServiceUtilisateur/ajoutUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/ajoutUtilisateurResponse")
-    public void ajoutUtilisateur(
+    public boolean ajoutUtilisateur(
             @WebParam(name = "arg0", targetNamespace = "")
                     String arg0,
             @WebParam(name = "arg1", targetNamespace = "")
@@ -65,5 +68,20 @@ public interface ServiceUtilisateur {
                     String arg3,
             @WebParam(name = "arg4", targetNamespace = "")
                     String arg4);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "isEmailExist", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.IsEmailExist")
+    @ResponseWrapper(localName = "isEmailExistResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.IsEmailExistResponse")
+    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/isEmailExistRequest", output = "http://allplatform.webservice/ServiceUtilisateur/isEmailExistResponse")
+    public boolean isEmailExist(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
 
 }

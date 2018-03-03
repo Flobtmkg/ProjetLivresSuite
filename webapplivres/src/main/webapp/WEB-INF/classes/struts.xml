@@ -17,9 +17,25 @@
         <action name="contact">
             <result>/WEB-INF/contact.jsp</result>
         </action>
+        <action name="inscription">
+            <result>/WEB-INF/inscription.jsp</result>
+        </action>
         <!---->
         <!--Actions spécifiques-->
         <!---->
+        <action name="deconnexion" class="deconnexionBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
+        <action name="nouvelleInscription" class="nouvelleInscriptionBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+            <result name="error" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
         <action name="newEnvoiEmail" class="envoiEmailBean">
             <result name="success" type="redirect">
                 <param name="location">${commandPage}</param>
@@ -38,6 +54,10 @@
             <result name="error" type="redirect">
                 <param name="location">${commandPage}</param>
             </result>
+        </action>
+        <action name="redirectionEspaceUtilisateur" class="redirectionEspaceUtilisateurBean">
+            <result name="success">/WEB-INF/espaceutilisateur.jsp</result>
+            <result name="error">/WEB-INF/accueil.jsp</result>
         </action>
         <action name="redirectionLivre" class="redirectionLivreActionBean">
             <result name="success">/WEB-INF/livre.jsp</result>

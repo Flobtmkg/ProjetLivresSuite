@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour ajoutUtilisateurResponse complex type.
+ * <p>Classe Java pour isEmailExistResponse complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="ajoutUtilisateurResponse">
+ * &lt;complexType name="isEmailExistResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ajoutUtilisateurResponse1", propOrder = {
+@XmlType(name = "isEmailExistResponse1", propOrder = {
     "_return"
 })
-public class AjoutUtilisateurResponse {
+public class IsEmailExistResponse {
 
     @XmlElement(name = "return")
     protected boolean _return;

@@ -22,7 +22,6 @@
 <body onresize="changeImage()" onload="changeImage()">
 <!-- Necessaire au système d'adaptation d'images automatique controlé en javascript -->
 <!-- Affiche toujours l'image de fond en optimisé quelque soit les tailles d'écrans (du smartphone à la 4K) -->
-<img id="imageHd" class="imagePrechargee" src="../resources/img/livreHD_conforme.jpg">
 <img id="image4K" class="imagePrechargee" src="../resources/img/livre4k_conforme.jpg">
 <!--  -->
 <!--  -->

@@ -25,9 +25,11 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _AutentifierResponse_QNAME = new QName("http://allplatform.webservice/", "autentifierResponse");
+    private final static QName _ModifUtilisateur_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateur");
     private final static QName _AjoutUtilisateur_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateur");
     private final static QName _Autentifier_QNAME = new QName("http://allplatform.webservice/", "autentifier");
     private final static QName _AjoutUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateurResponse");
+    private final static QName _ModifUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateurResponse");
     private final static QName _IsEmailExistResponse_QNAME = new QName("http://allplatform.webservice/", "isEmailExistResponse");
     private final static QName _IsEmailExist_QNAME = new QName("http://allplatform.webservice/", "isEmailExist");
 
@@ -44,6 +46,14 @@ public class ObjectFactory {
      */
     public AutentifierResponse createAutentifierResponse() {
         return new AutentifierResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifUtilisateur }
+     * 
+     */
+    public ModifUtilisateur createModifUtilisateur() {
+        return new ModifUtilisateur();
     }
 
     /**
@@ -68,6 +78,14 @@ public class ObjectFactory {
      */
     public AjoutUtilisateurResponse createAjoutUtilisateurResponse() {
         return new AjoutUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifUtilisateurResponse }
+     * 
+     */
+    public ModifUtilisateurResponse createModifUtilisateurResponse() {
+        return new ModifUtilisateurResponse();
     }
 
     /**
@@ -104,6 +122,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifUtilisateur }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateur")
+    public JAXBElement<ModifUtilisateur> createModifUtilisateur(ModifUtilisateur value) {
+        return new JAXBElement<ModifUtilisateur>(_ModifUtilisateur_QNAME, ModifUtilisateur.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AjoutUtilisateur }{@code >}}
      * 
      */
@@ -128,6 +155,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajoutUtilisateurResponse")
     public JAXBElement<AjoutUtilisateurResponse> createAjoutUtilisateurResponse(AjoutUtilisateurResponse value) {
         return new JAXBElement<AjoutUtilisateurResponse>(_AjoutUtilisateurResponse_QNAME, AjoutUtilisateurResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifUtilisateurResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateurResponse")
+    public JAXBElement<ModifUtilisateurResponse> createModifUtilisateurResponse(ModifUtilisateurResponse value) {
+        return new JAXBElement<ModifUtilisateurResponse>(_ModifUtilisateurResponse_QNAME, ModifUtilisateurResponse.class, null, value);
     }
 
     /**

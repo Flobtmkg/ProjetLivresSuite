@@ -95,7 +95,7 @@ public class InscriptionAction extends ActionSupport implements SessionAware,Ser
         this.nouvelUtilisateur.setDateNaissanceUtilisateur(dateNaissance);
         //test Date
         try{
-            LocalDate objetDeTestDeDate; // ne sert qu'au test
+            LocalDate objetDeTestDeDate; // ne sert qu'au test de validité de la Date
             objetDeTestDeDate=LocalDate.parse(dateNaissance);
             //
             this.eventuelUtilisateurConnecte=(Utilisateur)session.get("userGuest");

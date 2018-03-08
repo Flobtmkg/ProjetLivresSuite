@@ -28,6 +28,19 @@
                 <param name="location">${commandPage}</param>
             </result>
         </action>
+        <action name="modifInfosGenerales" class="modifInfosGeneralesBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
+        <action name="modifInfosSupp" class="modifInfosSuppBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+            <result name="error" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
         <action name="nouvelleInscription" class="nouvelleInscriptionBean">
             <result name="success" type="redirect">
                 <param name="location">${commandPage}</param>

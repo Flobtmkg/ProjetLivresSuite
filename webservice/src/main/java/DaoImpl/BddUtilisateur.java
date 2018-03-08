@@ -115,4 +115,45 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 return false;
             }
     }
+
+    @Override
+    public void modifierUtilisateur(Utilisateur inputUtilisateur) {
+        if(inputUtilisateur.getMdpUtilisateur().equals("")){ //Pas de modification du mdp
+            //
+            //Conversion de date
+            LocalDate date1=LocalDate.parse(inputUtilisateur.getDateNaissanceUtilisateur());
+            long millisecondsSince1970A =date1.toEpochDay()*86400000;
+            java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
+            //
+            //
+            TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+                    final String AJOUTUTILISATEUR = "UPDATE utilisateur SET nomutilisateur=?,prenomutilisateur=?,emailutilisateur=?,datenaissanceutilisateur=? WHERE idutilisateur=? ;";
+                    jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),sqlDate1,inputUtilisateur.getIdUtilisateur()});
+                }
+            });
+        }else{ //Modification du mdp
+            //Chiffrage
+            String mdpChiffre= BCrypt.hashpw(inputUtilisateur.getMdpUtilisateur(), BCrypt.gensalt());
+            //
+            //Conversion de date
+            LocalDate date1=LocalDate.parse(inputUtilisateur.getDateNaissanceUtilisateur());
+            long millisecondsSince1970A =date1.toEpochDay()*86400000;
+            java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
+            //
+            //
+            TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+                    final String AJOUTUTILISATEUR = "UPDATE utilisateur SET nomutilisateur=?,prenomutilisateur=?,emailutilisateur=?,mdputilisateur=?,datenaissanceutilisateur=? WHERE idutilisateur=? ;";
+                    jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),CodageGuillemets.getTexteEncode(mdpChiffre),sqlDate1,inputUtilisateur.getIdUtilisateur()});
+                }
+            });
+        }
+
+        //
+    }
 }

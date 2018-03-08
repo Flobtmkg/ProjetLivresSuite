@@ -36,4 +36,19 @@ public class ServiceUtilisateur extends Service {
         return isExist;
     }
 
+    @WebMethod
+    public void modifUtilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
+        Utilisateur utilisateurInput= new Utilisateur();
+        utilisateurInput.setIdUtilisateur(idUtilisateur);
+        utilisateurInput.setNomUtilisateur(nomUtilisateur);
+        utilisateurInput.setPrenomUtilisateur(prenomUtilisateur);
+        utilisateurInput.setEmailUtilisateur(emailUtilisateur);
+        if(mdpUtilisateur==null){
+            mdpUtilisateur="";
+        }
+        utilisateurInput.setMdpUtilisateur(mdpUtilisateur);
+        utilisateurInput.setDateNaissanceUtilisateur(datenaissanceutilisateur);
+        monDaoUtilisateur.modifierUtilisateur(utilisateurInput);
+    }
+
 }

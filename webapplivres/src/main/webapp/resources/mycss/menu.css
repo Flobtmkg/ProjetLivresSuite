@@ -11,6 +11,9 @@ nav#barre{background: rgba(255, 255, 255, 0.2); z-index: 2 ; box-shadow: rgba(0,
 .elementdelisteMenu:hover{
     background-color: rgba(0,0,0,0.3)
 }
+.elementdelisteMenu:focus{
+    background-color: rgba(255,255,255,0.2)
+}
 /**/
 label#connecte{color:rgba(255, 255, 255, 1); margin-right:6px}
 /**/
@@ -32,6 +35,7 @@ button#boutonhome{padding-bottom: 8px}
 /**/
 .contenuErreur{margin-top:22px;}
 /**/
+
 .liensMenu:hover {
     color: rgba(255, 255, 255, 1);
     text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.2);

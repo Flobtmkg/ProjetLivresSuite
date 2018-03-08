@@ -5,6 +5,13 @@
     <!--
     Beans Actions
     -->
+    <bean id="modifInfosGeneralesBean" class="webAppProjetLivre.strutsAction.modifInfosGeneralesAction">
+        <property name="accesModifUtilisateur" ref="accesModifUtilisateurDao"/>
+    </bean>
+    <bean id="modifInfosSuppBean" class="webAppProjetLivre.strutsAction.modifInfosSupp">
+        <property name="accesModifUtilisateur" ref="accesModifUtilisateurDao"/>
+        <property name="verifUserIdentifie" ref="requestUtilisateurDao"/>
+    </bean>
     <bean id="deconnexionBean" class="webAppProjetLivre.strutsAction.DeconnexionAction">
     </bean>
     <bean id="nouvelleInscriptionBean" class="webAppProjetLivre.strutsAction.InscriptionAction">
@@ -33,6 +40,7 @@
     <!--
     Beans DAO (action implementation) et Bean d'objets de travail
     -->
+    <bean id="accesModifUtilisateurDao" class="webAppProjetLivre.classesTravail.UpdateUtilisateurDao" />
     <bean id="inscriptionUtilisateurDao" class="webAppProjetLivre.classesTravail.InscriptionDao" />
     <bean id="requestUtilisateurDao" class="webAppProjetLivre.classesTravail.RequestAutentificationDao" />
     <bean id="requestLivreDao" class="webAppProjetLivre.classesTravail.RequestLivreDao" />

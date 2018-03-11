@@ -25,7 +25,6 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "etatPret1", propOrder = {
     "arg0"

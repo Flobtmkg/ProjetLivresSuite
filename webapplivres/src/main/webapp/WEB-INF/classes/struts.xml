@@ -23,6 +23,11 @@
         <!---->
         <!--Actions spécifiques-->
         <!---->
+        <action name="ProlngerPret" class="prolongerPretBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
         <action name="deconnexion" class="deconnexionBean">
             <result name="success" type="redirect">
                 <param name="location">${commandPage}</param>

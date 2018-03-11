@@ -5,10 +5,13 @@
     <!--
     Beans Actions
     -->
+    <bean id="prolongerPretBean" class="webAppProjetLivre.strutsAction.modifProlongerPretAction">
+        <property name="accesPret" ref="PretsDao"/>
+    </bean>
     <bean id="modifInfosGeneralesBean" class="webAppProjetLivre.strutsAction.modifInfosGeneralesAction">
         <property name="accesModifUtilisateur" ref="accesModifUtilisateurDao"/>
     </bean>
-    <bean id="modifInfosSuppBean" class="webAppProjetLivre.strutsAction.modifInfosSupp">
+    <bean id="modifInfosSuppBean" class="webAppProjetLivre.strutsAction.modifInfosSuppAction">
         <property name="accesModifUtilisateur" ref="accesModifUtilisateurDao"/>
         <property name="verifUserIdentifie" ref="requestUtilisateurDao"/>
     </bean>
@@ -25,6 +28,7 @@
         <property name="listes" ref="listerDao" />
     </bean>
     <bean id="redirectionEspaceUtilisateurBean" class="webAppProjetLivre.strutsAction.RedirectionEspaceUtilisateurAction">
+        <property name="accesPrets" ref="PretsDao"/>
     </bean>
     <bean id="redirectionLivreActionBean" class="webAppProjetLivre.strutsAction.RedirectionLivreAction">
         <property name="infosLivre" ref="requestLivreDao" />
@@ -40,6 +44,7 @@
     <!--
     Beans DAO (action implementation) et Bean d'objets de travail
     -->
+    <bean id="PretsDao" class="webAppProjetLivre.classesTravail.PretsDao" />
     <bean id="accesModifUtilisateurDao" class="webAppProjetLivre.classesTravail.UpdateUtilisateurDao" />
     <bean id="inscriptionUtilisateurDao" class="webAppProjetLivre.classesTravail.InscriptionDao" />
     <bean id="requestUtilisateurDao" class="webAppProjetLivre.classesTravail.RequestAutentificationDao" />

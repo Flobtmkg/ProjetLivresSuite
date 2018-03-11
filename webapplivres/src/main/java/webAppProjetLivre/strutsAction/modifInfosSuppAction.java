@@ -10,7 +10,7 @@ import webAppProjetLivre.generated.serviceUtilisateur.Utilisateur;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-public class modifInfosSupp extends ActionSupport implements SessionAware,ServletRequestAware {
+public class modifInfosSuppAction extends ActionSupport implements SessionAware,ServletRequestAware {
     //
     private RequestAutentificationDao verifUserIdentifie;
     private Utilisateur UserAModif;

@@ -29,7 +29,7 @@ ul#listutilisateur{display:none; top:-20px;z-index:10}
 /**/
 .texterreur{color:rgba(0, 0, 0, 1)}
 /**/
-button#boutonhome{padding-bottom: 8px}
+button#boutonhome{padding-bottom: 8px; box-shadow: rgba(0,0,0,0.3) 0 3px 6px 0}
 /**/
 .contenuImageErreur{float: left; margin-right:15px;box-sizing: content-box}
 /**/
@@ -84,13 +84,13 @@ button#boutonhome{padding-bottom: 8px}
 .cModal > div {
     max-width: 500px;
     position: relative;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 8px 30px 15px 30px;
     border-radius: 4px;
     background: #fff;
 }
 .cModal > div > div {
-    max-height: 300px;
+    max-height: 500px;
     overflow-y: auto;
 }
 /**/

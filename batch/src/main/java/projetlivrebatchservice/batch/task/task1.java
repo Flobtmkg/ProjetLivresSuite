@@ -3,6 +3,7 @@ package projetlivrebatchservice.batch.task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import projetlivrebatchservice.batch.BatchApplication;
 import projetlivrebatchservice.batch.beans.EmailConnexion;
 import projetlivrebatchservice.batch.beans.WsdlLocationObject;
 import projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation;
@@ -10,6 +11,8 @@ import projetlivrebatchservice.batch.clientservices.generated.servicePret.Servic
 import projetlivrebatchservice.batch.clientservices.generated.servicePret.ServicePretService;
 import projetlivrebatchservice.batch.objetsTravail.EnvoiEmail;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -24,7 +27,8 @@ public class task1 {
     @Autowired
     private WsdlLocationObject wsdl1;
     private URL testUrl;
-
+    //
+    //
     @Scheduled(cron="0 0 2 * * *")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
     public void work() {
         try{
@@ -62,6 +66,14 @@ public class task1 {
 
         }
         System.out.println("--> "+LocalDateTime.now()+"; Batch job done.");
+    }
+
+    // pour verifier le lancement du batch aux tests
+    @Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
+    public void workProof() {
+        //
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job done. host: " + emailAEnvoyer.getConnexionHost() + "; fromWho: " + emailAEnvoyer.getConnexionFromWho() + "; username: " + emailAEnvoyer.getConnexionUsername() + "; pause: " + emailAEnvoyer.getConnexionPauseInterEmail() + "; password: " + emailAEnvoyer.getConnexionPassword() + "; Prets: " + wsdl1.getWsdlLocationPret() + "; Exemplaires: " + wsdl1.getWsdlLocationExemplaire() + "; Livre: " + wsdl1.getWsdlLocationLivre() + "; Notation: " + wsdl1.getWsdlLocationNotation() + "; Utilisateur: " + wsdl1.getWsdlLocationUtilisateur());
+        //
     }
 
     public static String conversionFormatDate(String inputDate){

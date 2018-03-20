@@ -8,16 +8,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import projetlivrebatchservice.batch.beans.EmailConnexion;
 import projetlivrebatchservice.batch.beans.WsdlLocationObject;
+
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @EnableScheduling
 @ComponentScan(basePackages = "projetlivrebatchservice")
 @PropertySource("classpath:application.properties")
 @Configuration
-public class BatchApplication {
+public class BatchApplication { //implements SchedulingConfigurer
 
     //récup des properties email
     @Value("${emailHost}")
@@ -45,8 +50,18 @@ public class BatchApplication {
 
     public static void main(String[] args) {
 		SpringApplication.run(BatchApplication.class, args);
+		System.out.println("Batch scheduler launched...");
 	}
 
+    //@Override
+    //public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+    //    taskRegistrar.setTaskScheduler(taskScheduler());
+    //}
+
+    //@Bean
+    //public TaskScheduler taskScheduler() {
+    //return new ConcurrentTaskScheduler(); //single threaded by default
+    //}
 
     @Bean
     public WsdlLocationObject configWsdl(){

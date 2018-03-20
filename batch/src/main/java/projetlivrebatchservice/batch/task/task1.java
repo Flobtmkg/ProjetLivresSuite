@@ -29,7 +29,7 @@ public class task1 {
     private URL testUrl;
     //
     //
-    @Scheduled(cron="0 0 2 * * *")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
+    @Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
     public void work() {
         try{
             testUrl=new URL(wsdl1.getWsdlLocationPret());
@@ -69,12 +69,12 @@ public class task1 {
     }
 
     // pour verifier le lancement du batch aux tests
-    @Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
-    public void workProof() {
+    //@Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
+    //public void workProof() {
         //
-        System.out.println("--> "+LocalDateTime.now()+"; Batch job done. host: " + emailAEnvoyer.getConnexionHost() + "; fromWho: " + emailAEnvoyer.getConnexionFromWho() + "; username: " + emailAEnvoyer.getConnexionUsername() + "; pause: " + emailAEnvoyer.getConnexionPauseInterEmail() + "; password: " + emailAEnvoyer.getConnexionPassword() + "; Prets: " + wsdl1.getWsdlLocationPret() + "; Exemplaires: " + wsdl1.getWsdlLocationExemplaire() + "; Livre: " + wsdl1.getWsdlLocationLivre() + "; Notation: " + wsdl1.getWsdlLocationNotation() + "; Utilisateur: " + wsdl1.getWsdlLocationUtilisateur());
+    //    System.out.println("--> "+LocalDateTime.now()+"; Batch job done. host: " + emailAEnvoyer.getConnexionHost() + "; fromWho: " + emailAEnvoyer.getConnexionFromWho() + "; username: " + emailAEnvoyer.getConnexionUsername() + "; pause: " + emailAEnvoyer.getConnexionPauseInterEmail() + "; password: " + emailAEnvoyer.getConnexionPassword() + "; Prets: " + wsdl1.getWsdlLocationPret() + "; Exemplaires: " + wsdl1.getWsdlLocationExemplaire() + "; Livre: " + wsdl1.getWsdlLocationLivre() + "; Notation: " + wsdl1.getWsdlLocationNotation() + "; Utilisateur: " + wsdl1.getWsdlLocationUtilisateur());
         //
-    }
+    //}
 
     public static String conversionFormatDate(String inputDate){
         String[] tabDate=inputDate.split("-");

@@ -20,6 +20,7 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
     public ArrayList<Exemplaire> ExemplaireDisponible(boolean mode,int idLivre) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         if(mode==true) { //mode1: un seul exemplaire est sorti, le premier disponible...
             Exemplaire exemplaireOutput = vTransactionTemplate.execute(new TransactionCallback<Exemplaire>() {
@@ -39,32 +40,37 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                     return lExemplaire;
                 }
             });
+
+
+
             //
             //Création d'une liste bidon pour se conformer au type de sortie
             ArrayList<Exemplaire> listExemplaireOutput = new ArrayList<Exemplaire>();
             listExemplaireOutput.add(exemplaireOutput);
             return listExemplaireOutput;
-        }else{ //mode0: sort tout les exemplaires disponibles
+        }else { //mode0: sort tout les exemplaires disponibles
 
-            ArrayList<Exemplaire> exemplaireOutput2=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Exemplaire>>() {
+            ArrayList<Exemplaire> exemplaireOutput2 = vTransactionTemplate.execute(new TransactionCallback<ArrayList<Exemplaire>>() {
                 @Override
                 public ArrayList<Exemplaire> doInTransaction(TransactionStatus transactionStatus) {
                     final String EXEMPLAIRESDISPO = "SELECT * FROM (SELECT resultatexemplaire.idexemplaire,idlivre,coteexemplaire,remarqueexemplaire,idpret,idutilisateur,datedebutpret,datefinpret,prolongepret,rendupret FROM(SELECT * FROM exemplaire WHERE idlivre=?) AS resultatexemplaire FULL JOIN pret ON pret.idexemplaire=resultatexemplaire.idexemplaire WHERE idlivre IS NOT NULL) AS resultatpret FULL JOIN (SELECT pret.idexemplaire AS lexemplaire,MAX(pret.datefinpret) FROM pret GROUP BY pret.idexemplaire) AS maxdate ON resultatpret.idexemplaire=maxdate.lexemplaire WHERE idlivre IS NOT NULL AND (datefinpret=max OR max IS NULL) AND (rendupret=true OR rendupret IS NULL) ORDER BY datefinpret ASC;";
                     //
-                    List<Map<String,Object>> rows = jdbcTemplate.queryForList(EXEMPLAIRESDISPO,new Object[] {idLivre});
-                    ArrayList<Exemplaire> lesExemplaires=new ArrayList<Exemplaire>();
+                    List<Map<String, Object>> rows = jdbcTemplate.queryForList(EXEMPLAIRESDISPO, new Object[]{idLivre});
+                    ArrayList<Exemplaire> lesExemplaires = new ArrayList<Exemplaire>();
                     for (Map row : rows) {
-                        Exemplaire newexemplaire=new Exemplaire();
-                        newexemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
-                        newexemplaire.setIdLivre((int)(row.get("idlivre")));
-                        newexemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
-                        newexemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
+                        Exemplaire newexemplaire = new Exemplaire();
+                        newexemplaire.setIdExemplaire((int) (row.get("idexemplaire")));
+                        newexemplaire.setIdLivre((int) (row.get("idlivre")));
+                        newexemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
+                        newexemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
                         lesExemplaires.add(newexemplaire);
                     }
                     //
                     return lesExemplaires;
                 }
             });
+
+
             //
             return exemplaireOutput2;
         }
@@ -74,6 +80,7 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
     public ArrayList<Exemplaire> listerExemplaire(int idLivre) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<Exemplaire> exemplaireOutput2=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Exemplaire>>() {
             @Override
@@ -94,6 +101,8 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                 return lesExemplaires;
             }
         });
+
+
         //
         return exemplaireOutput2;
     }
@@ -102,6 +111,7 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
     public void AjouterExemplaire(Exemplaire exemplaireInput) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -109,6 +119,8 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                 jdbcTemplate.update(AJOUTEXEMPLAIRE,new Object[]{exemplaireInput.getIdLivre(), CodageGuillemets.getTexteEncode(exemplaireInput.getCoteExemplaire()),CodageGuillemets.getTexteEncode(exemplaireInput.getRemarqueExemplaire())});
             }
         });
+
+
         //
     }
 }

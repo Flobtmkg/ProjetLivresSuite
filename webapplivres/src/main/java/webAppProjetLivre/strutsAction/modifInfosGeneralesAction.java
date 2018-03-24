@@ -100,7 +100,14 @@ public class modifInfosGeneralesAction extends ActionSupport implements SessionA
         this.UserAModif.setDateNaissanceUtilisateur(DateTool.dateFRtoEN(this.dateNaissance));
         this.UserAModif.setIdUtilisateur(userEnCours.getIdUtilisateur());
         //
-        accesModifUtilisateur.updateInfos(UserAModif,getText("WSDLLocationUtilisateur"));
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationUtilisateur");
+        if(getEnv!=null && getEnv.equals("")==false){
+            accesModifUtilisateur.updateInfos(UserAModif,getEnv);
+        }else{
+            accesModifUtilisateur.updateInfos(UserAModif,getText("WSDLLocationUtilisateur"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         // On rebalance le profile dans la session
         session.put("userGuest",UserAModif);
         //

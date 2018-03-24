@@ -24,6 +24,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
         //
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<Utilisateur> utilisateursOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Utilisateur>>() {
             @Override
@@ -46,6 +47,8 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 return multiAdressesPourTest;
             }
         });
+
+
         //Plusieurs adresses email peuvent être identiques notement en situation de test, ce cas est donc traité ici
         Utilisateur newUtilisateur=new Utilisateur();
         for (Utilisateur chaqueUtilisateur:utilisateursOutput) {
@@ -72,6 +75,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
         //
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -79,6 +83,8 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getMdpUtilisateur()),sqlDate1});
             }
         });
+
+
         //
     }
 
@@ -86,6 +92,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
     public boolean isEmailExistInBase(String inputEmail) {
             //
             TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
             //
             Utilisateur utilisateurOutput=vTransactionTemplate.execute(new TransactionCallback<Utilisateur>() {
                 @Override
@@ -106,6 +113,8 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                     return lUtilisateur;
                 }
             });
+
+
             // Test si l'utilisateur existe
             if(utilisateurOutput.getIdUtilisateur()!=0){
                 //utilisateur existe
@@ -127,6 +136,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
             //
             //
             TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
             vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
                 protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -134,6 +144,8 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                     jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),sqlDate1,inputUtilisateur.getIdUtilisateur()});
                 }
             });
+
+
         }else{ //Modification du mdp
             //Chiffrage
             String mdpChiffre= BCrypt.hashpw(inputUtilisateur.getMdpUtilisateur(), BCrypt.gensalt());
@@ -145,6 +157,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
             //
             //
             TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
             vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
                 protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -152,6 +165,8 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                     jdbcTemplate.update(AJOUTUTILISATEUR,new Object[]{CodageGuillemets.getTexteEncode(inputUtilisateur.getNomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getPrenomUtilisateur()),CodageGuillemets.getTexteEncode(inputUtilisateur.getEmailUtilisateur()),CodageGuillemets.getTexteEncode(mdpChiffre),sqlDate1,inputUtilisateur.getIdUtilisateur()});
                 }
             });
+
+
         }
 
         //

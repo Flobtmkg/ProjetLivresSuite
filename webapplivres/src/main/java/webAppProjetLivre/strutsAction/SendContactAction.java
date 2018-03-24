@@ -83,7 +83,15 @@ public class SendContactAction extends ActionSupport implements ServletRequestAw
         String separateur=System.getProperty("line.separator");
         message="From: "+prenom+" "+nom+separateur+"Email: "+email+separateur+separateur+message;
         //
-        String errorEnvoi=sendEmail.envoi(getText("emailHost"),email,getText("emailUsername"),getText("emailPassword"),getText("emailUsername"),objet,message);
+        //Test --> si on fonctionne avec les environnements(prod) ou avec le properties(test local)
+        String getEnv=System.getenv("emailHost");
+        String errorEnvoi;
+        if(getEnv!=null && getEnv.equals("")==false){ // On considère que l'on fonctionne avec les variables d'environnement
+            errorEnvoi=sendEmail.envoi(System.getenv("emailHost"),email,System.getenv("emailUsername"),System.getenv("emailPassword"),System.getenv("emailUsername"),objet,message);
+        }else{ //On considère que l'on fonctionne sans les variables d'environnement
+            errorEnvoi=sendEmail.envoi(getText("emailHost"),email,getText("emailUsername"),getText("emailPassword"),getText("emailUsername"),objet,message);
+        }
+        //
         if(errorEnvoi.equals("")){
             commandPage=commandPage+"#ModalValidation";
             return SUCCESS;

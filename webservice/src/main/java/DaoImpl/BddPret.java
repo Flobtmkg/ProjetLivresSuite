@@ -29,6 +29,7 @@ public class BddPret extends Impl implements DaoPret {
         java.sql.Date sqlDate2=new java.sql.Date(millisecondsSince1970B);
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -36,6 +37,8 @@ public class BddPret extends Impl implements DaoPret {
                 jdbcTemplate.update(AJOUTPRET,new Object[]{newPret.getIdUtilisateur(),newPret.getIdExemplaire(),sqlDate1,sqlDate2,newPret.isProlongePret(),newPret.isRenduPret()});
             }
         });
+
+
         //
     }
 
@@ -43,6 +46,7 @@ public class BddPret extends Impl implements DaoPret {
     public ArrayList<Reservation> listerInfosPretUtilisateur(int idutilisateur) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<Reservation> pretOutput2=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Reservation>>() {
             @Override
@@ -100,6 +104,8 @@ public class BddPret extends Impl implements DaoPret {
                 return lesReservations;
             }
         });
+
+
         //
         return pretOutput2;
     }
@@ -108,6 +114,7 @@ public class BddPret extends Impl implements DaoPret {
     public ArrayList<Reservation> listerUtilisateursPretsNonRendus() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<Reservation> reservationOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Reservation>>() {
             @Override
@@ -165,6 +172,8 @@ public class BddPret extends Impl implements DaoPret {
                 return lesReservations;
             }
         });
+
+
         //
         return reservationOutput;
     }
@@ -173,6 +182,7 @@ public class BddPret extends Impl implements DaoPret {
     public Pret etatPret(int idPret) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         Pret pretOutput3=vTransactionTemplate.execute(new TransactionCallback<Pret>() {
             @Override
@@ -194,6 +204,8 @@ public class BddPret extends Impl implements DaoPret {
                 return lePret;
             }
         });
+
+
         //
         return pretOutput3;
     }
@@ -204,6 +216,7 @@ public class BddPret extends Impl implements DaoPret {
         long millisecondsSince1970A =date1.toEpochDay()*86400000;
         java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -211,12 +224,15 @@ public class BddPret extends Impl implements DaoPret {
                 jdbcTemplate.update(PROLONGERPRET,new Object[]{sqlDate1,idPret});
             }
         });
+
+
         //
     }
 
     @Override
     public void retourPret(int idPret) {
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -224,6 +240,8 @@ public class BddPret extends Impl implements DaoPret {
                 jdbcTemplate.update(RETOURPRET,new Object[]{idPret});
             }
         });
+
+
         //
     }
 }

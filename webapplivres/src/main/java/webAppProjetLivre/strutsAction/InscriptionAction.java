@@ -100,7 +100,16 @@ public class InscriptionAction extends ActionSupport implements SessionAware,Ser
             //
             this.eventuelUtilisateurConnecte=(Utilisateur)session.get("userGuest");
             if(eventuelUtilisateurConnecte==null || eventuelUtilisateurConnecte.getIdUtilisateur()==0){
-                boolean isSuccess = inscriptionUtilisateur.inscrire(nouvelUtilisateur,getText("WSDLLocationUtilisateur"));
+                boolean isSuccess;
+                //Debut recherche des variables d'env qui doivent être prioritaires;
+                String getEnv=System.getenv("WSDLLocationUtilisateur");
+
+                if(getEnv!=null && getEnv.equals("")==false){
+                    isSuccess = inscriptionUtilisateur.inscrire(nouvelUtilisateur,getEnv);
+                }else{
+                    isSuccess = inscriptionUtilisateur.inscrire(nouvelUtilisateur,getText("WSDLLocationUtilisateur"));
+                }
+                //Fin recherche des variables d'env qui doivent être prioritaires;
                 if(isSuccess==true){
                     commandPage=commandPage+"#ModalValidationInscription";
                     return SUCCESS;

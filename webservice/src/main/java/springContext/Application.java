@@ -48,6 +48,10 @@ public class Application {
         dataSourceConfig.setUrl(jdbcUrl);//jdbc:postgresql://localhost:5432/livres
         dataSourceConfig.setUsername(jdbcUsername);//postgres
         dataSourceConfig.setPassword(jdbcPassword);//flosql75301
+        dataSourceConfig.setTestOnBorrow(true);
+        dataSourceConfig.setTestWhileIdle(true);
+        dataSourceConfig.setTestOnReturn(true);
+        dataSourceConfig.setValidationQuery("SELECT 1");
         return dataSourceConfig;
     }
     @Bean

@@ -109,7 +109,14 @@ public class RedirectionEspaceUtilisateurAction extends ActionSupport implements
             return ERROR;
         }else{//connecté
             //
-            this.reservationUtilisateur=accesPrets.listPretsUtilisateur(identifiedUser.getIdUtilisateur(),getText("WSDLLocationPret"));
+            //Debut recherche des variables d'env qui doivent être prioritaires;
+            String getEnv=System.getenv("WSDLLocationPret");
+            if(getEnv!=null && getEnv.equals("")==false){
+                this.reservationUtilisateur=accesPrets.listPretsUtilisateur(identifiedUser.getIdUtilisateur(),getEnv);
+            }else{
+                this.reservationUtilisateur=accesPrets.listPretsUtilisateur(identifiedUser.getIdUtilisateur(),getText("WSDLLocationPret"));
+            }
+            //Fin recherche des variables d'env qui doivent être prioritaires;
             //
             this.setDatefr(DateTool.dateENtoFR(identifiedUser.getDateNaissanceUtilisateur()));
             this.age=DateTool.getAge(identifiedUser.getDateNaissanceUtilisateur());

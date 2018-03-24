@@ -70,8 +70,14 @@ public class ConnexionAction extends ActionSupport implements SessionAware,Servl
     }
 
     public String execute() {
-        //session.put("something",);
-        this.setIdentifiedUser(autentificationDao.authentifier(idco,mdp,getText("WSDLLocationUtilisateur")));
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationUtilisateur");
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.setIdentifiedUser(autentificationDao.authentifier(idco,mdp,getEnv));
+        }else{
+            this.setIdentifiedUser(autentificationDao.authentifier(idco,mdp,getText("WSDLLocationUtilisateur")));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         session.put("userGuest",this.getIdentifiedUser());
         if(identifiedUser.getIdUtilisateur()!=0){
             return SUCCESS;

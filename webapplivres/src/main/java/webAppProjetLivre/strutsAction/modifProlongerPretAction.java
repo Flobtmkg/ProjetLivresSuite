@@ -65,7 +65,14 @@ public class modifProlongerPretAction extends ActionSupport implements SessionAw
 
     public String execute() {
         //
-        this.accesPret.prolongerPrets(indicesPrets,getText("WSDLLocationPret"));
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationPret");
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.accesPret.prolongerPrets(indicesPrets,getEnv);
+        }else{
+            this.accesPret.prolongerPrets(indicesPrets,getText("WSDLLocationPret"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         //
         commandPage=commandPage+"#ModalValidation";
         return SUCCESS;

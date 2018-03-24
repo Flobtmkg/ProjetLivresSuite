@@ -19,6 +19,7 @@ public class BddNotation extends Impl implements DaoNotation {
     public void ajouterNotation(Notation notationInput) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -26,6 +27,8 @@ public class BddNotation extends Impl implements DaoNotation {
                 jdbcTemplate.update(AJOUTNOTATION,new Object[]{notationInput.getIdUtilisateur(), notationInput.getIdLivre(), notationInput.getValueNotation()});
             }
         });
+
+
         //
     }
 
@@ -33,6 +36,7 @@ public class BddNotation extends Impl implements DaoNotation {
     public double notationLivre(int idLivre) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         Notation notationOutput=vTransactionTemplate.execute(new TransactionCallback<Notation>() {
             @Override
@@ -48,6 +52,8 @@ public class BddNotation extends Impl implements DaoNotation {
                 return laNotation;
             }
         });
+
+
         //
         return notationOutput.getValueNotation();
     }

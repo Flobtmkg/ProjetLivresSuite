@@ -175,10 +175,35 @@ public class RechercheComplexeAction extends ActionSupport {
             this.setLeTheme("");
         }
         //
-        this.setListeLivre(this.getRecherche().rechercheComplexe(mode,expressionStricte,titre,auteur,editeur,leType,leDomaine,leTheme,getText("WSDLLocationLivres")));
-        this.setDomaines(this.getListes().rechercherListDomaines(getText("WSDLLocationLivres")));
-        this.setThemes(this.getListes().rechercherListTheme(getText("WSDLLocationLivres")));
-        this.setTypes(this.getListes().rechercherListType(getText("WSDLLocationLivres")));
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationLivres");
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.setListeLivre(this.getRecherche().rechercheComplexe(mode,expressionStricte,titre,auteur,editeur,leType,leDomaine,leTheme,getEnv));
+        }else{
+            this.setListeLivre(this.getRecherche().rechercheComplexe(mode,expressionStricte,titre,auteur,editeur,leType,leDomaine,leTheme,getText("WSDLLocationLivres")));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.setDomaines(this.getListes().rechercherListDomaines(getEnv));
+        }else{
+            this.setDomaines(this.getListes().rechercherListDomaines(getText("WSDLLocationLivres")));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.setThemes(this.getListes().rechercherListTheme(getEnv));
+        }else{
+            this.setThemes(this.getListes().rechercherListTheme(getText("WSDLLocationLivres")));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        if(getEnv!=null && getEnv.equals("")==false){
+            this.setTypes(this.getListes().rechercherListType(getEnv));
+        }else{
+            this.setTypes(this.getListes().rechercherListType(getText("WSDLLocationLivres")));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         //La réinitialisation de cette variable est indipensable:
         expressionStricte=false;
         return SUCCESS;

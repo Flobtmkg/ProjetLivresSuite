@@ -23,6 +23,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public Livre infoLivre(int idLivre) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         Livre livreOutput=vTransactionTemplate.execute(new TransactionCallback<Livre>() {
             @Override
@@ -44,6 +45,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return leLivre;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -56,6 +59,7 @@ public class BddLivre extends Impl implements DaoLivre {
         java.sql.Date sqlDate1=new java.sql.Date(millisecondsSince1970A);
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
@@ -63,6 +67,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 jdbcTemplate.update(AJOUTLIVRE,new Object[]{newLivre.getIdLivre(), CodageGuillemets.getTexteEncode(newLivre.getTitreLivre()),CodageGuillemets.getTexteEncode(newLivre.getAuteurLivre()),CodageGuillemets.getTexteEncode(newLivre.getEditeurLivre()),sqlDate1,CodageGuillemets.getTexteEncode(newLivre.getIndexationLivre())});
             }
         });
+
+
         //
     }
 
@@ -70,6 +76,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheTitre(String motcle) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //pré-traitement mot clé
         final String motcle2="%" + motcle.toUpperCase() + "%";
         //
@@ -95,6 +102,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -103,6 +112,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheAuteur(String motcle) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //pré-traitement mot clé
         final String motcle2="%" + motcle.toUpperCase() + "%";
         //
@@ -128,6 +138,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -136,6 +148,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheEditeur(String motcle) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //pré-traitement mot clé
         final String motcle2="%" + motcle.toUpperCase() + "%";
         //
@@ -161,6 +174,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -169,6 +184,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheExemplaire(int idExemplaire) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<Livre> livreOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Livre>>() {
             @Override
@@ -192,6 +208,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -200,6 +218,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<String> chercheElementIndexation() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<String> StringOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
             @Override
@@ -217,6 +236,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesString;
             }
         });
+
+
         //
         return StringOutput;
     }
@@ -225,6 +246,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public int nbchrElementIndexation(int elementIndexation) {
             //
             TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+            vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
             //
             int valOut=vTransactionTemplate.execute(new TransactionCallback<Integer>() {
                 @Override
@@ -240,6 +262,8 @@ public class BddLivre extends Impl implements DaoLivre {
                     return lenbChr;
                 }
             });
+
+
             //
             return valOut;
     }
@@ -248,6 +272,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheType(String valueType,int valueNbChr) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         //pré-traitement mot clé
         final String motcle2="%" + valueType.toUpperCase() + "%";
@@ -274,6 +299,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -282,6 +309,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheDomaine(String valueDomaine, int valueNbChr2) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         //pré-traitement mot clé
         final String motcle2="%" + valueDomaine.toUpperCase() + "%";
@@ -308,6 +336,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -316,6 +346,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<Livre> rechercheTheme(String valueTheme, int valueNbChr3) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         //pré-traitement mot clé
         final String motcle2="%" + valueTheme.toUpperCase() + "%";
@@ -342,6 +373,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesLivres;
             }
         });
+
+
         //
         return livreOutput;
     }
@@ -350,6 +383,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<IndexConstitution> rechercheIndexConstitution() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<IndexConstitution> constitutionOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<IndexConstitution>>() {
             @Override
@@ -368,6 +402,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesindex;
             }
         });
+
+
         //
         return constitutionOutput;
     }
@@ -376,6 +412,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public String reference(String ref, String typeRef) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //pré-traitement mot clé
         String motcle;
         if(typeRef.equals("theme")==false){
@@ -404,6 +441,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return valeurChamp;
             }
         });
+
+
         //
         return refOutput;
     }
@@ -412,6 +451,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<String> listerTypes() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<String> typesOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
             @Override
@@ -427,6 +467,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesTypes;
             }
         });
+
+
         //
         return typesOutput;
     }
@@ -434,6 +476,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<String> listerDomaines() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<String> domaineOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
             @Override
@@ -449,6 +492,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesDomaines;
             }
         });
+
+
         //
         return domaineOutput;
     }
@@ -457,6 +502,7 @@ public class BddLivre extends Impl implements DaoLivre {
     public ArrayList<String> listerThemes() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
         //
         ArrayList<String> themeOutput=vTransactionTemplate.execute(new TransactionCallback<ArrayList<String>>() {
             @Override
@@ -472,6 +518,8 @@ public class BddLivre extends Impl implements DaoLivre {
                 return lesThemes;
             }
         });
+
+
         //
         return themeOutput;
     }

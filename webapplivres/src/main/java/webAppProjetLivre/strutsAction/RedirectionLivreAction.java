@@ -69,9 +69,30 @@ public class RedirectionLivreAction extends ActionSupport{
     //
     public String execute() {
         //
-        livreAAfficher=infosLivre.infoLivre(id,getText("WSDLLocationLivres"));
-        exemplairesDispo=lesExemplaires.exemplairesDisponibles(id,getText("WSDLLocationExemplaire"));
-        informationDesindexee=infosLivre.infosDesindexee(id,getText("WSDLLocationLivres"));
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationLivres");
+        if(getEnv!=null && getEnv.equals("")==false){
+            livreAAfficher=infosLivre.infoLivre(id,getEnv);
+        }else{
+            livreAAfficher=infosLivre.infoLivre(id,getText("WSDLLocationLivres"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
+        getEnv=System.getenv("WSDLLocationExemplaire");
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        if(getEnv!=null && getEnv.equals("")==false){
+            exemplairesDispo=lesExemplaires.exemplairesDisponibles(id,getEnv);
+        }else{
+            exemplairesDispo=lesExemplaires.exemplairesDisponibles(id,getText("WSDLLocationExemplaire"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
+        getEnv=System.getenv("WSDLLocationLivres");
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        if(getEnv!=null && getEnv.equals("")==false){
+            informationDesindexee=infosLivre.infosDesindexee(id,getEnv);
+        }else{
+            informationDesindexee=infosLivre.infosDesindexee(id,getText("WSDLLocationLivres"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         //
         return SUCCESS;
     }

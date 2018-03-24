@@ -95,7 +95,15 @@ public class modifInfosSuppAction extends ActionSupport implements SessionAware,
         Utilisateur userEnCours=(Utilisateur) session.get("userGuest");
         UserAModif= new Utilisateur();
         // On check si le mot de passe entré confirme l'authentification
-        Utilisateur userIdentifieParMotDePasse = verifUserIdentifie.authentifier(userEnCours.getEmailUtilisateur(),motDePasseA,getText("WSDLLocationUtilisateur"));
+        Utilisateur userIdentifieParMotDePasse;
+        //Debut recherche des variables d'env qui doivent être prioritaires;
+        String getEnv=System.getenv("WSDLLocationUtilisateur");
+        if(getEnv!=null && getEnv.equals("")==false){
+            userIdentifieParMotDePasse = verifUserIdentifie.authentifier(userEnCours.getEmailUtilisateur(),motDePasseA,getEnv);
+        }else{
+            userIdentifieParMotDePasse = verifUserIdentifie.authentifier(userEnCours.getEmailUtilisateur(),motDePasseA,getText("WSDLLocationUtilisateur"));
+        }
+        //Fin recherche des variables d'env qui doivent être prioritaires;
         //
         if(userIdentifieParMotDePasse!=null){
             // les deux mots de passe entrés correspondent et l'identité est confirmée
@@ -107,7 +115,13 @@ public class modifInfosSuppAction extends ActionSupport implements SessionAware,
                 this.UserAModif.setIdUtilisateur(userEnCours.getIdUtilisateur());
                 this.UserAModif.setMdpUtilisateur(this.motDePasseN);
                 //
-                accesModifUtilisateur.updateInfosSupp(UserAModif,getText("WSDLLocationUtilisateur"));
+                //Debut recherche des variables d'env qui doivent être prioritaires;
+                if(getEnv!=null && getEnv.equals("")==false){
+                    accesModifUtilisateur.updateInfosSupp(UserAModif,getEnv);
+                }else{
+                    accesModifUtilisateur.updateInfosSupp(UserAModif,getText("WSDLLocationUtilisateur"));
+                }
+                //Fin recherche des variables d'env qui doivent être prioritaires;
                 // On rebalance le profile dans la session
                 session.put("userGuest",UserAModif);
                 //

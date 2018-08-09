@@ -1,8 +1,11 @@
 package webservice.allplatform;
 
+import DaoInterfaces.DaoLivre;
 import ServicesBeans.IndexConstitution;
 import ServicesBeans.Livre;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.util.ArrayList;

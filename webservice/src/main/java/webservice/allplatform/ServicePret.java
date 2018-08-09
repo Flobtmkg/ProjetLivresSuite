@@ -1,8 +1,12 @@
 package webservice.allplatform;
 
+import DaoInterfaces.DaoPret;
 import ServicesBeans.Pret;
+import ServicesBeans.ReferenceDuration;
 import ServicesBeans.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.time.LocalDate;
@@ -54,6 +58,7 @@ public class ServicePret extends Service{
     @WebMethod
     public void retourPret(int idPret){
         monDaoPret.retourPret(idPret);
+        // TODO: vérifier si ce retour déclanche une réservation effective dans la liste d'attente
     }
 
 }

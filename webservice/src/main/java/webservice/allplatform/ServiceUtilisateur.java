@@ -1,7 +1,10 @@
 package webservice.allplatform;
 
+import DaoInterfaces.DaoUtilisateur;
 import ServicesBeans.Utilisateur;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -31,13 +34,12 @@ public class ServiceUtilisateur extends Service {
         }
     }
 
-    public boolean isEmailExist(String emailInput){
+    private boolean isEmailExist(String emailInput){
         boolean isExist=monDaoUtilisateur.isEmailExistInBase(emailInput);
         return isExist;
     }
 
-    @WebMethod
-    public void modifUtilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
+    @WebMethod    public void modifUtilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
         Utilisateur utilisateurInput= new Utilisateur();
         utilisateurInput.setIdUtilisateur(idUtilisateur);
         utilisateurInput.setNomUtilisateur(nomUtilisateur);

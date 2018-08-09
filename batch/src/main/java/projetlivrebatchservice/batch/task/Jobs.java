@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @Component
-public class task1 {
+public class Jobs {
     @Autowired
     EmailConnexion emailAEnvoyer;
     String separateur=System.getProperty("line.separator");
@@ -30,23 +30,25 @@ public class task1 {
     //
     //
     @Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
-    public void work() {
-        try{
-            testUrl=new URL(wsdl1.getWsdlLocationPret());
-        }catch(Exception e){
+    public void JobManager() throws Exception{
+        System.out.println("--> "+LocalDateTime.now()+"; Job manager start.");
+        // job1
+        jobPretNonRendus();
+        System.out.println("--> "+LocalDateTime.now()+"; All Jobs are done.");
+    }
 
-        }
-        System.out.println("--> "+LocalDateTime.now()+"; Récupétation des données via le webservice.");
+    private void jobPretNonRendus() throws Exception{
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job start : jobPretNonRendus.");
+        testUrl=new URL(wsdl1.getWsdlLocationPret());
         ServicePretService monservice= new ServicePretService(testUrl);
         ServicePret accesPret=monservice.getServicePretPort();
         List<Reservation> pretsNonRendus=accesPret.listerUtilisateursPretsNonRendus();
         long actualTime;
         long pauseEmail=0;
-        System.out.println("--> "+LocalDateTime.now()+"; Batch job start.");
         for (Reservation res:pretsNonRendus) {
             //On évite de surcharger le SMTP en demandes trop rapprochées surtout tant qu'on utilise le Google SMTP
             while (System.currentTimeMillis()<pauseEmail){
-                    //waitin' hard while we threadin' ♪
+                //waitin' hard while we threadin' ♪
             }
             actualTime = System.currentTimeMillis();
             pauseEmail = actualTime+emailAEnvoyer.getConnexionPauseInterEmail();// un mail toutes les 15 secondes par defaut
@@ -63,18 +65,10 @@ public class task1 {
             if(erreur1.equals("")==false){
                 System.out.println("--> "+LocalDateTime.now()+"; UtilisateurID "+res.getUtilisateurReservation().getIdUtilisateur()+"; PretID "+res.getPretReservation().getIdPret()+"; Email "+res.getUtilisateurReservation().getEmailUtilisateur() + "  ->  " +erreur1);
             }
-
         }
-        System.out.println("--> "+LocalDateTime.now()+"; Batch job done.");
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job end : jobPretNonRendus.");
     }
 
-    // pour verifier le lancement du batch aux tests
-    //@Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
-    //public void workProof() {
-        //
-    //    System.out.println("--> "+LocalDateTime.now()+"; Batch job done. host: " + emailAEnvoyer.getConnexionHost() + "; fromWho: " + emailAEnvoyer.getConnexionFromWho() + "; username: " + emailAEnvoyer.getConnexionUsername() + "; pause: " + emailAEnvoyer.getConnexionPauseInterEmail() + "; password: " + emailAEnvoyer.getConnexionPassword() + "; Prets: " + wsdl1.getWsdlLocationPret() + "; Exemplaires: " + wsdl1.getWsdlLocationExemplaire() + "; Livre: " + wsdl1.getWsdlLocationLivre() + "; Notation: " + wsdl1.getWsdlLocationNotation() + "; Utilisateur: " + wsdl1.getWsdlLocationUtilisateur());
-        //
-    //}
 
     public static String conversionFormatDate(String inputDate){
         String[] tabDate=inputDate.split("-");

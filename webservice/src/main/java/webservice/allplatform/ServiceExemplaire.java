@@ -1,14 +1,11 @@
 package webservice.allplatform;
 
-import DaoInterfaces.DaoExemplaire;
 import ServicesBeans.Exemplaire;
-import ServicesBeans.ReferenceDuration;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
+import ServicesBeans.PreReservation;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebService
 public class ServiceExemplaire extends Service {
@@ -33,6 +30,13 @@ public class ServiceExemplaire extends Service {
         exemplaireInput.setCoteExemplaire(coteExemplaire);
         exemplaireInput.setRemarqueExemplaire(remarqueExemplaire);
         monDaoExemplaire.AjouterExemplaire(exemplaireInput);
+        // Vérification de la liste d'attente pour affecter la première reservation en attente si elle existe
+        List<PreReservation> attenteLivreEnCours = monDaoReservation.getListeAttente(idLivre);
+        if(!attenteLivreEnCours.isEmpty()){
+            // On défini une date de disponibilité pour la première réservation de la liste d'attente.
+            // la résrvation en question devient donc effective
+            monDaoReservation.defDateDisponibiliteReservation(attenteLivreEnCours.get(0).getIdReservation());
+        }
     }
 
 }

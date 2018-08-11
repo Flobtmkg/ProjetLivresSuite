@@ -27,8 +27,9 @@ public class Jobs {
     @Autowired
     private WsdlLocationObject wsdl1;
     private URL testUrl;
-    //
-    //
+
+
+
     @Scheduled(cron = "${cronBegin}")//  cron="0 0 2 * * *" => Tout les jours à 2h00 ; cron="0 20 22 * * *" => Tout les jours à 22h20
     public void JobManager() throws Exception{
         System.out.println("--> "+LocalDateTime.now()+"; Job manager start.");
@@ -36,6 +37,16 @@ public class Jobs {
         jobPretNonRendus();
         System.out.println("--> "+LocalDateTime.now()+"; All Jobs are done.");
     }
+
+
+
+    private void jobReservationsEffectives()throws Exception{
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job start : jobReservationsEffectives.");
+        testUrl=new URL(wsdl1.getWsdlLocationPret());
+
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job end : jobReservationsEffectives.");
+    }
+
 
     private void jobPretNonRendus() throws Exception{
         System.out.println("--> "+LocalDateTime.now()+"; Batch job start : jobPretNonRendus.");

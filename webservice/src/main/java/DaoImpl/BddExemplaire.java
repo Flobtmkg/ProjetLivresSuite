@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Repository
 public class BddExemplaire extends Impl implements DaoExemplaire {
-    //
+
     @Override
     public ArrayList<Exemplaire> ExemplaireDisponible(boolean mode,int idLivre) {
         //
@@ -40,8 +40,6 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
                     return lExemplaire;
                 }
             });
-
-
 
             //
             //Création d'une liste bidon pour se conformer au type de sortie
@@ -122,5 +120,31 @@ public class BddExemplaire extends Impl implements DaoExemplaire {
 
 
         //
+    }
+
+    @Override
+    public Exemplaire getExemplaireById(int idExemplaire) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
+        //
+        Exemplaire exemplaireOutput=vTransactionTemplate.execute(new TransactionCallback<Exemplaire>() {
+            @Override
+            public Exemplaire doInTransaction(TransactionStatus transactionStatus) {
+                final String GETEXEMPLAIRE = "SELECT * FROM exemplaire WHERE idexemplaire=?;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(GETEXEMPLAIRE,new Object[] {idExemplaire});
+                Exemplaire newexemplaire=new Exemplaire();
+                for (Map row : rows) {
+                    newexemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
+                    newexemplaire.setIdLivre((int)(row.get("idlivre")));
+                    newexemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("coteexemplaire"))));
+                    newexemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String)(row.get("remarqueexemplaire"))));
+                }
+                //
+                return newexemplaire;
+            }
+        });
+        return exemplaireOutput;
     }
 }

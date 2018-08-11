@@ -1,9 +1,7 @@
 package webservice.allplatform;
 
 import DaoInterfaces.DaoPret;
-import ServicesBeans.Pret;
-import ServicesBeans.ReferenceDuration;
-import ServicesBeans.Reservation;
+import ServicesBeans.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebService
 public class ServicePret extends Service{
@@ -58,7 +57,15 @@ public class ServicePret extends Service{
     @WebMethod
     public void retourPret(int idPret){
         monDaoPret.retourPret(idPret);
-        // TODO: vérifier si ce retour déclanche une réservation effective dans la liste d'attente
+        // Vérification de la liste d'attente pour affecter la première reservation en attente si elle existe
+        Pret pretEnCours = monDaoPret.etatPret(idPret);
+        Exemplaire exemplaireEnCours = monDaoExemplaire.getExemplaireById(pretEnCours.getIdExemplaire());
+        List<PreReservation> attenteLivreEnCours = monDaoReservation.getListeAttente(exemplaireEnCours.getIdLivre());
+        if(!attenteLivreEnCours.isEmpty()){
+            // On défini une date de disponibilité pour la première réservation de la liste d'attente.
+            // la résrvation en question devient donc effective
+            monDaoReservation.defDateDisponibiliteReservation(attenteLivreEnCours.get(0).getIdReservation());
+        }
     }
 
 }

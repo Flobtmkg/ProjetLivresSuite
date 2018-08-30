@@ -19,7 +19,7 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "ServiceUtilisateur", targetNamespace = "http://allplatform.webservice/")
 @XmlSeeAlso({
-        projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.ObjectFactory.class
+    ObjectFactory.class
 })
 public interface ServiceUtilisateur {
 
@@ -29,18 +29,18 @@ public interface ServiceUtilisateur {
      * @param arg1
      * @param arg0
      * @return
-     *     returns generated.serviceUtilisateur.Utilisateur
+     *     returns clientservices.generated.serviceUtilisateur.Utilisateur
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "autentifier", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.Autentifier")
-    @ResponseWrapper(localName = "autentifierResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.AutentifierResponse")
+    @RequestWrapper(localName = "autentifier", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.Autentifier")
+    @ResponseWrapper(localName = "autentifierResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.AutentifierResponse")
     @Action(input = "http://allplatform.webservice/ServiceUtilisateur/autentifierRequest", output = "http://allplatform.webservice/ServiceUtilisateur/autentifierResponse")
-    public projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Utilisateur autentifier(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+    public Utilisateur autentifier(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1);
 
     /**
      * 
@@ -49,21 +49,66 @@ public interface ServiceUtilisateur {
      * @param arg4
      * @param arg1
      * @param arg0
+     * @return
+     *     returns boolean
      */
     @WebMethod
-    @RequestWrapper(localName = "ajoutUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.AjoutUtilisateur")
-    @ResponseWrapper(localName = "ajoutUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceUtilisateur.AjoutUtilisateurResponse")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "ajoutUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.AjoutUtilisateur")
+    @ResponseWrapper(localName = "ajoutUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse")
     @Action(input = "http://allplatform.webservice/ServiceUtilisateur/ajoutUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/ajoutUtilisateurResponse")
-    public void ajoutUtilisateur(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        String arg4);
+    public boolean ajoutUtilisateur(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1,
+            @WebParam(name = "arg2", targetNamespace = "")
+                    String arg2,
+            @WebParam(name = "arg3", targetNamespace = "")
+                    String arg3,
+            @WebParam(name = "arg4", targetNamespace = "")
+                    String arg4);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "modifUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateur")
+    @ResponseWrapper(localName = "modifUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateurResponse")
+    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurResponse")
+    public void modifUtilisateur(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1,
+            @WebParam(name = "arg2", targetNamespace = "")
+                    String arg2,
+            @WebParam(name = "arg3", targetNamespace = "")
+                    String arg3,
+            @WebParam(name = "arg4", targetNamespace = "")
+                    String arg4,
+            @WebParam(name = "arg5", targetNamespace = "")
+                    String arg5);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns clientservices.generated.serviceUtilisateur.Utilisateur
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getUserById", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.GetUserById")
+    @ResponseWrapper(localName = "getUserByIdResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.GetUserByIdResponse")
+    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/getUserByIdRequest", output = "http://allplatform.webservice/ServiceUtilisateur/getUserByIdResponse")
+    public Utilisateur getUserById(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
 
 }

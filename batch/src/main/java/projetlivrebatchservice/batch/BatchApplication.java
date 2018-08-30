@@ -46,6 +46,8 @@ public class BatchApplication { //implements SchedulingConfigurer
     private String wsdlLocationExemplaire;
     @Value("${WSDLLocationPret}")
     private String wsdlLocationPret;
+    @Value("${WSDLLocationReservation}")
+    private String wsdlLocationReservation;
     //
 
     public static void main(String[] args) {
@@ -71,6 +73,7 @@ public class BatchApplication { //implements SchedulingConfigurer
         wsdlConfig.setWsdlLocationNotation(wsdlLocationNotation);
         wsdlConfig.setWsdlLocationExemplaire(wsdlLocationExemplaire);
         wsdlConfig.setWsdlLocationPret(wsdlLocationPret);
+        wsdlConfig.setWsdlLocationReservation(wsdlLocationReservation);
         return wsdlConfig;
     }
 

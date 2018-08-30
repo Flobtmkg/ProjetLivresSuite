@@ -2,15 +2,22 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.RequestAutentificationDao;
 import webAppProjetLivre.classesTravail.UpdateUtilisateurDao;
 import webAppProjetLivre.generated.serviceUtilisateur.Utilisateur;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class modifInfosSuppAction extends ActionSupport implements SessionAware,ServletRequestAware {
+
+    private HttpServletRequest currentRequest;
+
+
     //
     private RequestAutentificationDao verifUserIdentifie;
     private Utilisateur UserAModif;
@@ -85,12 +92,12 @@ public class modifInfosSuppAction extends ActionSupport implements SessionAware,
     //
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
     }
     //
 
     public String execute() {
+        //
         //
         Utilisateur userEnCours=(Utilisateur) session.get("userGuest");
         UserAModif= new Utilisateur();
@@ -125,17 +132,18 @@ public class modifInfosSuppAction extends ActionSupport implements SessionAware,
                 // On rebalance le profile dans la session
                 session.put("userGuest",UserAModif);
                 //
-                commandPage=commandPage+"#ModalValidation";
+                commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalValidation");
                 return SUCCESS;
             }else{
                 //
-                commandPage=commandPage+"#Modalerreur";
+                commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#Modalerreur");
                 return ERROR;
             }
         }else{
             //
-            commandPage=commandPage+"#Modalerreur";
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#Modalerreur");
             return ERROR;
         }
     }
+
 }

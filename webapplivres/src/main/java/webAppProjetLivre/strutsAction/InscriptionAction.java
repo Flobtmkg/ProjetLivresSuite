@@ -2,15 +2,24 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.InscriptionDao;
 import webAppProjetLivre.generated.serviceUtilisateur.Utilisateur;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.Map;
 
 public class InscriptionAction extends ActionSupport implements SessionAware,ServletRequestAware {
+
+
+    private HttpServletRequest currentRequest;
+
+
+
     private Map<String, Object> session;
     private Utilisateur eventuelUtilisateurConnecte;
     private Utilisateur nouvelUtilisateur;
@@ -87,6 +96,7 @@ public class InscriptionAction extends ActionSupport implements SessionAware,Ser
 
     public String execute() {
         //
+        //
         nouvelUtilisateur=new Utilisateur();
         this.nouvelUtilisateur.setNomUtilisateur(nom);
         this.nouvelUtilisateur.setPrenomUtilisateur(prenom);
@@ -111,25 +121,26 @@ public class InscriptionAction extends ActionSupport implements SessionAware,Ser
                 }
                 //Fin recherche des variables d'env qui doivent être prioritaires;
                 if(isSuccess==true){
-                    commandPage=commandPage+"#ModalValidationInscription";
+                    commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalValidationInscription");
+                    //
                     return SUCCESS;
                 }else{
-                    commandPage=commandPage+"#ModalerreurInscription";
+                    commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalerreurInscription");
                     return ERROR;
                 }
             }else{
-                commandPage=commandPage+"#ModalerreurInscription";
+                commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalerreurInscription");
                 return ERROR;
             }
         }catch (Exception e){
-            commandPage=commandPage+"#ModalerreurInscription";
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalerreurInscription");
             return ERROR;
         }
     }
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
     }
+
 }

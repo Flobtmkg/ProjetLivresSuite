@@ -26,13 +26,28 @@ public interface ServiceNotation {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns double
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "notationLivre", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceNotation.NotationLivre")
+    @ResponseWrapper(localName = "notationLivreResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceNotation.NotationLivreResponse")
+    @Action(input = "http://allplatform.webservice/ServiceNotation/notationLivreRequest", output = "http://allplatform.webservice/ServiceNotation/notationLivreResponse")
+    public double notationLivre(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "ajouterNotation", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceNotation.AjouterNotation")
-    @ResponseWrapper(localName = "ajouterNotationResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceNotation.AjouterNotationResponse")
+    @RequestWrapper(localName = "ajouterNotation", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceNotation.AjouterNotation")
+    @ResponseWrapper(localName = "ajouterNotationResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceNotation.AjouterNotationResponse")
     @Action(input = "http://allplatform.webservice/ServiceNotation/ajouterNotationRequest", output = "http://allplatform.webservice/ServiceNotation/ajouterNotationResponse")
     public void ajouterNotation(
             @WebParam(name = "arg0", targetNamespace = "")
@@ -41,20 +56,5 @@ public interface ServiceNotation {
                     int arg1,
             @WebParam(name = "arg2", targetNamespace = "")
                     double arg2);
-
-    /**
-     *
-     * @param arg0
-     * @return
-     *     returns double
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "notationLivre", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceNotation.NotationLivre")
-    @ResponseWrapper(localName = "notationLivreResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceNotation.NotationLivreResponse")
-    @Action(input = "http://allplatform.webservice/ServiceNotation/notationLivreRequest", output = "http://allplatform.webservice/ServiceNotation/notationLivreResponse")
-    public double notationLivre(
-            @WebParam(name = "arg0", targetNamespace = "")
-                    int arg0);
 
 }

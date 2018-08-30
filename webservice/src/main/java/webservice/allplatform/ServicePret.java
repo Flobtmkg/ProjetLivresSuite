@@ -35,6 +35,12 @@ public class ServicePret extends Service{
     }
 
     @WebMethod
+    public ArrayList<Reservation> listerInfosPretLivre(int idLivre){
+        ArrayList<Reservation> OutputList=monDaoPret.listerInfosPretLivre(idLivre);
+        return OutputList;
+    }
+
+    @WebMethod
     public ArrayList<Reservation> listerUtilisateursPretsNonRendus(){
         ArrayList<Reservation> OutputList=monDaoPret.listerUtilisateursPretsNonRendus();
         return OutputList;

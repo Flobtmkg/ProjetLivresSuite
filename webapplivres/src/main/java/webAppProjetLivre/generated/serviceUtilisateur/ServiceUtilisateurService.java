@@ -1,14 +1,10 @@
 
 package webAppProjetLivre.generated.serviceUtilisateur;
 
+import javax.xml.namespace.QName;
+import javax.xml.ws.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebServiceClient;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceFeature;
 
 
 /**
@@ -17,7 +13,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ServiceUtilisateurService", targetNamespace = "http://allplatform.webservice/")
+@WebServiceClient(name = "ServiceUtilisateurService", targetNamespace = "http://allplatform.webservice/", wsdlLocation = "http://lfr017644:8080/webservice/ServiceUtilisateurService?wsdl")
 public class ServiceUtilisateurService
     extends Service
 {
@@ -30,7 +26,7 @@ public class ServiceUtilisateurService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("");
+            url = new URL("http://lfr017644:8080/webservice/ServiceUtilisateurService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -2,20 +2,29 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.PretsDao;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class modifProlongerPretAction extends ActionSupport implements SessionAware,ServletRequestAware{
+
+
+    private HttpServletRequest currentRequest;
+
+
     //
     private Map<String, Object> session;
     private String commandPage;
     private ArrayList<String> indicesPrets;
     private PretsDao accesPret;
     //
+
 
     public PretsDao getAccesPret() {
         return accesPret;
@@ -49,8 +58,7 @@ public class modifProlongerPretAction extends ActionSupport implements SessionAw
     //
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
         // Ne sont renvoyés en POST que les checkbox Activées, les autres ne sont pas envoyées
         // On récupère la liste des n° des prets à prolonger (précédement concaténés aux noms des checkbox)
         indicesPrets=new ArrayList<>();
@@ -65,6 +73,7 @@ public class modifProlongerPretAction extends ActionSupport implements SessionAw
 
     public String execute() {
         //
+        //
         //Debut recherche des variables d'env qui doivent être prioritaires;
         String getEnv=System.getenv("WSDLLocationPret");
         if(getEnv!=null && getEnv.equals("")==false){
@@ -74,7 +83,9 @@ public class modifProlongerPretAction extends ActionSupport implements SessionAw
         }
         //Fin recherche des variables d'env qui doivent être prioritaires;
         //
-        commandPage=commandPage+"#ModalValidation";
+        commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalValidation");
         return SUCCESS;
     }
+
+
 }

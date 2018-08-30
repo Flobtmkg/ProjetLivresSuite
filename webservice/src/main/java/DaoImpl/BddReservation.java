@@ -102,6 +102,26 @@ public class BddReservation extends Impl implements DaoReservation {
     }
 
     @Override
+    public List<PreReservation> getAllReservationsEffectives() {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
+        //
+        List<PreReservation> preReservationOutput=vTransactionTemplate.execute(new TransactionCallback<List<PreReservation>>() {
+            @Override
+            public List<PreReservation> doInTransaction(TransactionStatus transactionStatus) {
+                final String LISTEFFECTIVE="SELECT * FROM reservation WHERE date_dispo + INTERVAL '48 hours' > NOW() AND is_annule=false AND idpret IS NULL;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LISTEFFECTIVE);
+                List<PreReservation> listEffective=preReservationListMapper(rows);
+
+                return listEffective;
+            }
+        });
+        return preReservationOutput;
+    }
+
+    @Override
     public List<PreReservation> getEnvoiEmailListeReservationTempsEffectfDepasse() {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
@@ -196,7 +216,7 @@ public class BddReservation extends Impl implements DaoReservation {
                     for (int i:listIdReservation) {
                         DEFPRETRESERVATION=DEFPRETRESERVATION + "idreservation = ? OR ";
                     }
-                    // kill the last "AND"
+                    // kill the last "OR"
                     DEFPRETRESERVATION=DEFPRETRESERVATION.substring(0,DEFPRETRESERVATION.length()-4);
                     jdbcTemplate.update(DEFPRETRESERVATION,listIdReservation.toArray());
                 }

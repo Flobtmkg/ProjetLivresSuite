@@ -2,14 +2,21 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.RequestAutentificationDao;
 import webAppProjetLivre.generated.serviceUtilisateur.Utilisateur;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class ConnexionAction extends ActionSupport implements SessionAware,ServletRequestAware {
+
+    private HttpServletRequest currentRequest;
+
+
     private String commandPage;
     private String idco;
     private String mdp;
@@ -65,25 +72,28 @@ public class ConnexionAction extends ActionSupport implements SessionAware,Servl
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
+        //String referer=httpServletRequest.getHeader("Referer");
+        //this.setCommandPage(referer);
     }
 
     public String execute() {
         //Debut recherche des variables d'env qui doivent être prioritaires;
         String getEnv=System.getenv("WSDLLocationUtilisateur");
         if(getEnv!=null && getEnv.equals("")==false){
-            this.setIdentifiedUser(autentificationDao.authentifier(idco,mdp,getEnv));
+            identifiedUser = autentificationDao.authentifier(idco,mdp,getEnv);
         }else{
-            this.setIdentifiedUser(autentificationDao.authentifier(idco,mdp,getText("WSDLLocationUtilisateur")));
+            identifiedUser = autentificationDao.authentifier(idco,mdp,getText("WSDLLocationUtilisateur"));
         }
-        //Fin recherche des variables d'env qui doivent être prioritaires;
         session.put("userGuest",this.getIdentifiedUser());
         if(identifiedUser.getIdUtilisateur()!=0){
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"");
             return SUCCESS;
         }else{
-            commandPage=commandPage+"#ModalErreur";
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalErreur");
             return ERROR;
         }
     }
+
+
 }

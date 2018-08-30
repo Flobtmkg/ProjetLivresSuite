@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ajouterNotation", propOrder = {
+@XmlType(name = "ajouterNotation1", propOrder = {
     "arg0",
     "arg1",
     "arg2"

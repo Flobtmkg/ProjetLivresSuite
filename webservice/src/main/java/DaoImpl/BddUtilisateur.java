@@ -171,4 +171,33 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
 
         //
     }
+
+    @Override
+    public Utilisateur getUserByID(int idUtilisateur) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
+        //
+        Utilisateur utilisateurOutput=vTransactionTemplate.execute(new TransactionCallback<Utilisateur>() {
+            @Override
+            public Utilisateur doInTransaction(TransactionStatus transactionStatus) {
+                final String USERBYID = "SELECT * FROM utilisateur WHERE idutilisateur=?;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(USERBYID,new Object[] {idUtilisateur});
+                Utilisateur lUtilisateur=new Utilisateur();
+                for (Map row : rows) {
+                    lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
+                    lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
+                    lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+                    lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+                    lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
+                    lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+                }
+                //
+                return lUtilisateur;
+            }
+
+        });
+        return utilisateurOutput;
+    }
 }

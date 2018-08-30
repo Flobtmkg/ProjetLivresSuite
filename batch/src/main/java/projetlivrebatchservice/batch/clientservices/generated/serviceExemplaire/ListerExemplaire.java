@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listerExemplaire", propOrder = {
+@XmlType(name = "listerExemplaire1", propOrder = {
     "arg0"
 })
 public class ListerExemplaire {

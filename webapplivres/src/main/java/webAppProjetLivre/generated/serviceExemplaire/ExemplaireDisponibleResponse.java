@@ -19,7 +19,7 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://allplatform.webservice/}exemplaire" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://allplatform.webservice/}exemplaire" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,30 +38,32 @@ public class ExemplaireDisponibleResponse {
     protected List<Exemplaire> _return;
 
     /**
-     * Obtient la valeur de la propri�t� return.
+     * Gets the value of the return property.
      * 
-     * @return
-     *     possible object is
-     *     {@link List<Exemplaire> }
-     *     
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the return property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getReturn().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Exemplaire }
+     * 
+     * 
      */
     public List<Exemplaire> getReturn() {
         if (_return == null) {
             _return = new ArrayList<Exemplaire>();
         }
-        return _return;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� return.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link List<Exemplaire> }
-     *     
-     */
-    public void setReturn(List<Exemplaire> value) {
-        this._return = value;
+        return this._return;
     }
 
 }

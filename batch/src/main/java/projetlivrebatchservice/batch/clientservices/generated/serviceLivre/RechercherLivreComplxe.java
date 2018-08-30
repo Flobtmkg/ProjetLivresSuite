@@ -17,13 +17,14 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="arg6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg7" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg8" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rechercherLivreComplxe", propOrder = {
+@XmlType(name = "rechercherLivreComplxe1", propOrder = {
     "arg0",
     "arg1",
     "arg2",
@@ -41,18 +42,20 @@ import javax.xml.bind.annotation.XmlType;
     "arg4",
     "arg5",
     "arg6",
-    "arg7"
+    "arg7",
+    "arg8"
 })
 public class RechercherLivreComplxe {
 
     protected boolean arg0;
-    protected String arg1;
+    protected boolean arg1;
     protected String arg2;
     protected String arg3;
-    protected int arg4;
-    protected String arg5;
+    protected String arg4;
+    protected int arg5;
     protected String arg6;
     protected String arg7;
+    protected String arg8;
 
     /**
      * Obtient la valeur de la propri�t� arg0.
@@ -73,24 +76,16 @@ public class RechercherLivreComplxe {
     /**
      * Obtient la valeur de la propri�t� arg1.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getArg1() {
+    public boolean isArg1() {
         return arg1;
     }
 
     /**
      * D�finit la valeur de la propri�t� arg1.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setArg1(String value) {
+    public void setArg1(boolean value) {
         this.arg1 = value;
     }
 
@@ -145,40 +140,40 @@ public class RechercherLivreComplxe {
     /**
      * Obtient la valeur de la propri�t� arg4.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getArg4() {
+    public String getArg4() {
         return arg4;
     }
 
     /**
      * D�finit la valeur de la propri�t� arg4.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setArg4(int value) {
+    public void setArg4(String value) {
         this.arg4 = value;
     }
 
     /**
      * Obtient la valeur de la propri�t� arg5.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getArg5() {
+    public int getArg5() {
         return arg5;
     }
 
     /**
      * D�finit la valeur de la propri�t� arg5.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setArg5(String value) {
+    public void setArg5(int value) {
         this.arg5 = value;
     }
 
@@ -228,6 +223,30 @@ public class RechercherLivreComplxe {
      */
     public void setArg7(String value) {
         this.arg7 = value;
+    }
+
+    /**
+     * Obtient la valeur de la propri�t� arg8.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArg8() {
+        return arg8;
+    }
+
+    /**
+     * D�finit la valeur de la propri�t� arg8.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArg8(String value) {
+        this.arg8 = value;
     }
 
 }

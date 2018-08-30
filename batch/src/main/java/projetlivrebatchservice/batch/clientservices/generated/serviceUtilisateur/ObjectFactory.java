@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.serviceUtilisateur package. 
+ * generated in the clientservices.generated.serviceUtilisateur package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -25,12 +25,16 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _AutentifierResponse_QNAME = new QName("http://allplatform.webservice/", "autentifierResponse");
+    private final static QName _ModifUtilisateur_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateur");
+    private final static QName _GetUserById_QNAME = new QName("http://allplatform.webservice/", "getUserById");
     private final static QName _AjoutUtilisateur_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateur");
+    private final static QName _GetUserByIdResponse_QNAME = new QName("http://allplatform.webservice/", "getUserByIdResponse");
     private final static QName _Autentifier_QNAME = new QName("http://allplatform.webservice/", "autentifier");
     private final static QName _AjoutUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateurResponse");
+    private final static QName _ModifUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateurResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceUtilisateur
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.serviceUtilisateur
      * 
      */
     public ObjectFactory() {
@@ -40,32 +44,64 @@ public class ObjectFactory {
      * Create an instance of {@link AutentifierResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse createAutentifierResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse();
+    public AutentifierResponse createAutentifierResponse() {
+        return new AutentifierResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifUtilisateur }
+     * 
+     */
+    public ModifUtilisateur createModifUtilisateur() {
+        return new ModifUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link GetUserById }
+     * 
+     */
+    public GetUserById createGetUserById() {
+        return new GetUserById();
     }
 
     /**
      * Create an instance of {@link AjoutUtilisateur }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur createAjoutUtilisateur() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur();
+    public AjoutUtilisateur createAjoutUtilisateur() {
+        return new AjoutUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link GetUserByIdResponse }
+     * 
+     */
+    public GetUserByIdResponse createGetUserByIdResponse() {
+        return new GetUserByIdResponse();
     }
 
     /**
      * Create an instance of {@link Autentifier }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier createAutentifier() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier();
+    public Autentifier createAutentifier() {
+        return new Autentifier();
     }
 
     /**
      * Create an instance of {@link AjoutUtilisateurResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse createAjoutUtilisateurResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse();
+    public AjoutUtilisateurResponse createAjoutUtilisateurResponse() {
+        return new AjoutUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link ModifUtilisateurResponse }
+     * 
+     */
+    public ModifUtilisateurResponse createModifUtilisateurResponse() {
+        return new ModifUtilisateurResponse();
     }
 
     /**
@@ -81,8 +117,26 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "autentifierResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse> createAutentifierResponse(projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse>(_AutentifierResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AutentifierResponse.class, null, value);
+    public JAXBElement<AutentifierResponse> createAutentifierResponse(AutentifierResponse value) {
+        return new JAXBElement<AutentifierResponse>(_AutentifierResponse_QNAME, AutentifierResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifUtilisateur }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateur")
+    public JAXBElement<ModifUtilisateur> createModifUtilisateur(ModifUtilisateur value) {
+        return new JAXBElement<ModifUtilisateur>(_ModifUtilisateur_QNAME, ModifUtilisateur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserById }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getUserById")
+    public JAXBElement<GetUserById> createGetUserById(GetUserById value) {
+        return new JAXBElement<GetUserById>(_GetUserById_QNAME, GetUserById.class, null, value);
     }
 
     /**
@@ -90,8 +144,17 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajoutUtilisateur")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur> createAjoutUtilisateur(projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur>(_AjoutUtilisateur_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateur.class, null, value);
+    public JAXBElement<AjoutUtilisateur> createAjoutUtilisateur(AjoutUtilisateur value) {
+        return new JAXBElement<AjoutUtilisateur>(_AjoutUtilisateur_QNAME, AjoutUtilisateur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByIdResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getUserByIdResponse")
+    public JAXBElement<GetUserByIdResponse> createGetUserByIdResponse(GetUserByIdResponse value) {
+        return new JAXBElement<GetUserByIdResponse>(_GetUserByIdResponse_QNAME, GetUserByIdResponse.class, null, value);
     }
 
     /**
@@ -99,8 +162,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "autentifier")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier> createAutentifier(projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier>(_Autentifier_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.Autentifier.class, null, value);
+    public JAXBElement<Autentifier> createAutentifier(Autentifier value) {
+        return new JAXBElement<Autentifier>(_Autentifier_QNAME, Autentifier.class, null, value);
     }
 
     /**
@@ -108,8 +171,17 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajoutUtilisateurResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse> createAjoutUtilisateurResponse(projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse>(_AjoutUtilisateurResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceUtilisateur.AjoutUtilisateurResponse.class, null, value);
+    public JAXBElement<AjoutUtilisateurResponse> createAjoutUtilisateurResponse(AjoutUtilisateurResponse value) {
+        return new JAXBElement<AjoutUtilisateurResponse>(_AjoutUtilisateurResponse_QNAME, AjoutUtilisateurResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifUtilisateurResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateurResponse")
+    public JAXBElement<ModifUtilisateurResponse> createModifUtilisateurResponse(ModifUtilisateurResponse value) {
+        return new JAXBElement<ModifUtilisateurResponse>(_ModifUtilisateurResponse_QNAME, ModifUtilisateurResponse.class, null, value);
     }
 
 }

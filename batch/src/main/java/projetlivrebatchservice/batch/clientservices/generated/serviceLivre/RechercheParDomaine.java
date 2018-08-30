@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rechercheParDomaine", propOrder = {
+@XmlType(name = "rechercheParDomaine1", propOrder = {
     "arg0"
 })
 public class RechercheParDomaine {

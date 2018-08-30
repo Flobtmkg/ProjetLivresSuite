@@ -1,13 +1,22 @@
 package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.ListerDao;
 import webAppProjetLivre.classesTravail.RechercheSimpleDao;
 import webAppProjetLivre.generated.serviceLivre.Livre;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class RechercheSimpleAction extends ActionSupport {
+public class RechercheSimpleAction extends ActionSupport implements ServletRequestAware {
+
+
+    private HttpServletRequest currentRequest;
+
     private String motCles;
     private List<Livre> listeLivre;
     private RechercheSimpleDao recherche;
@@ -16,6 +25,9 @@ public class RechercheSimpleAction extends ActionSupport {
     private List<String> domaines;
     private List<String> themes;
     //
+
+
+
     public ListerDao getListes() {
         return listes;
     }
@@ -76,6 +88,7 @@ public class RechercheSimpleAction extends ActionSupport {
 
     public String execute() {
         //
+        //
         if(listeLivre!=null){
             listeLivre.clear();
         }
@@ -113,4 +126,11 @@ public class RechercheSimpleAction extends ActionSupport {
         //Fin recherche des variables d'env qui doivent être prioritaires;
         return SUCCESS;
     }
+
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        this.currentRequest=httpServletRequest;
+    }
+
+
 }

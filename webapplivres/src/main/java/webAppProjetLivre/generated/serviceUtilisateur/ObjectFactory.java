@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.serviceUtilisateur package. 
+ * generated in the clientservices.generated.serviceUtilisateur package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -26,15 +26,15 @@ public class ObjectFactory {
 
     private final static QName _AutentifierResponse_QNAME = new QName("http://allplatform.webservice/", "autentifierResponse");
     private final static QName _ModifUtilisateur_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateur");
+    private final static QName _GetUserById_QNAME = new QName("http://allplatform.webservice/", "getUserById");
     private final static QName _AjoutUtilisateur_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateur");
+    private final static QName _GetUserByIdResponse_QNAME = new QName("http://allplatform.webservice/", "getUserByIdResponse");
     private final static QName _Autentifier_QNAME = new QName("http://allplatform.webservice/", "autentifier");
     private final static QName _AjoutUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateurResponse");
     private final static QName _ModifUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateurResponse");
-    private final static QName _IsEmailExistResponse_QNAME = new QName("http://allplatform.webservice/", "isEmailExistResponse");
-    private final static QName _IsEmailExist_QNAME = new QName("http://allplatform.webservice/", "isEmailExist");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceUtilisateur
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.serviceUtilisateur
      * 
      */
     public ObjectFactory() {
@@ -57,11 +57,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetUserById }
+     * 
+     */
+    public GetUserById createGetUserById() {
+        return new GetUserById();
+    }
+
+    /**
      * Create an instance of {@link AjoutUtilisateur }
      * 
      */
     public AjoutUtilisateur createAjoutUtilisateur() {
         return new AjoutUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link GetUserByIdResponse }
+     * 
+     */
+    public GetUserByIdResponse createGetUserByIdResponse() {
+        return new GetUserByIdResponse();
     }
 
     /**
@@ -86,22 +102,6 @@ public class ObjectFactory {
      */
     public ModifUtilisateurResponse createModifUtilisateurResponse() {
         return new ModifUtilisateurResponse();
-    }
-
-    /**
-     * Create an instance of {@link IsEmailExistResponse }
-     * 
-     */
-    public IsEmailExistResponse createIsEmailExistResponse() {
-        return new IsEmailExistResponse();
-    }
-
-    /**
-     * Create an instance of {@link IsEmailExist }
-     * 
-     */
-    public IsEmailExist createIsEmailExist() {
-        return new IsEmailExist();
     }
 
     /**
@@ -131,12 +131,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserById }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getUserById")
+    public JAXBElement<GetUserById> createGetUserById(GetUserById value) {
+        return new JAXBElement<GetUserById>(_GetUserById_QNAME, GetUserById.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AjoutUtilisateur }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajoutUtilisateur")
     public JAXBElement<AjoutUtilisateur> createAjoutUtilisateur(AjoutUtilisateur value) {
         return new JAXBElement<AjoutUtilisateur>(_AjoutUtilisateur_QNAME, AjoutUtilisateur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByIdResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getUserByIdResponse")
+    public JAXBElement<GetUserByIdResponse> createGetUserByIdResponse(GetUserByIdResponse value) {
+        return new JAXBElement<GetUserByIdResponse>(_GetUserByIdResponse_QNAME, GetUserByIdResponse.class, null, value);
     }
 
     /**
@@ -164,24 +182,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateurResponse")
     public JAXBElement<ModifUtilisateurResponse> createModifUtilisateurResponse(ModifUtilisateurResponse value) {
         return new JAXBElement<ModifUtilisateurResponse>(_ModifUtilisateurResponse_QNAME, ModifUtilisateurResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IsEmailExistResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "isEmailExistResponse")
-    public JAXBElement<IsEmailExistResponse> createIsEmailExistResponse(IsEmailExistResponse value) {
-        return new JAXBElement<IsEmailExistResponse>(_IsEmailExistResponse_QNAME, IsEmailExistResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IsEmailExist }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "isEmailExist")
-    public JAXBElement<IsEmailExist> createIsEmailExist(IsEmailExist value) {
-        return new JAXBElement<IsEmailExist>(_IsEmailExist_QNAME, IsEmailExist.class, null, value);
     }
 
 }

@@ -28,8 +28,26 @@
 <!--  -->
 <%@ include file="menu.jsp" %>
 <div id="divdefond"></div>
+<!-- Espace de definition des fenêtres modales -->
+<div id="ModalValidation" class="cModal">
+    <div>
+        <header>
+            <h2 class="modalHeader">Confirmation!</h2>
+        </header>
+        <div class="contenuErreur">
+            <div class="contenuImageErreur"style="float: left; margin-right:15px;box-sizing: content-box">
+                <i style="color: green" class="fas fa-check-circle fa-5x"></i>
+            </div>
+            <p class="texterreur">Votre réservation a bien été prise en compte.</p>
+        </div>
+        <footer>
+            <a href="#fermer" class="btn btn-outline-secondary btn-sm modalMargin"><i class="fas fa-times"></i> Fermer</a>
+        </footer>
+    </div>
+</div>
+<!-- Espace de definition des blocks -->
 <div class="container-fluid">
-    <div id="cadrephoto" class="offset-sm-1" style="background: url(/resources/img/livre8.png) center no-repeat; background-size: 100% auto; background-color:rgba(0, 0, 0, 0.6)"></div>
+    <div id="cadrephoto" class="offset-sm-1 col-9 col-sm-5 col-lg-3 col-xl-2" style="background: url(/resources/img/livre8.png) center no-repeat; background-size: 100% auto;"></div>
     <div id="blockTransparent"></div>
     <div id="presentation" class="offset-0 offset-sm-1 offset-lg-0 col-lg-6 col-sm-10 col-12">
         <legend class="label2">Livre ID ${livreAAfficher.idLivre}</legend>
@@ -40,8 +58,8 @@
         <h6 class="infossurnoir">Type: <c:forEach items="${informationDesindexee}" var="letype" begin="0" end="0">${letype}</c:forEach></h6>
         <h6 class="infossurnoir">Domaine: <c:forEach items="${informationDesindexee}" var="ledomaine" begin="1" end="1">${ledomaine}</c:forEach></h6>
         <h6 class="infossurnoir">Thèmes: <c:forEach items="${informationDesindexee}" var="letheme" begin="2">#${letheme} </c:forEach></h6>
-        <form id="blockdescription2" class="card col-lg-12 col-12">
-            <label class="infossurnoirheader">Exemplaires disponibles:</label>
+        <form class="card col-lg-12 col-12 blockdescription2">
+            <label class="infossurnoirheader">Exemplaires présents en bibliothèque :</label>
             <div id="secteurscroll">
                 <c:if test="${!empty exemplairesDispo}">
                     <c:forEach items="${exemplairesDispo}" var="myexemplaire">
@@ -50,13 +68,49 @@
                 </c:if>
                 <c:if test="${empty exemplairesDispo}">
                     <p id="aafficherenligne" class="textgrise">Aucun exemplaire de ce livre n'est disponible.</p>
+                    <c:if test="${!empty premiereDateFinPret}">
+                        <p id="aafficherenligne" class="textgrise">Date la plus proche de retour d'un exemplaire : ${premiereDateFinPret}.</p>
+                    </c:if>
+                    <c:if test="${empty premiereDateFinPret}">
+                        <p id="aafficherenligne" class="textgrise">Date la plus proche de retour d'un exemplaire : inconnue.</p>
+                    </c:if>
+
                 </c:if>
+            </div>
+        </form>
+
+        <form class="card col-lg-12 col-12 blockdescription2">
+            <label class="infossurnoirheader">Réservations :</label>
+            <div>
+                <p id="aafficherenligne" class="textgrise">La liste d'attente de cet ouvrage est de : ${nbrAttente + nbrEffectif} / ${nbrEx * 2} réservations.</p>
             </div>
         </form>
         <br>
     </div>
 <!--  -->
 <!--  -->
+<c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur && livreprete==false && livreReserve==false && attenteComplete==false}">
+    <form action="AjouterReservation" method="post" class="col-12 card" style="padding:0; background-color: unset; border: unset">
+        <div class="offset-sm-1 col-sm-10 col-lg-3 col-xl-2 col-12" style="padding:0;">
+            <!--<a class="liensBody" href="">Reserver ce livre</a>-->
+            <input type="hidden" name="idLivre" value="${livreAAfficher.idLivre}">
+            <button type="submit" class="btn btnCustom btnGris col-12"><i class="far fa-bookmark"></i> Reserver ce livre</button>
+        </div>
+    </form>
+</c:if>
+<c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur && (livreprete==true || livreReserve==true || attenteComplete==true)}">
+    <form class="card offset-sm-1 col-sm-10 col-12 form-group blockdescription3">
+    <c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur && livreprete==true}">
+            <p id="aafficherenligne" class="nonreservation">Reservation impossible. Vous avez déjà un prêt en cours pour cet ouvrage.</p>
+    </c:if>
+    <c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur && livreReserve==true}">
+            <p id="aafficherenligne" class="nonreservation">Reservation impossible. Vous avez déjà une réservation en cours pour cet ouvrage.</p>
+    </c:if>
+    <c:if test="${sessionScope.userGuest.idUtilisateur!=0 && !empty sessionScope.userGuest.idUtilisateur && attenteComplete==true}">
+            <p id="aafficherenligne" class="nonreservation">Reservation impossible. La liste d'attente et pleine.</p>
+    </c:if>
+    </form>
+</c:if>
 <!--  -->
 <form class="card offset-sm-1 col-sm-10 col-12 form-group blockdescription">
     <div class="card-body paneldescription">

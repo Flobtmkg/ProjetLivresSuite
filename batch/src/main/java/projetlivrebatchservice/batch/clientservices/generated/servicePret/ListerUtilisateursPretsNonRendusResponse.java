@@ -1,12 +1,12 @@
 
 package projetlivrebatchservice.batch.clientservices.generated.servicePret;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ListerUtilisateursPretsNonRendusResponse {
 
     @XmlElement(name = "return")
-    protected List<projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation> _return;
+    protected List<Reservation> _return;
 
     /**
      * Gets the value of the return property.
@@ -59,9 +59,9 @@ public class ListerUtilisateursPretsNonRendusResponse {
      * 
      * 
      */
-    public List<projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation> getReturn() {
+    public List<Reservation> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation>();
+            _return = new ArrayList<Reservation>();
         }
         return this._return;
     }

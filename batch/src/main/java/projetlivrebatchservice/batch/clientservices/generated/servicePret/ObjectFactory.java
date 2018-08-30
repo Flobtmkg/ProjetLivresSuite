@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.servicePret package. 
+ * generated in the clientservices.generated.servicePret package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -38,7 +38,7 @@ public class ObjectFactory {
     private final static QName _RetourPret_QNAME = new QName("http://allplatform.webservice/", "retourPret");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.servicePret
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.servicePret
      * 
      */
     public ObjectFactory() {
@@ -88,8 +88,8 @@ public class ObjectFactory {
      * Create an instance of {@link RetourPretResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse createRetourPretResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse();
+    public RetourPretResponse createRetourPretResponse() {
+        return new RetourPretResponse();
     }
 
     /**
@@ -120,32 +120,32 @@ public class ObjectFactory {
      * Create an instance of {@link ProlongerPret }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret createProlongerPret() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret();
+    public ProlongerPret createProlongerPret() {
+        return new ProlongerPret();
     }
 
     /**
      * Create an instance of {@link ProlongerPretResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse createProlongerPretResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse();
+    public ProlongerPretResponse createProlongerPretResponse() {
+        return new ProlongerPretResponse();
     }
 
     /**
      * Create an instance of {@link RetourPret }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret createRetourPret() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret();
+    public RetourPret createRetourPret() {
+        return new RetourPret();
     }
 
     /**
      * Create an instance of {@link Pret }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.Pret createPret() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.Pret();
+    public Pret createPret() {
+        return new Pret();
     }
 
     /**
@@ -168,8 +168,8 @@ public class ObjectFactory {
      * Create an instance of {@link Reservation }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation createReservation() {
-        return new projetlivrebatchservice.batch.clientservices.generated.servicePret.Reservation();
+    public Reservation createReservation() {
+        return new Reservation();
     }
 
     /**
@@ -230,8 +230,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "retourPretResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse> createRetourPretResponse(projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse>(_RetourPretResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPretResponse.class, null, value);
+    public JAXBElement<RetourPretResponse> createRetourPretResponse(RetourPretResponse value) {
+        return new JAXBElement<RetourPretResponse>(_RetourPretResponse_QNAME, RetourPretResponse.class, null, value);
     }
 
     /**
@@ -266,8 +266,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "prolongerPret")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret> createProlongerPret(projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret>(_ProlongerPret_QNAME, projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPret.class, null, value);
+    public JAXBElement<ProlongerPret> createProlongerPret(ProlongerPret value) {
+        return new JAXBElement<ProlongerPret>(_ProlongerPret_QNAME, ProlongerPret.class, null, value);
     }
 
     /**
@@ -275,8 +275,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "prolongerPretResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse> createProlongerPretResponse(projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse>(_ProlongerPretResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.servicePret.ProlongerPretResponse.class, null, value);
+    public JAXBElement<ProlongerPretResponse> createProlongerPretResponse(ProlongerPretResponse value) {
+        return new JAXBElement<ProlongerPretResponse>(_ProlongerPretResponse_QNAME, ProlongerPretResponse.class, null, value);
     }
 
     /**
@@ -284,8 +284,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "retourPret")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret> createRetourPret(projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret>(_RetourPret_QNAME, projetlivrebatchservice.batch.clientservices.generated.servicePret.RetourPret.class, null, value);
+    public JAXBElement<RetourPret> createRetourPret(RetourPret value) {
+        return new JAXBElement<RetourPret>(_RetourPret_QNAME, RetourPret.class, null, value);
     }
 
 }

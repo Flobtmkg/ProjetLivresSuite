@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public interface DaoPret {
     void ajouterPret(Pret newPret);
     ArrayList<Reservation> listerInfosPretUtilisateur(int idutilisateur);
+    ArrayList<Reservation> listerInfosPretLivre(int idLivre);
     ArrayList<Reservation> listerUtilisateursPretsNonRendus();
     Pret etatPret(int idPret);
     void prolongerPret(int idPret,String datefinpret);

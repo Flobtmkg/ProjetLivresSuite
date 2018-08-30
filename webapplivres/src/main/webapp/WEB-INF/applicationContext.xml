@@ -2,11 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Beans Filter
+    -->
+    <bean id="filterCookie" class="webAppProjetLivre.filters.RequestFilter">
+        <property name="myRequests" ref="parameters"/>
+    </bean>
     <!--
     Beans Actions
     -->
+    <bean id="annulerReservationBean" class="webAppProjetLivre.strutsAction.AnnulerReservationAction">
+        <property name="accesReservation" ref="reservationDao"/>
+    </bean>
     <bean id="prolongerPretBean" class="webAppProjetLivre.strutsAction.modifProlongerPretAction">
-        <property name="accesPret" ref="PretsDao"/>
+        <property name="accesPret" ref="pretsDao"/>
+    </bean>
+    <bean id="ajoutReservationBean" class="webAppProjetLivre.strutsAction.AjoutReservationAction">
+        <property name="accesReservation" ref="reservationDao"/>
     </bean>
     <bean id="modifInfosGeneralesBean" class="webAppProjetLivre.strutsAction.modifInfosGeneralesAction">
         <property name="accesModifUtilisateur" ref="accesModifUtilisateurDao"/>
@@ -28,11 +41,15 @@
         <property name="listes" ref="listerDao" />
     </bean>
     <bean id="redirectionEspaceUtilisateurBean" class="webAppProjetLivre.strutsAction.RedirectionEspaceUtilisateurAction">
-        <property name="accesPrets" ref="PretsDao"/>
+        <property name="accesPrets" ref="pretsDao"/>
+        <property name="reservations" ref="reservationDao"/>
+        <property name="accesLivre" ref="requestLivreDao"/>
     </bean>
     <bean id="redirectionLivreActionBean" class="webAppProjetLivre.strutsAction.RedirectionLivreAction">
         <property name="infosLivre" ref="requestLivreDao" />
         <property name="lesExemplaires" ref="requestExemplaireDao"/>
+        <property name="reservations"  ref="reservationDao"/>
+        <property name="prets"  ref="pretsDao"/>
     </bean>
     <bean id="connexionActionBean" class="webAppProjetLivre.strutsAction.ConnexionAction">
         <property name="autentificationDao" ref="requestUtilisateurDao"/>
@@ -44,7 +61,9 @@
     <!--
     Beans DAO (action implementation) et Bean d'objets de travail
     -->
-    <bean id="PretsDao" class="webAppProjetLivre.classesTravail.PretsDao" />
+    <bean id="parameters" class="webAppProjetLivre.classesTravail.RequestManager"/>
+    <bean id="pretsDao" class="webAppProjetLivre.classesTravail.PretsDao" />
+    <bean id="reservationDao" class="webAppProjetLivre.classesTravail.ReservationDao" />
     <bean id="accesModifUtilisateurDao" class="webAppProjetLivre.classesTravail.UpdateUtilisateurDao" />
     <bean id="inscriptionUtilisateurDao" class="webAppProjetLivre.classesTravail.InscriptionDao" />
     <bean id="requestUtilisateurDao" class="webAppProjetLivre.classesTravail.RequestAutentificationDao" />

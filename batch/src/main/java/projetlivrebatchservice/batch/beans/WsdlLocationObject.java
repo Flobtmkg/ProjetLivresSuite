@@ -6,6 +6,15 @@ public class WsdlLocationObject {
     private String wsdlLocationNotation;
     private String wsdlLocationExemplaire;
     private String wsdlLocationPret;
+    private String wsdlLocationReservation;
+
+    public String getWsdlLocationReservation() {
+        return wsdlLocationReservation;
+    }
+
+    public void setWsdlLocationReservation(String wsdlLocationReservation) {
+        this.wsdlLocationReservation = wsdlLocationReservation;
+    }
 
     public String getWsdlLocationUtilisateur() {
         return wsdlLocationUtilisateur;

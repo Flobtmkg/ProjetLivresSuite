@@ -27,18 +27,21 @@ public interface ServiceExemplaire {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
-     *     returns generated.serviceExemplaire.Exemplaire
+     *     returns java.util.List<clientservices.generated.serviceExemplaire.Exemplaire>
      */
-    @WebMethod
+    @WebMethod(operationName = "ExemplaireDisponible")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "premierExemplaireDisponible", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.PremierExemplaireDisponible")
-    @ResponseWrapper(localName = "premierExemplaireDisponibleResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.PremierExemplaireDisponibleResponse")
-    @Action(input = "http://allplatform.webservice/ServiceExemplaire/premierExemplaireDisponibleRequest", output = "http://allplatform.webservice/ServiceExemplaire/premierExemplaireDisponibleResponse")
-    public Exemplaire premierExemplaireDisponible(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+    @RequestWrapper(localName = "ExemplaireDisponible", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.ExemplaireDisponible")
+    @ResponseWrapper(localName = "ExemplaireDisponibleResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.ExemplaireDisponibleResponse")
+    @Action(input = "http://allplatform.webservice/ServiceExemplaire/ExemplaireDisponibleRequest", output = "http://allplatform.webservice/ServiceExemplaire/ExemplaireDisponibleResponse")
+    public List<Exemplaire> exemplaireDisponible(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    boolean arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    int arg1);
 
     /**
      * 
@@ -47,30 +50,45 @@ public interface ServiceExemplaire {
      * @param arg0
      */
     @WebMethod(operationName = "AjouterExemplaire")
-    @RequestWrapper(localName = "AjouterExemplaire", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.AjouterExemplaire")
-    @ResponseWrapper(localName = "AjouterExemplaireResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.AjouterExemplaireResponse")
+    @RequestWrapper(localName = "AjouterExemplaire", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.AjouterExemplaire")
+    @ResponseWrapper(localName = "AjouterExemplaireResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.AjouterExemplaireResponse")
     @Action(input = "http://allplatform.webservice/ServiceExemplaire/AjouterExemplaireRequest", output = "http://allplatform.webservice/ServiceExemplaire/AjouterExemplaireResponse")
     public void ajouterExemplaire(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1,
+            @WebParam(name = "arg2", targetNamespace = "")
+                    String arg2);
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns java.util.List<generated.serviceExemplaire.Exemplaire>
+     *     returns clientservices.generated.serviceExemplaire.Exemplaire
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listerExemplaire", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.ListerExemplaire")
-    @ResponseWrapper(localName = "listerExemplaireResponse", targetNamespace = "http://allplatform.webservice/", className = "generated.serviceExemplaire.ListerExemplaireResponse")
+    @RequestWrapper(localName = "getExemplaireById", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.GetExemplaireById")
+    @ResponseWrapper(localName = "getExemplaireByIdResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.GetExemplaireByIdResponse")
+    @Action(input = "http://allplatform.webservice/ServiceExemplaire/getExemplaireByIdRequest", output = "http://allplatform.webservice/ServiceExemplaire/getExemplaireByIdResponse")
+    public Exemplaire getExemplaireById(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<clientservices.generated.serviceExemplaire.Exemplaire>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listerExemplaire", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.ListerExemplaire")
+    @ResponseWrapper(localName = "listerExemplaireResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceExemplaire.ListerExemplaireResponse")
     @Action(input = "http://allplatform.webservice/ServiceExemplaire/listerExemplaireRequest", output = "http://allplatform.webservice/ServiceExemplaire/listerExemplaireResponse")
     public List<Exemplaire> listerExemplaire(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
 
 }

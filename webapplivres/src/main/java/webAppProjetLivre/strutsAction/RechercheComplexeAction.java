@@ -1,13 +1,23 @@
 package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.ListerDao;
 import webAppProjetLivre.classesTravail.RechercheSimpleDao;
 import webAppProjetLivre.generated.serviceLivre.Livre;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class RechercheComplexeAction extends ActionSupport {
+public class RechercheComplexeAction extends ActionSupport implements ServletRequestAware {
+
+
+    private HttpServletRequest currentRequest;
+
+
     //données renvoyées via le formulaire
     private String titre;
     private String auteur;
@@ -21,6 +31,7 @@ public class RechercheComplexeAction extends ActionSupport {
     //
     //
     //
+
     public boolean isExpressionStricte() {
         return expressionStricte;
     }
@@ -161,6 +172,7 @@ public class RechercheComplexeAction extends ActionSupport {
 
     public String execute() {
         //
+        //
         if(listeLivre!=null){
             listeLivre.clear();
         }
@@ -207,5 +219,11 @@ public class RechercheComplexeAction extends ActionSupport {
         //La réinitialisation de cette variable est indipensable:
         expressionStricte=false;
         return SUCCESS;
+    }
+
+
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        this.currentRequest=httpServletRequest;
     }
 }

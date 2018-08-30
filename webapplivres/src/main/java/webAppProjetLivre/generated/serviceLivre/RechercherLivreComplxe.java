@@ -17,13 +17,14 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="arg6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg7" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg8" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -75,41 +76,33 @@ public class RechercherLivreComplxe {
     /**
      * Obtient la valeur de la propri�t� arg1.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    /**
-     * Obtient la valeur de la propri�t� arg0.
-     *
      */
     public boolean isArg1() {
         return arg1;
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg0.
-     *
+     * D�finit la valeur de la propri�t� arg1.
+     * 
      */
     public void setArg1(boolean value) {
         this.arg1 = value;
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg1.
-     *
+     * Obtient la valeur de la propri�t� arg2.
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getArg2() {
         return arg2;
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg1.
+     * D�finit la valeur de la propri�t� arg2.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +114,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg2.
+     * Obtient la valeur de la propri�t� arg3.
      * 
      * @return
      *     possible object is
@@ -133,7 +126,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg2.
+     * D�finit la valeur de la propri�t� arg3.
      * 
      * @param value
      *     allowed object is
@@ -145,7 +138,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg3.
+     * Obtient la valeur de la propri�t� arg4.
      * 
      * @return
      *     possible object is
@@ -157,7 +150,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg3.
+     * D�finit la valeur de la propri�t� arg4.
      * 
      * @param value
      *     allowed object is
@@ -169,7 +162,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg4.
+     * Obtient la valeur de la propri�t� arg5.
      * 
      */
     public int getArg5() {
@@ -177,7 +170,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg4.
+     * D�finit la valeur de la propri�t� arg5.
      * 
      */
     public void setArg5(int value) {
@@ -185,7 +178,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg5.
+     * Obtient la valeur de la propri�t� arg6.
      * 
      * @return
      *     possible object is
@@ -197,7 +190,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg5.
+     * D�finit la valeur de la propri�t� arg6.
      * 
      * @param value
      *     allowed object is
@@ -209,7 +202,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg6.
+     * Obtient la valeur de la propri�t� arg7.
      * 
      * @return
      *     possible object is
@@ -221,7 +214,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg6.
+     * D�finit la valeur de la propri�t� arg7.
      * 
      * @param value
      *     allowed object is
@@ -233,7 +226,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * Obtient la valeur de la propri�t� arg7.
+     * Obtient la valeur de la propri�t� arg8.
      * 
      * @return
      *     possible object is
@@ -245,7 +238,7 @@ public class RechercherLivreComplxe {
     }
 
     /**
-     * D�finit la valeur de la propri�t� arg7.
+     * D�finit la valeur de la propri�t� arg8.
      * 
      * @param value
      *     allowed object is

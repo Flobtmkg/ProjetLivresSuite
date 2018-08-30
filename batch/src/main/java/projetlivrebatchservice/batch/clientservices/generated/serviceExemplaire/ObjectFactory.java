@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.serviceExemplaire package.
+ * generated in the clientservices.generated.serviceExemplaire package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -24,26 +24,20 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _PremierExemplaireDisponibleResponse_QNAME = new QName("http://allplatform.webservice/", "premierExemplaireDisponibleResponse");
     private final static QName _AjouterExemplaire_QNAME = new QName("http://allplatform.webservice/", "AjouterExemplaire");
+    private final static QName _ExemplaireDisponibleResponse_QNAME = new QName("http://allplatform.webservice/", "ExemplaireDisponibleResponse");
     private final static QName _AjouterExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "AjouterExemplaireResponse");
-    private final static QName _PremierExemplaireDisponible_QNAME = new QName("http://allplatform.webservice/", "premierExemplaireDisponible");
+    private final static QName _GetExemplaireByIdResponse_QNAME = new QName("http://allplatform.webservice/", "getExemplaireByIdResponse");
     private final static QName _ListerExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "listerExemplaireResponse");
+    private final static QName _GetExemplaireById_QNAME = new QName("http://allplatform.webservice/", "getExemplaireById");
+    private final static QName _ExemplaireDisponible_QNAME = new QName("http://allplatform.webservice/", "ExemplaireDisponible");
     private final static QName _ListerExemplaire_QNAME = new QName("http://allplatform.webservice/", "listerExemplaire");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceExemplaire
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.serviceExemplaire
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link PremierExemplaireDisponibleResponse }
-     * 
-     */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse createPremierExemplaireDisponibleResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse();
     }
 
     /**
@@ -55,6 +49,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExemplaireDisponibleResponse }
+     * 
+     */
+    public ExemplaireDisponibleResponse createExemplaireDisponibleResponse() {
+        return new ExemplaireDisponibleResponse();
+    }
+
+    /**
      * Create an instance of {@link AjouterExemplaireResponse }
      * 
      */
@@ -63,11 +65,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PremierExemplaireDisponible }
+     * Create an instance of {@link GetExemplaireByIdResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible createPremierExemplaireDisponible() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible();
+    public GetExemplaireByIdResponse createGetExemplaireByIdResponse() {
+        return new GetExemplaireByIdResponse();
     }
 
     /**
@@ -76,6 +78,22 @@ public class ObjectFactory {
      */
     public ListerExemplaireResponse createListerExemplaireResponse() {
         return new ListerExemplaireResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetExemplaireById }
+     * 
+     */
+    public GetExemplaireById createGetExemplaireById() {
+        return new GetExemplaireById();
+    }
+
+    /**
+     * Create an instance of {@link ExemplaireDisponible }
+     * 
+     */
+    public ExemplaireDisponible createExemplaireDisponible() {
+        return new ExemplaireDisponible();
     }
 
     /**
@@ -95,21 +113,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PremierExemplaireDisponibleResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "premierExemplaireDisponibleResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse> createPremierExemplaireDisponibleResponse(projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse>(_PremierExemplaireDisponibleResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponibleResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AjouterExemplaire }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "AjouterExemplaire")
     public JAXBElement<AjouterExemplaire> createAjouterExemplaire(AjouterExemplaire value) {
         return new JAXBElement<AjouterExemplaire>(_AjouterExemplaire_QNAME, AjouterExemplaire.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExemplaireDisponibleResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ExemplaireDisponibleResponse")
+    public JAXBElement<ExemplaireDisponibleResponse> createExemplaireDisponibleResponse(ExemplaireDisponibleResponse value) {
+        return new JAXBElement<ExemplaireDisponibleResponse>(_ExemplaireDisponibleResponse_QNAME, ExemplaireDisponibleResponse.class, null, value);
     }
 
     /**
@@ -122,12 +140,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PremierExemplaireDisponible }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetExemplaireByIdResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "premierExemplaireDisponible")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible> createPremierExemplaireDisponible(projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible>(_PremierExemplaireDisponible_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceExemplaire.PremierExemplaireDisponible.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getExemplaireByIdResponse")
+    public JAXBElement<GetExemplaireByIdResponse> createGetExemplaireByIdResponse(GetExemplaireByIdResponse value) {
+        return new JAXBElement<GetExemplaireByIdResponse>(_GetExemplaireByIdResponse_QNAME, GetExemplaireByIdResponse.class, null, value);
     }
 
     /**
@@ -137,6 +155,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerExemplaireResponse")
     public JAXBElement<ListerExemplaireResponse> createListerExemplaireResponse(ListerExemplaireResponse value) {
         return new JAXBElement<ListerExemplaireResponse>(_ListerExemplaireResponse_QNAME, ListerExemplaireResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetExemplaireById }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "getExemplaireById")
+    public JAXBElement<GetExemplaireById> createGetExemplaireById(GetExemplaireById value) {
+        return new JAXBElement<GetExemplaireById>(_GetExemplaireById_QNAME, GetExemplaireById.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExemplaireDisponible }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ExemplaireDisponible")
+    public JAXBElement<ExemplaireDisponible> createExemplaireDisponible(ExemplaireDisponible value) {
+        return new JAXBElement<ExemplaireDisponible>(_ExemplaireDisponible_QNAME, ExemplaireDisponible.class, null, value);
     }
 
     /**

@@ -34,6 +34,13 @@ public class ServiceReservation extends Service {
         return reservationsEffectives;
     }
 
+    // ttes reservations dans la période des 48h
+    @WebMethod
+    public List<PreReservation> getReservationsEffectives(){
+        List<PreReservation> reservationsEffectives = monDaoReservation.getAllReservationsEffectives();
+        return reservationsEffectives;
+    }
+
     // Liste des reservations période des 48h dépassées pour l'ensemble des livres pour envoi d'email
     @WebMethod
     public List<PreReservation> getListeReservationTempsEffectfDepasse(){

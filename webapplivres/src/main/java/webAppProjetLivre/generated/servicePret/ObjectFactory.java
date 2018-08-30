@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.servicePret package. 
+ * generated in the clientservices.generated.servicePret package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -25,20 +25,22 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _ListerUtilisateursPretsNonRendusResponse_QNAME = new QName("http://allplatform.webservice/", "listerUtilisateursPretsNonRendusResponse");
-    private final static QName _AjouterPretResponse_QNAME = new QName("http://allplatform.webservice/", "ajouterPretResponse");
     private final static QName _ListerInfosPretUtilisateur_QNAME = new QName("http://allplatform.webservice/", "listerInfosPretUtilisateur");
     private final static QName _ListerUtilisateursPretsNonRendus_QNAME = new QName("http://allplatform.webservice/", "listerUtilisateursPretsNonRendus");
-    private final static QName _ListerInfosPretUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "listerInfosPretUtilisateurResponse");
     private final static QName _RetourPretResponse_QNAME = new QName("http://allplatform.webservice/", "retourPretResponse");
     private final static QName _EtatPret_QNAME = new QName("http://allplatform.webservice/", "etatPret");
-    private final static QName _AjouterPret_QNAME = new QName("http://allplatform.webservice/", "ajouterPret");
-    private final static QName _EtatPretResponse_QNAME = new QName("http://allplatform.webservice/", "etatPretResponse");
     private final static QName _ProlongerPret_QNAME = new QName("http://allplatform.webservice/", "prolongerPret");
     private final static QName _ProlongerPretResponse_QNAME = new QName("http://allplatform.webservice/", "prolongerPretResponse");
+    private final static QName _ListerInfosPretLivreResponse_QNAME = new QName("http://allplatform.webservice/", "listerInfosPretLivreResponse");
+    private final static QName _AjouterPretResponse_QNAME = new QName("http://allplatform.webservice/", "ajouterPretResponse");
+    private final static QName _ListerInfosPretLivre_QNAME = new QName("http://allplatform.webservice/", "listerInfosPretLivre");
+    private final static QName _ListerInfosPretUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "listerInfosPretUtilisateurResponse");
+    private final static QName _AjouterPret_QNAME = new QName("http://allplatform.webservice/", "ajouterPret");
+    private final static QName _EtatPretResponse_QNAME = new QName("http://allplatform.webservice/", "etatPretResponse");
     private final static QName _RetourPret_QNAME = new QName("http://allplatform.webservice/", "retourPret");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.servicePret
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.servicePret
      * 
      */
     public ObjectFactory() {
@@ -50,14 +52,6 @@ public class ObjectFactory {
      */
     public ListerUtilisateursPretsNonRendusResponse createListerUtilisateursPretsNonRendusResponse() {
         return new ListerUtilisateursPretsNonRendusResponse();
-    }
-
-    /**
-     * Create an instance of {@link AjouterPretResponse }
-     * 
-     */
-    public AjouterPretResponse createAjouterPretResponse() {
-        return new AjouterPretResponse();
     }
 
     /**
@@ -77,14 +71,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ListerInfosPretUtilisateurResponse }
-     * 
-     */
-    public ListerInfosPretUtilisateurResponse createListerInfosPretUtilisateurResponse() {
-        return new ListerInfosPretUtilisateurResponse();
-    }
-
-    /**
      * Create an instance of {@link RetourPretResponse }
      * 
      */
@@ -101,22 +87,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AjouterPret }
-     * 
-     */
-    public AjouterPret createAjouterPret() {
-        return new AjouterPret();
-    }
-
-    /**
-     * Create an instance of {@link EtatPretResponse }
-     * 
-     */
-    public EtatPretResponse createEtatPretResponse() {
-        return new EtatPretResponse();
-    }
-
-    /**
      * Create an instance of {@link ProlongerPret }
      * 
      */
@@ -130,6 +100,54 @@ public class ObjectFactory {
      */
     public ProlongerPretResponse createProlongerPretResponse() {
         return new ProlongerPretResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListerInfosPretLivreResponse }
+     * 
+     */
+    public ListerInfosPretLivreResponse createListerInfosPretLivreResponse() {
+        return new ListerInfosPretLivreResponse();
+    }
+
+    /**
+     * Create an instance of {@link AjouterPretResponse }
+     * 
+     */
+    public AjouterPretResponse createAjouterPretResponse() {
+        return new AjouterPretResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListerInfosPretLivre }
+     * 
+     */
+    public ListerInfosPretLivre createListerInfosPretLivre() {
+        return new ListerInfosPretLivre();
+    }
+
+    /**
+     * Create an instance of {@link ListerInfosPretUtilisateurResponse }
+     * 
+     */
+    public ListerInfosPretUtilisateurResponse createListerInfosPretUtilisateurResponse() {
+        return new ListerInfosPretUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link AjouterPret }
+     * 
+     */
+    public AjouterPret createAjouterPret() {
+        return new AjouterPret();
+    }
+
+    /**
+     * Create an instance of {@link EtatPretResponse }
+     * 
+     */
+    public EtatPretResponse createEtatPretResponse() {
+        return new EtatPretResponse();
     }
 
     /**
@@ -190,15 +208,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterPretResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterPretResponse")
-    public JAXBElement<AjouterPretResponse> createAjouterPretResponse(AjouterPretResponse value) {
-        return new JAXBElement<AjouterPretResponse>(_AjouterPretResponse_QNAME, AjouterPretResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListerInfosPretUtilisateur }{@code >}}
      * 
      */
@@ -214,15 +223,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerUtilisateursPretsNonRendus")
     public JAXBElement<ListerUtilisateursPretsNonRendus> createListerUtilisateursPretsNonRendus(ListerUtilisateursPretsNonRendus value) {
         return new JAXBElement<ListerUtilisateursPretsNonRendus>(_ListerUtilisateursPretsNonRendus_QNAME, ListerUtilisateursPretsNonRendus.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ListerInfosPretUtilisateurResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerInfosPretUtilisateurResponse")
-    public JAXBElement<ListerInfosPretUtilisateurResponse> createListerInfosPretUtilisateurResponse(ListerInfosPretUtilisateurResponse value) {
-        return new JAXBElement<ListerInfosPretUtilisateurResponse>(_ListerInfosPretUtilisateurResponse_QNAME, ListerInfosPretUtilisateurResponse.class, null, value);
     }
 
     /**
@@ -244,24 +244,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterPret }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterPret")
-    public JAXBElement<AjouterPret> createAjouterPret(AjouterPret value) {
-        return new JAXBElement<AjouterPret>(_AjouterPret_QNAME, AjouterPret.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EtatPretResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "etatPretResponse")
-    public JAXBElement<EtatPretResponse> createEtatPretResponse(EtatPretResponse value) {
-        return new JAXBElement<EtatPretResponse>(_EtatPretResponse_QNAME, EtatPretResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ProlongerPret }{@code >}}
      * 
      */
@@ -277,6 +259,60 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "prolongerPretResponse")
     public JAXBElement<ProlongerPretResponse> createProlongerPretResponse(ProlongerPretResponse value) {
         return new JAXBElement<ProlongerPretResponse>(_ProlongerPretResponse_QNAME, ProlongerPretResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerInfosPretLivreResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerInfosPretLivreResponse")
+    public JAXBElement<ListerInfosPretLivreResponse> createListerInfosPretLivreResponse(ListerInfosPretLivreResponse value) {
+        return new JAXBElement<ListerInfosPretLivreResponse>(_ListerInfosPretLivreResponse_QNAME, ListerInfosPretLivreResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterPretResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterPretResponse")
+    public JAXBElement<AjouterPretResponse> createAjouterPretResponse(AjouterPretResponse value) {
+        return new JAXBElement<AjouterPretResponse>(_AjouterPretResponse_QNAME, AjouterPretResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerInfosPretLivre }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerInfosPretLivre")
+    public JAXBElement<ListerInfosPretLivre> createListerInfosPretLivre(ListerInfosPretLivre value) {
+        return new JAXBElement<ListerInfosPretLivre>(_ListerInfosPretLivre_QNAME, ListerInfosPretLivre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerInfosPretUtilisateurResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerInfosPretUtilisateurResponse")
+    public JAXBElement<ListerInfosPretUtilisateurResponse> createListerInfosPretUtilisateurResponse(ListerInfosPretUtilisateurResponse value) {
+        return new JAXBElement<ListerInfosPretUtilisateurResponse>(_ListerInfosPretUtilisateurResponse_QNAME, ListerInfosPretUtilisateurResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterPret }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterPret")
+    public JAXBElement<AjouterPret> createAjouterPret(AjouterPret value) {
+        return new JAXBElement<AjouterPret>(_AjouterPret_QNAME, AjouterPret.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EtatPretResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "etatPretResponse")
+    public JAXBElement<EtatPretResponse> createEtatPretResponse(EtatPretResponse value) {
+        return new JAXBElement<EtatPretResponse>(_EtatPretResponse_QNAME, EtatPretResponse.class, null, value);
     }
 
     /**

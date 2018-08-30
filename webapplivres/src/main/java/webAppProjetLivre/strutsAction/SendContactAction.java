@@ -2,11 +2,19 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.EnvoiEmail;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class SendContactAction extends ActionSupport implements ServletRequestAware {
+
+
+    private HttpServletRequest currentRequest;
+
+
     private EnvoiEmail sendEmail;
     private String nom;
     private String prenom;
@@ -14,6 +22,7 @@ public class SendContactAction extends ActionSupport implements ServletRequestAw
     private String objet;
     private String message;
     private String commandPage;
+
 
     public String getCommandPage() {
         return commandPage;
@@ -74,8 +83,7 @@ public class SendContactAction extends ActionSupport implements ServletRequestAw
 
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
     }
 
     public String execute() {
@@ -93,13 +101,14 @@ public class SendContactAction extends ActionSupport implements ServletRequestAw
         }
         //
         if(errorEnvoi.equals("")){
-            commandPage=commandPage+"#ModalValidation";
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalValidation");
             return SUCCESS;
         }else{
-            commandPage=commandPage+"#ModalErreurSend";
+            commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalErreurSend");
             return ERROR;
         }
         //
 
     }
+
 }

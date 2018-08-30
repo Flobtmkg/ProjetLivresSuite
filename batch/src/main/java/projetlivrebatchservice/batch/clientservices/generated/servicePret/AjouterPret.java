@@ -19,9 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,17 +35,15 @@ import javax.xml.bind.annotation.XmlType;
     "arg1",
     "arg2",
     "arg3",
-    "arg4",
-    "arg5"
+    "arg4"
 })
 public class AjouterPret {
 
     protected int arg0;
     protected int arg1;
     protected String arg2;
-    protected String arg3;
+    protected boolean arg3;
     protected boolean arg4;
-    protected boolean arg5;
 
     /**
      * Obtient la valeur de la propri�t� arg0.
@@ -107,24 +104,16 @@ public class AjouterPret {
     /**
      * Obtient la valeur de la propri�t� arg3.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getArg3() {
+    public boolean isArg3() {
         return arg3;
     }
 
     /**
      * D�finit la valeur de la propri�t� arg3.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setArg3(String value) {
+    public void setArg3(boolean value) {
         this.arg3 = value;
     }
 
@@ -142,22 +131,6 @@ public class AjouterPret {
      */
     public void setArg4(boolean value) {
         this.arg4 = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� arg5.
-     * 
-     */
-    public boolean isArg5() {
-        return arg5;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� arg5.
-     * 
-     */
-    public void setArg5(boolean value) {
-        this.arg5 = value;
     }
 
 }

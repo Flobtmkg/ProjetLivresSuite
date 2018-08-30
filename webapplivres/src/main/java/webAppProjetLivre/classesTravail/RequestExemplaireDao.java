@@ -20,8 +20,26 @@ public class RequestExemplaireDao {
         //
         ServiceExemplaireService monservice= new ServiceExemplaireService(urlWsdl);
         ServiceExemplaire accesExemplaire=monservice.getServiceExemplairePort();
-        resultat=accesExemplaire.ExemplaireDisponible(false,idLivre);//
+        resultat=accesExemplaire.exemplaireDisponible(false,idLivre);
         //
         return resultat;
     }
+
+
+    public List<Exemplaire> listerExemplaires(int idLivre, String wsdlAdress){
+        try{
+            urlWsdl=new URL(wsdlAdress);
+        }catch(Exception e){
+
+        }
+        //
+        ServiceExemplaireService monservice = new ServiceExemplaireService(urlWsdl);
+        ServiceExemplaire accesExemplaire=monservice.getServiceExemplairePort();
+        resultat=accesExemplaire.listerExemplaire(idLivre);
+        //
+        return resultat;
+    }
+
+
+
 }

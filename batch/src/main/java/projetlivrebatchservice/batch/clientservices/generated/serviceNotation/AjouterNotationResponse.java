@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ajouterNotationResponse")
+@XmlType(name = "ajouterNotationResponse1")
 public class AjouterNotationResponse {
 
 

@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the generated.serviceLivre package. 
+ * generated in the clientservices.generated.serviceLivre package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -24,48 +24,164 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _RechercheParType_QNAME = new QName("http://allplatform.webservice/", "rechercheParType");
+    private final static QName _ListerDomaines_QNAME = new QName("http://allplatform.webservice/", "listerDomaines");
     private final static QName _RechercheParAuteurLivreResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParAuteurLivreResponse");
-    private final static QName _InfoLivre_QNAME = new QName("http://allplatform.webservice/", "infoLivre");
-    private final static QName _RechercherLivreComplxeResponse_QNAME = new QName("http://allplatform.webservice/", "rechercherLivreComplxeResponse");
+    private final static QName _RechercheReferences_QNAME = new QName("http://allplatform.webservice/", "rechercheReferences");
+    private final static QName _ConstitutionindexResponse_QNAME = new QName("http://allplatform.webservice/", "constitutionindexResponse");
     private final static QName _RechercheParThemeResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParThemeResponse");
+    private final static QName _Desindexation_QNAME = new QName("http://allplatform.webservice/", "desindexation");
+    private final static QName _RechercheReferencesResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheReferencesResponse");
+    private final static QName _RechercheParExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParExemplaireResponse");
+    private final static QName _RechercherLivreComplxe_QNAME = new QName("http://allplatform.webservice/", "rechercherLivreComplxe");
+    private final static QName _AjouterLivre_QNAME = new QName("http://allplatform.webservice/", "ajouterLivre");
+    private final static QName _ListerDomainesResponse_QNAME = new QName("http://allplatform.webservice/", "listerDomainesResponse");
+    private final static QName _Constitutionindex_QNAME = new QName("http://allplatform.webservice/", "constitutionindex");
+    private final static QName _ListerTypeResponse_QNAME = new QName("http://allplatform.webservice/", "listerTypeResponse");
+    private final static QName _RechercheParTitreLivre_QNAME = new QName("http://allplatform.webservice/", "rechercheParTitreLivre");
+    private final static QName _RechercheParType_QNAME = new QName("http://allplatform.webservice/", "rechercheParType");
+    private final static QName _InfoLivre_QNAME = new QName("http://allplatform.webservice/", "infoLivre");
+    private final static QName _ListerThemes_QNAME = new QName("http://allplatform.webservice/", "listerThemes");
+    private final static QName _RechercherLivreComplxeResponse_QNAME = new QName("http://allplatform.webservice/", "rechercherLivreComplxeResponse");
+    private final static QName _ListerType_QNAME = new QName("http://allplatform.webservice/", "listerType");
+    private final static QName _DesindexationResponse_QNAME = new QName("http://allplatform.webservice/", "desindexationResponse");
     private final static QName _RechercheParEditeurLivreResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParEditeurLivreResponse");
     private final static QName _RechercheParEditeurLivre_QNAME = new QName("http://allplatform.webservice/", "rechercheParEditeurLivre");
     private final static QName _RechercheParTheme_QNAME = new QName("http://allplatform.webservice/", "rechercheParTheme");
     private final static QName _RechercheParExemplaire_QNAME = new QName("http://allplatform.webservice/", "rechercheParExemplaire");
-    private final static QName _RechercheParExemplaireResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParExemplaireResponse");
-    private final static QName _RechercherLivreComplxe_QNAME = new QName("http://allplatform.webservice/", "rechercherLivreComplxe");
     private final static QName _RechercheParDomaine_QNAME = new QName("http://allplatform.webservice/", "rechercheParDomaine");
     private final static QName _RechercheParTypeResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParTypeResponse");
     private final static QName _AjouterLivreResponse_QNAME = new QName("http://allplatform.webservice/", "ajouterLivreResponse");
     private final static QName _RechercheParDomaineResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParDomaineResponse");
     private final static QName _RechercheParTitreLivreResponse_QNAME = new QName("http://allplatform.webservice/", "rechercheParTitreLivreResponse");
     private final static QName _RechercheParAuteurLivre_QNAME = new QName("http://allplatform.webservice/", "rechercheParAuteurLivre");
-    private final static QName _AjouterLivre_QNAME = new QName("http://allplatform.webservice/", "ajouterLivre");
     private final static QName _InfoLivreResponse_QNAME = new QName("http://allplatform.webservice/", "infoLivreResponse");
-    private final static QName _RechercheParTitreLivre_QNAME = new QName("http://allplatform.webservice/", "rechercheParTitreLivre");
+    private final static QName _ListerThemesResponse_QNAME = new QName("http://allplatform.webservice/", "listerThemesResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: generated.serviceLivre
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.serviceLivre
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link RechercheParType }
+     * Create an instance of {@link ListerDomaines }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType createRechercheParType() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType();
+    public ListerDomaines createListerDomaines() {
+        return new ListerDomaines();
     }
 
     /**
      * Create an instance of {@link RechercheParAuteurLivreResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse createRechercheParAuteurLivreResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse();
+    public RechercheParAuteurLivreResponse createRechercheParAuteurLivreResponse() {
+        return new RechercheParAuteurLivreResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheReferences }
+     * 
+     */
+    public RechercheReferences createRechercheReferences() {
+        return new RechercheReferences();
+    }
+
+    /**
+     * Create an instance of {@link ConstitutionindexResponse }
+     * 
+     */
+    public ConstitutionindexResponse createConstitutionindexResponse() {
+        return new ConstitutionindexResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheParThemeResponse }
+     * 
+     */
+    public RechercheParThemeResponse createRechercheParThemeResponse() {
+        return new RechercheParThemeResponse();
+    }
+
+    /**
+     * Create an instance of {@link Desindexation }
+     * 
+     */
+    public Desindexation createDesindexation() {
+        return new Desindexation();
+    }
+
+    /**
+     * Create an instance of {@link RechercheReferencesResponse }
+     * 
+     */
+    public RechercheReferencesResponse createRechercheReferencesResponse() {
+        return new RechercheReferencesResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheParExemplaireResponse }
+     * 
+     */
+    public RechercheParExemplaireResponse createRechercheParExemplaireResponse() {
+        return new RechercheParExemplaireResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercherLivreComplxe }
+     * 
+     */
+    public RechercherLivreComplxe createRechercherLivreComplxe() {
+        return new RechercherLivreComplxe();
+    }
+
+    /**
+     * Create an instance of {@link AjouterLivre }
+     * 
+     */
+    public AjouterLivre createAjouterLivre() {
+        return new AjouterLivre();
+    }
+
+    /**
+     * Create an instance of {@link ListerDomainesResponse }
+     * 
+     */
+    public ListerDomainesResponse createListerDomainesResponse() {
+        return new ListerDomainesResponse();
+    }
+
+    /**
+     * Create an instance of {@link Constitutionindex }
+     * 
+     */
+    public Constitutionindex createConstitutionindex() {
+        return new Constitutionindex();
+    }
+
+    /**
+     * Create an instance of {@link ListerTypeResponse }
+     * 
+     */
+    public ListerTypeResponse createListerTypeResponse() {
+        return new ListerTypeResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechercheParTitreLivre }
+     * 
+     */
+    public RechercheParTitreLivre createRechercheParTitreLivre() {
+        return new RechercheParTitreLivre();
+    }
+
+    /**
+     * Create an instance of {@link RechercheParType }
+     * 
+     */
+    public RechercheParType createRechercheParType() {
+        return new RechercheParType();
     }
 
     /**
@@ -77,83 +193,83 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RechercherLivreComplxeResponse }
+     * Create an instance of {@link ListerThemes }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse createRechercherLivreComplxeResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse();
+    public ListerThemes createListerThemes() {
+        return new ListerThemes();
     }
 
     /**
-     * Create an instance of {@link RechercheParThemeResponse }
+     * Create an instance of {@link RechercherLivreComplxeResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse createRechercheParThemeResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse();
+    public RechercherLivreComplxeResponse createRechercherLivreComplxeResponse() {
+        return new RechercherLivreComplxeResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListerType }
+     * 
+     */
+    public ListerType createListerType() {
+        return new ListerType();
+    }
+
+    /**
+     * Create an instance of {@link DesindexationResponse }
+     * 
+     */
+    public DesindexationResponse createDesindexationResponse() {
+        return new DesindexationResponse();
     }
 
     /**
      * Create an instance of {@link RechercheParEditeurLivreResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse createRechercheParEditeurLivreResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse();
+    public RechercheParEditeurLivreResponse createRechercheParEditeurLivreResponse() {
+        return new RechercheParEditeurLivreResponse();
     }
 
     /**
      * Create an instance of {@link RechercheParEditeurLivre }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre createRechercheParEditeurLivre() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre();
+    public RechercheParEditeurLivre createRechercheParEditeurLivre() {
+        return new RechercheParEditeurLivre();
     }
 
     /**
      * Create an instance of {@link RechercheParTheme }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme createRechercheParTheme() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme();
+    public RechercheParTheme createRechercheParTheme() {
+        return new RechercheParTheme();
     }
 
     /**
      * Create an instance of {@link RechercheParExemplaire }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire createRechercheParExemplaire() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire();
-    }
-
-    /**
-     * Create an instance of {@link RechercheParExemplaireResponse }
-     * 
-     */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse createRechercheParExemplaireResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse();
-    }
-
-    /**
-     * Create an instance of {@link RechercherLivreComplxe }
-     * 
-     */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe createRechercherLivreComplxe() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe();
+    public RechercheParExemplaire createRechercheParExemplaire() {
+        return new RechercheParExemplaire();
     }
 
     /**
      * Create an instance of {@link RechercheParDomaine }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine createRechercheParDomaine() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine();
+    public RechercheParDomaine createRechercheParDomaine() {
+        return new RechercheParDomaine();
     }
 
     /**
      * Create an instance of {@link RechercheParTypeResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse createRechercheParTypeResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse();
+    public RechercheParTypeResponse createRechercheParTypeResponse() {
+        return new RechercheParTypeResponse();
     }
 
     /**
@@ -168,32 +284,24 @@ public class ObjectFactory {
      * Create an instance of {@link RechercheParDomaineResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse createRechercheParDomaineResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse();
+    public RechercheParDomaineResponse createRechercheParDomaineResponse() {
+        return new RechercheParDomaineResponse();
     }
 
     /**
      * Create an instance of {@link RechercheParTitreLivreResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse createRechercheParTitreLivreResponse() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse();
+    public RechercheParTitreLivreResponse createRechercheParTitreLivreResponse() {
+        return new RechercheParTitreLivreResponse();
     }
 
     /**
      * Create an instance of {@link RechercheParAuteurLivre }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre createRechercheParAuteurLivre() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre();
-    }
-
-    /**
-     * Create an instance of {@link AjouterLivre }
-     * 
-     */
-    public AjouterLivre createAjouterLivre() {
-        return new AjouterLivre();
+    public RechercheParAuteurLivre createRechercheParAuteurLivre() {
+        return new RechercheParAuteurLivre();
     }
 
     /**
@@ -205,11 +313,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RechercheParTitreLivre }
+     * Create an instance of {@link ListerThemesResponse }
      * 
      */
-    public projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre createRechercheParTitreLivre() {
-        return new projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre();
+    public ListerThemesResponse createListerThemesResponse() {
+        return new ListerThemesResponse();
+    }
+
+    /**
+     * Create an instance of {@link IndexConstitution }
+     * 
+     */
+    public IndexConstitution createIndexConstitution() {
+        return new IndexConstitution();
     }
 
     /**
@@ -221,12 +337,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerDomaines }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParType")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType> createRechercheParType(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType>(_RechercheParType_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParType.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerDomaines")
+    public JAXBElement<ListerDomaines> createListerDomaines(ListerDomaines value) {
+        return new JAXBElement<ListerDomaines>(_ListerDomaines_QNAME, ListerDomaines.class, null, value);
     }
 
     /**
@@ -234,8 +350,125 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParAuteurLivreResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse> createRechercheParAuteurLivreResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse>(_RechercheParAuteurLivreResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivreResponse.class, null, value);
+    public JAXBElement<RechercheParAuteurLivreResponse> createRechercheParAuteurLivreResponse(RechercheParAuteurLivreResponse value) {
+        return new JAXBElement<RechercheParAuteurLivreResponse>(_RechercheParAuteurLivreResponse_QNAME, RechercheParAuteurLivreResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheReferences }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheReferences")
+    public JAXBElement<RechercheReferences> createRechercheReferences(RechercheReferences value) {
+        return new JAXBElement<RechercheReferences>(_RechercheReferences_QNAME, RechercheReferences.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConstitutionindexResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "constitutionindexResponse")
+    public JAXBElement<ConstitutionindexResponse> createConstitutionindexResponse(ConstitutionindexResponse value) {
+        return new JAXBElement<ConstitutionindexResponse>(_ConstitutionindexResponse_QNAME, ConstitutionindexResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParThemeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParThemeResponse")
+    public JAXBElement<RechercheParThemeResponse> createRechercheParThemeResponse(RechercheParThemeResponse value) {
+        return new JAXBElement<RechercheParThemeResponse>(_RechercheParThemeResponse_QNAME, RechercheParThemeResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Desindexation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "desindexation")
+    public JAXBElement<Desindexation> createDesindexation(Desindexation value) {
+        return new JAXBElement<Desindexation>(_Desindexation_QNAME, Desindexation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheReferencesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheReferencesResponse")
+    public JAXBElement<RechercheReferencesResponse> createRechercheReferencesResponse(RechercheReferencesResponse value) {
+        return new JAXBElement<RechercheReferencesResponse>(_RechercheReferencesResponse_QNAME, RechercheReferencesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParExemplaireResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParExemplaireResponse")
+    public JAXBElement<RechercheParExemplaireResponse> createRechercheParExemplaireResponse(RechercheParExemplaireResponse value) {
+        return new JAXBElement<RechercheParExemplaireResponse>(_RechercheParExemplaireResponse_QNAME, RechercheParExemplaireResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercherLivreComplxe }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercherLivreComplxe")
+    public JAXBElement<RechercherLivreComplxe> createRechercherLivreComplxe(RechercherLivreComplxe value) {
+        return new JAXBElement<RechercherLivreComplxe>(_RechercherLivreComplxe_QNAME, RechercherLivreComplxe.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterLivre }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterLivre")
+    public JAXBElement<AjouterLivre> createAjouterLivre(AjouterLivre value) {
+        return new JAXBElement<AjouterLivre>(_AjouterLivre_QNAME, AjouterLivre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerDomainesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerDomainesResponse")
+    public JAXBElement<ListerDomainesResponse> createListerDomainesResponse(ListerDomainesResponse value) {
+        return new JAXBElement<ListerDomainesResponse>(_ListerDomainesResponse_QNAME, ListerDomainesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Constitutionindex }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "constitutionindex")
+    public JAXBElement<Constitutionindex> createConstitutionindex(Constitutionindex value) {
+        return new JAXBElement<Constitutionindex>(_Constitutionindex_QNAME, Constitutionindex.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerTypeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerTypeResponse")
+    public JAXBElement<ListerTypeResponse> createListerTypeResponse(ListerTypeResponse value) {
+        return new JAXBElement<ListerTypeResponse>(_ListerTypeResponse_QNAME, ListerTypeResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParTitreLivre }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParTitreLivre")
+    public JAXBElement<RechercheParTitreLivre> createRechercheParTitreLivre(RechercheParTitreLivre value) {
+        return new JAXBElement<RechercheParTitreLivre>(_RechercheParTitreLivre_QNAME, RechercheParTitreLivre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParType")
+    public JAXBElement<RechercheParType> createRechercheParType(RechercheParType value) {
+        return new JAXBElement<RechercheParType>(_RechercheParType_QNAME, RechercheParType.class, null, value);
     }
 
     /**
@@ -248,21 +481,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerThemes }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerThemes")
+    public JAXBElement<ListerThemes> createListerThemes(ListerThemes value) {
+        return new JAXBElement<ListerThemes>(_ListerThemes_QNAME, ListerThemes.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RechercherLivreComplxeResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercherLivreComplxeResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse> createRechercherLivreComplxeResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse>(_RechercherLivreComplxeResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxeResponse.class, null, value);
+    public JAXBElement<RechercherLivreComplxeResponse> createRechercherLivreComplxeResponse(RechercherLivreComplxeResponse value) {
+        return new JAXBElement<RechercherLivreComplxeResponse>(_RechercherLivreComplxeResponse_QNAME, RechercherLivreComplxeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParThemeResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerType }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParThemeResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse> createRechercheParThemeResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse>(_RechercheParThemeResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParThemeResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerType")
+    public JAXBElement<ListerType> createListerType(ListerType value) {
+        return new JAXBElement<ListerType>(_ListerType_QNAME, ListerType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DesindexationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "desindexationResponse")
+    public JAXBElement<DesindexationResponse> createDesindexationResponse(DesindexationResponse value) {
+        return new JAXBElement<DesindexationResponse>(_DesindexationResponse_QNAME, DesindexationResponse.class, null, value);
     }
 
     /**
@@ -270,8 +521,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParEditeurLivreResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse> createRechercheParEditeurLivreResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse>(_RechercheParEditeurLivreResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivreResponse.class, null, value);
+    public JAXBElement<RechercheParEditeurLivreResponse> createRechercheParEditeurLivreResponse(RechercheParEditeurLivreResponse value) {
+        return new JAXBElement<RechercheParEditeurLivreResponse>(_RechercheParEditeurLivreResponse_QNAME, RechercheParEditeurLivreResponse.class, null, value);
     }
 
     /**
@@ -279,8 +530,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParEditeurLivre")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre> createRechercheParEditeurLivre(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre>(_RechercheParEditeurLivre_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParEditeurLivre.class, null, value);
+    public JAXBElement<RechercheParEditeurLivre> createRechercheParEditeurLivre(RechercheParEditeurLivre value) {
+        return new JAXBElement<RechercheParEditeurLivre>(_RechercheParEditeurLivre_QNAME, RechercheParEditeurLivre.class, null, value);
     }
 
     /**
@@ -288,8 +539,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParTheme")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme> createRechercheParTheme(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme>(_RechercheParTheme_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTheme.class, null, value);
+    public JAXBElement<RechercheParTheme> createRechercheParTheme(RechercheParTheme value) {
+        return new JAXBElement<RechercheParTheme>(_RechercheParTheme_QNAME, RechercheParTheme.class, null, value);
     }
 
     /**
@@ -297,26 +548,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParExemplaire")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire> createRechercheParExemplaire(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire>(_RechercheParExemplaire_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaire.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParExemplaireResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParExemplaireResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse> createRechercheParExemplaireResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse>(_RechercheParExemplaireResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParExemplaireResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RechercherLivreComplxe }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercherLivreComplxe")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe> createRechercherLivreComplxe(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe>(_RechercherLivreComplxe_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercherLivreComplxe.class, null, value);
+    public JAXBElement<RechercheParExemplaire> createRechercheParExemplaire(RechercheParExemplaire value) {
+        return new JAXBElement<RechercheParExemplaire>(_RechercheParExemplaire_QNAME, RechercheParExemplaire.class, null, value);
     }
 
     /**
@@ -324,8 +557,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParDomaine")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine> createRechercheParDomaine(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine>(_RechercheParDomaine_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaine.class, null, value);
+    public JAXBElement<RechercheParDomaine> createRechercheParDomaine(RechercheParDomaine value) {
+        return new JAXBElement<RechercheParDomaine>(_RechercheParDomaine_QNAME, RechercheParDomaine.class, null, value);
     }
 
     /**
@@ -333,8 +566,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParTypeResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse> createRechercheParTypeResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse>(_RechercheParTypeResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTypeResponse.class, null, value);
+    public JAXBElement<RechercheParTypeResponse> createRechercheParTypeResponse(RechercheParTypeResponse value) {
+        return new JAXBElement<RechercheParTypeResponse>(_RechercheParTypeResponse_QNAME, RechercheParTypeResponse.class, null, value);
     }
 
     /**
@@ -351,8 +584,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParDomaineResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse> createRechercheParDomaineResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse>(_RechercheParDomaineResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParDomaineResponse.class, null, value);
+    public JAXBElement<RechercheParDomaineResponse> createRechercheParDomaineResponse(RechercheParDomaineResponse value) {
+        return new JAXBElement<RechercheParDomaineResponse>(_RechercheParDomaineResponse_QNAME, RechercheParDomaineResponse.class, null, value);
     }
 
     /**
@@ -360,8 +593,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParTitreLivreResponse")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse> createRechercheParTitreLivreResponse(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse>(_RechercheParTitreLivreResponse_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivreResponse.class, null, value);
+    public JAXBElement<RechercheParTitreLivreResponse> createRechercheParTitreLivreResponse(RechercheParTitreLivreResponse value) {
+        return new JAXBElement<RechercheParTitreLivreResponse>(_RechercheParTitreLivreResponse_QNAME, RechercheParTitreLivreResponse.class, null, value);
     }
 
     /**
@@ -369,17 +602,8 @@ public class ObjectFactory {
      * 
      */
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParAuteurLivre")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre> createRechercheParAuteurLivre(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre>(_RechercheParAuteurLivre_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParAuteurLivre.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AjouterLivre }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "ajouterLivre")
-    public JAXBElement<AjouterLivre> createAjouterLivre(AjouterLivre value) {
-        return new JAXBElement<AjouterLivre>(_AjouterLivre_QNAME, AjouterLivre.class, null, value);
+    public JAXBElement<RechercheParAuteurLivre> createRechercheParAuteurLivre(RechercheParAuteurLivre value) {
+        return new JAXBElement<RechercheParAuteurLivre>(_RechercheParAuteurLivre_QNAME, RechercheParAuteurLivre.class, null, value);
     }
 
     /**
@@ -392,12 +616,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link RechercheParTitreLivre }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListerThemesResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "rechercheParTitreLivre")
-    public JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre> createRechercheParTitreLivre(projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre value) {
-        return new JAXBElement<projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre>(_RechercheParTitreLivre_QNAME, projetlivrebatchservice.batch.clientservices.generated.serviceLivre.RechercheParTitreLivre.class, null, value);
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "listerThemesResponse")
+    public JAXBElement<ListerThemesResponse> createListerThemesResponse(ListerThemesResponse value) {
+        return new JAXBElement<ListerThemesResponse>(_ListerThemesResponse_QNAME, ListerThemesResponse.class, null, value);
     }
 
 }

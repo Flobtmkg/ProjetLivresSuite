@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 public class EtatPretResponse {
 
     @XmlElement(name = "return")
-    protected projetlivrebatchservice.batch.clientservices.generated.servicePret.Pret _return;
+    protected Pret _return;
 
     /**
      * Obtient la valeur de la propri�t� return.
@@ -43,7 +43,7 @@ public class EtatPretResponse {
      *     {@link Pret }
      *     
      */
-    public projetlivrebatchservice.batch.clientservices.generated.servicePret.Pret getReturn() {
+    public Pret getReturn() {
         return _return;
     }
 
@@ -55,7 +55,7 @@ public class EtatPretResponse {
      *     {@link Pret }
      *     
      */
-    public void setReturn(projetlivrebatchservice.batch.clientservices.generated.servicePret.Pret value) {
+    public void setReturn(Pret value) {
         this._return = value;
     }
 

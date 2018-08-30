@@ -39,4 +39,9 @@ public class ServiceExemplaire extends Service {
         }
     }
 
+    @WebMethod
+    public Exemplaire getExemplaireById(int idExemplaire){
+        return monDaoExemplaire.getExemplaireById(idExemplaire);
+    }
+
 }

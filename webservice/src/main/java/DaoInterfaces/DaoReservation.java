@@ -9,6 +9,7 @@ public interface DaoReservation {
     List<PreReservation> getListeAttente(int idLivre);
     List<PreReservation> getListeReservationByUser(int idUtilisateur);
     List<PreReservation> getReservationEffectiveByLivre(int idLivre);
+    List<PreReservation> getAllReservationsEffectives();
     List<PreReservation> getEnvoiEmailListeReservationTempsEffectfDepasse();
     PreReservation getReservationById(int idReservation);
     void annulerReservation(int idReservation);

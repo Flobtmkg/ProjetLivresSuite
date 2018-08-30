@@ -26,6 +26,20 @@ public class PretsDao {
         return resultat;
     }
 
+    public List<Reservation> listPretsLivre(int idLivre, String wsdlAdress){
+        try{
+            urlWsdl=new URL(wsdlAdress);
+        }catch(Exception e){
+
+        }
+        //
+        ServicePretService monservice= new ServicePretService(urlWsdl);
+        ServicePret accesPret=monservice.getServicePretPort();
+        resultat=accesPret.listerInfosPretLivre(idLivre);
+        //
+        return resultat;
+    }
+
     public void prolongerPrets(ArrayList<String> idPrets, String wsdlAdress){
         try{
             urlWsdl=new URL(wsdlAdress);
@@ -41,6 +55,7 @@ public class PretsDao {
         }
         //
     }
+
 
 
 }

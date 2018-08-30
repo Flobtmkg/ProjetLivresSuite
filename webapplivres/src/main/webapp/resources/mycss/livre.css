@@ -1,13 +1,14 @@
 body{background-repeat: no-repeat; background-attachment: fixed;min-width: 510px}
 #presentation{float:left; padding:0; margin-top: 10px}
 div#divdefond{position:fixed;height:100%;width:100%; top:0px; background-color:rgba(0, 0, 0, 0.7); z-index: -1}
-div#cadrephoto{height:400px;width:400px;float:left}
+div#cadrephoto{height:400px;float:left}
 div#blockTransparent{height:400px;width:20px; float:left}
 textarea#textDescription{resize: none;font-style: italic}
 textarea#textDescription0{resize: none;font-style: italic;color:rgba(220,220,220,1);background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,0)}
 textarea#textDescription1{resize: none;font-style: italic;color:rgba(220,220,220,1);background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,0);width:33.33%!important;padding:0}
 .blockdescription{float: left;margin-top:20px;padding:0px;background-color:rgba(255,255,255,0.1)}
-form#blockdescription2{margin-top:10px;padding-left:10px;padding-top:0px;padding-right:10px;padding-bottom:0px;background-color:rgba(255,255,255,0.1)}
+.blockdescription3{float: left;margin-top:20px;padding:0px;background-color:rgba(255,255,255,0)}
+.nonreservation{color: rgba(255,255,0,0.4)}
 .paneldescription{margin-bottom:10px}
 .infossurnoir{color:rgba(220, 220, 220, 1); text-shadow:0px 2px 4px rgba(0, 0, 0, 0.5);}
 #infossoftsurnoir{color:rgba(220, 220, 220, 0.6); text-shadow:0px 2px 4px rgba(0, 0, 0, 0.5);}
@@ -30,6 +31,14 @@ div#buttonsupp{margin-top:30px;padding-left:0}
 div#ligne{border-bottom:1px;border-color:rgba(180, 180, 180, 0.05);border-bottom-style: solid;padding-top:10px; margin-left:0px;margin-right:0px}
 div#ligneheader{border-bottom:2px;border-color:rgba(255, 255, 255, 0.6);border-bottom-style: solid}
 .contenuheader{padding-left:15px;padding-right:15px}
+.blockdescription2{
+    margin-top:10px;
+    padding-left:10px;
+    padding-top:0px;
+    padding-right:10px;
+    padding-bottom:0px;
+    background-color:rgba(255,255,255,0.1);
+}
 .label1{
     color:rgba(180, 180, 180, 1);
     text-shadow:0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -41,4 +50,31 @@ div#ligneheader{border-bottom:2px;border-color:rgba(255, 255, 255, 0.6);border-b
 }
 .textgrise{
     color:rgba(180, 180, 180, 1);
+}
+.btnCustom {
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+}
+
+.btnCustom:hover {
+    background-position: right center; /* change the direction of the change here */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 1);
+    color: white;
+}
+
+.btnGris {
+    background-image: linear-gradient(to right, #4c7d56 0%, #98b9e1 51%, #4c7d56 100%);
+}
+
+
+.liensBody:hover {
+    color: rgba(0, 0, 0, 1);
+    text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+.liensBody{
+    color:rgba(0, 0, 0, 1);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }

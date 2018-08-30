@@ -2,15 +2,22 @@ package webAppProjetLivre.strutsAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import webAppProjetLivre.classesTravail.RequestManager;
 import webAppProjetLivre.classesTravail.DateTool;
 import webAppProjetLivre.classesTravail.UpdateUtilisateurDao;
 import webAppProjetLivre.generated.serviceUtilisateur.Utilisateur;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class modifInfosGeneralesAction extends ActionSupport implements SessionAware,ServletRequestAware {
+
+
+    private HttpServletRequest currentRequest;
+
     //
     private Utilisateur UserAModif;
     private UpdateUtilisateurDao accesModifUtilisateur;
@@ -22,6 +29,7 @@ public class modifInfosGeneralesAction extends ActionSupport implements SessionA
     private String dateNaissance;
     private String email;
     //
+
     public String getPrenom() {
         return prenom;
     }
@@ -85,13 +93,13 @@ public class modifInfosGeneralesAction extends ActionSupport implements SessionA
     //
     @Override
     public void setServletRequest(HttpServletRequest httpServletRequest) {
-        String referer=httpServletRequest.getHeader("Referer");
-        this.setCommandPage(referer);
+        this.currentRequest=httpServletRequest;
     }
     //
 
     public String execute() {
         //
+
         Utilisateur userEnCours=(Utilisateur) session.get("userGuest");
         UserAModif= new Utilisateur();
         this.UserAModif.setPrenomUtilisateur(this.prenom);
@@ -111,7 +119,8 @@ public class modifInfosGeneralesAction extends ActionSupport implements SessionA
         // On rebalance le profile dans la session
         session.put("userGuest",UserAModif);
         //
-        commandPage=commandPage+"#ModalValidation";
+        commandPage=RequestManager.pagePrecedenteParametrable(currentRequest,"#ModalValidation");
         return SUCCESS;
     }
+
 }

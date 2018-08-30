@@ -39,7 +39,8 @@ public class ServiceUtilisateur extends Service {
         return isExist;
     }
 
-    @WebMethod    public void modifUtilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
+    @WebMethod
+    public void modifUtilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur, String mdpUtilisateur, String datenaissanceutilisateur){
         Utilisateur utilisateurInput= new Utilisateur();
         utilisateurInput.setIdUtilisateur(idUtilisateur);
         utilisateurInput.setNomUtilisateur(nomUtilisateur);
@@ -53,4 +54,8 @@ public class ServiceUtilisateur extends Service {
         monDaoUtilisateur.modifierUtilisateur(utilisateurInput);
     }
 
+    @WebMethod
+    public Utilisateur getUserById(int idUtilisateur){
+        return monDaoUtilisateur.getUserByID(idUtilisateur);
+    }
 }

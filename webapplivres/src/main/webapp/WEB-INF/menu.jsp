@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <nav id="barre" class="navbar navbar-light navbar-expand-md container-fluid" role="navigation" onmousemove="editPriorite(false)">
     <div class="navbar-header">
-        <a href="./accueil" ><img class="navbar-btn rotatelogo" src="/resources/img/livre8.png" width="50" height="46"></a>
+        <a href="./accueil" ><img class="navbar-btn rotatelogo" src="./resources/img/livre8.png" width="50" height="46"></a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -7,5 +7,6 @@ public interface DaoUtilisateur {
     void ajouterUtilisateur(Utilisateur inputUtilisateur);
     boolean isEmailExistInBase(String inputEmail);
     void modifierUtilisateur(Utilisateur inputUtilisateur);
+    void defOptionRappel(int idUtilisateur, boolean optionRappel);
     Utilisateur getUserByID(int idUtilisateur);
 }

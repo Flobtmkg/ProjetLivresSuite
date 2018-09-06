@@ -1,3 +1,4 @@
+
 package projetlivrebatchservice.batch.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class Jobs {
     String separateur=System.getProperty("line.separator");
     @Autowired
     private WsdlLocationObject wsdl1;
+    @Autowired
+    private int nbJoursRappelAvantFinPret;
 
 
 
@@ -50,11 +53,44 @@ public class Jobs {
         // job1
         jobPretNonRendus();
         // job2
+        jobRappelFinPret();
+        // job3
         jobEffectiviteReservations();
         System.out.println("--> "+LocalDateTime.now()+"; All Jobs are done.");
     }
 
 
+    private void jobRappelFinPret() throws Exception{
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job start : jobRappelFinPret.");
+        URL serviceUrl;
+        serviceUrl=new URL(wsdl1.getWsdlLocationPret());
+        ServicePretService monservice= new ServicePretService(serviceUrl);
+        ServicePret accesPret=monservice.getServicePretPort();
+        List<Reservation> pretEnRappel=accesPret.listerPretByDaysBeforeDateFinPret(nbJoursRappelAvantFinPret);
+
+        long actualTime;
+        long pauseEmail=0;
+        for (Reservation res:pretEnRappel) {
+            if(res.getUtilisateurReservation().isOptionRappel()==true){
+                //On évite de surcharger le SMTP en demandes trop rapprochées surtout tant qu'on utilise le Google SMTP
+                while (System.currentTimeMillis()<pauseEmail){
+                    //waitin' hard while we threadin' ♪
+                }
+                actualTime = System.currentTimeMillis();
+                pauseEmail = actualTime+emailAEnvoyer.getConnexionPauseInterEmail();// un mail toutes les 15 secondes par defaut
+                //
+                String textEmail;
+                textEmail="Bonjour "+res.getUtilisateurReservation().getPrenomUtilisateur()+" "+res.getUtilisateurReservation().getNomUtilisateur() +","+separateur+separateur+"nous vous informons que votre emprunt de l'exemplaire "+res.getExemplaireReservation().getCoteExemplaire()+" du livre "+ res.getLivreReservation().getTitreLivre()+" de "+ res.getLivreReservation().getAuteurLivre()+" est arrivé à moins de " + nbJoursRappelAvantFinPret + " jours du terme de sa période de réservation ayant court du "+conversionFormatDate(res.getPretReservation().getDateDebutPret())+" au "+conversionFormatDate(res.getPretReservation().getDateFinPret())+"."+separateur+separateur+"Nous vous rappelons qu'il est impératif de nous retourner cet exemplaire avant la date d'expiration de l'emprunt."+separateur+separateur+"D'avance merci."+separateur+separateur+"La gestion des retours de votre bibliothèque.";
+                //
+                String erreur1=EnvoiEmail.envoi(emailAEnvoyer.getConnexionHost(),emailAEnvoyer.getConnexionFromWho(),emailAEnvoyer.getConnexionUsername(),emailAEnvoyer.getConnexionPassword(),res.getUtilisateurReservation().getEmailUtilisateur(),"Retour de vos emprunts de livres",textEmail);
+                //
+                if(erreur1.equals("")==false){
+                    System.out.println("--> "+LocalDateTime.now()+"; UtilisateurID "+res.getUtilisateurReservation().getIdUtilisateur()+"; PretID "+res.getPretReservation().getIdPret()+"; Email "+res.getUtilisateurReservation().getEmailUtilisateur() + "  ->  " +erreur1);
+                }
+            }
+        }
+        System.out.println("--> "+LocalDateTime.now()+"; Batch job end : jobRappelFinPret.");
+    }
 
 
     private void jobEffectiviteReservations()throws Exception{

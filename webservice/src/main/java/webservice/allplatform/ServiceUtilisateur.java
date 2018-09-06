@@ -55,6 +55,11 @@ public class ServiceUtilisateur extends Service {
     }
 
     @WebMethod
+    public void defOptionRappelUtilisateur(int idUtilisateur, boolean optionRappel){
+        monDaoUtilisateur.defOptionRappel(idUtilisateur,optionRappel);
+    }
+
+    @WebMethod
     public Utilisateur getUserById(int idUtilisateur){
         return monDaoUtilisateur.getUserByID(idUtilisateur);
     }

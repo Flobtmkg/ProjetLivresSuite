@@ -104,6 +104,35 @@
     </div>
 </div>
 <!---->
+<!---->
+<div id="ModalConfirmationOptionRappel" class="cModal">
+    <div>
+        <header>
+            <h2 class="modalHeader">Confirmation requise</h2>
+        </header>
+        <div class="contenuErreur">
+            <div class="contenuImageErreur"style="float: left; margin-right:15px;box-sizing: content-box">
+                <i style="color: darkblue" class="fas fa-question-circle fa-5x"></i>
+            </div>
+            <c:if test="${sessionScope.userGuest.optionRappel==true}">
+                <p class="texterreur">Confirmez vous vouloir desactiver l'option de rappel ?</p>
+            </c:if>
+            <c:if test="${sessionScope.userGuest.optionRappel==false}">
+                <p class="texterreur">Confirmez vous vouloir activer l'option de rappel ?</p>
+            </c:if>
+        </div>
+        <footer>
+            <a href="#fermer" class="btn btn-outline-secondary btn-sm modalMargin"><i class="fas fa-times"></i> Fermer</a>
+            <c:if test="${sessionScope.userGuest.optionRappel==true}">
+                <a href="defOptionRappel?rappel=false" class="btn btn-primary btn-sm modalMargin"><i class="fas fa-times"></i> Confirmer</a>
+            </c:if>
+            <c:if test="${sessionScope.userGuest.optionRappel==false}">
+                <a href="defOptionRappel?rappel=true" class="btn btn-primary btn-sm modalMargin"><i class="fas fa-times"></i> Confirmer</a>
+            </c:if>
+        </footer>
+    </div>
+</div>
+<!---->
 <div id="Modalmodif" class="cModal">
     <div>
         <header>
@@ -315,6 +344,18 @@
             <h5 class="infossurnoir">${sessionScope.userGuest.emailUtilisateur}</h5>
             <a class="btn btn-secondary btn-sm reglage" title="Paramètres" href="#Modalmodif"><i class="fas fa-cog"></i></a>
             <label class="label1 labelparametre"> Modifier les infos</label>
+            <c:if test="${sessionScope.userGuest.optionRappel==true}">
+                <div class="label1 custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlInline" checked>
+                    <a href="#ModalConfirmationOptionRappel" class="custom-control-label linkBlanc" style="margin:0" for="customControlInline"> Rappel d'expiration des emprunts à 5 jours</a>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.userGuest.optionRappel==false}">
+                <div class="label1 custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlInline2">
+                    <a href="#ModalConfirmationOptionRappel" class="custom-control-label linkBlanc" style="margin:0" for="customControlInline2"> Rappel d'expiration des emprunts à 5 jours</a>
+                </div>
+            </c:if>
         </div>
     </div>
     <!--  -->
@@ -337,7 +378,7 @@
                         <!---->
                         <!-- On test si la réservation est en retard et on affiche en rouge -->
                         <c:if test="${fn:contains(reservationUtilisateurRetard,reservation)}">
-                            <div class="row ligne badRow">
+                            <div class="row ligne badRow2">
                                 <p class="col-3 petittextsurnoir badText txtaucentre"><i class="fas fa-exclamation-triangle"></i> <a class="badText" href="redirectionEspaceUtilisateur?id=${reservation.pretReservation.idPret}#ModalInfos">ID n°${reservation.pretReservation.idPret}</a></p>
                                 <p class="col-3 petittextsurnoir txtaucentre">${reservation.livreReservation.titreLivre}</p>
                                 <p class="col-3 petittextsurnoir txtaucentre">${reservation.pretReservation.dateDebutPret}</p>
@@ -348,7 +389,7 @@
                         <!---->
                         <c:if test="${!fn:contains(reservationUtilisateurRetard,reservation)}">
                             <div class="row ligne">
-                                <p class="col-3 petittextsurnoir txtaucentre"><a href="redirectionEspaceUtilisateur?id=${reservation.pretReservation.idPret}#ModalInfos">ID n°${reservation.pretReservation.idPret}</a></p>
+                                <p class="col-3 petittextsurnoir txtaucentre"><a class="linkBlanc" href="redirectionEspaceUtilisateur?id=${reservation.pretReservation.idPret}#ModalInfos">ID n°${reservation.pretReservation.idPret}</a></p>
                                 <p class="col-3 petittextsurnoir txtaucentre">${reservation.livreReservation.titreLivre}</p>
                                 <p class="col-3 petittextsurnoir txtaucentre">${reservation.pretReservation.dateDebutPret}</p>
                                 <p class="col-3 petittextsurnoir txtaucentre">${reservation.pretReservation.dateFinPret}</p>
@@ -397,12 +438,12 @@
                         <!-- On test si la préréservation est dépassée -->
                         <c:if test="${prereservation.state == AFFECTIVITEDEP}">
                             <div class="row ligne badRow2">
-                                <p class="col-1 petittextsurnoir txtaucentre"><i class="fas fa-exclamation-triangle"></i> ID n°${prereservation.reservation.idReservation}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
-                                <p class="col-2 petittextsurnoir txtaucentre">${prereservation.dateResFR}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">/</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">${prereservation.stateStr}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">/</p>
+                                <p class="col-1 desableText txtaucentre"><i class="fas fa-exclamation-triangle"></i> ID n°${prereservation.reservation.idReservation}</p>
+                                <p class="col-2 desableText txtaucentre"><a target="_blank" class="linkBlanc" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
+                                <p class="col-2 desableText txtaucentre">${prereservation.dateResFR}</p>
+                                <p class="col-2 desableText txtaucentre">/</p>
+                                <p class="col-2 desableText txtaucentre">${prereservation.stateStr}</p>
+                                <p class="col-2 desableText txtaucentre">/</p>
                                 <div style="margin-left: auto; margin-right: auto">
                                     <!-- <a class="btn btn-secondary btn-sm" href="?resid=${prereservation.reservation.idReservation}#ModalConfirmationAnnulation"><i class="fas fa-times-circle"></i></a> -->
                                     <button class="btn btn-secondary btn-sm" disabled="true"><i class="fas fa-times"></i></button>
@@ -414,7 +455,7 @@
                         <c:if test="${prereservation.state == ATTENTE}">
                             <div class="row ligne">
                                 <p class="col-1 petittextsurnoir txtaucentre">ID n°${prereservation.reservation.idReservation}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
+                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" class="linkBlanc" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
                                 <p class="col-2 petittextsurnoir txtaucentre">${prereservation.dateResFR}</p>
                                 <p class="col-2 petittextsurnoir txtaucentre">${prereservation.dateProchainRetourPrevu}</p>
                                 <p class="col-2 petittextsurnoir txtaucentre">${prereservation.stateStr}</p>
@@ -429,7 +470,7 @@
                         <c:if test="${prereservation.state == EFFECTIF}">
                             <div class="row ligne">
                                 <p class="col-1 petittextsurnoir txtaucentre">ID n°${prereservation.reservation.idReservation}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
+                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" class="linkBlanc" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
                                 <p class="col-2 petittextsurnoir txtaucentre">${prereservation.dateResFR}</p>
                                 <p class="col-2 petittextsurnoir txtaucentre">/</p>
                                 <p class="col-2 petittextsurnoir txtaucentre">${prereservation.stateStr}</p>
@@ -443,12 +484,12 @@
                         <!-- On test si la préréservation est annulée ou termminée -->
                         <c:if test="${prereservation.state == ANNULE || prereservation.state == TERMINE}">
                             <div class="row ligne badRow2">
-                                <p class="col-1 petittextsurnoir txtaucentre">ID n°${prereservation.reservation.idReservation}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre"><a target="_blank" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
-                                <p class="col-2 petittextsurnoir txtaucentre">${prereservation.dateResFR}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">/</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">${prereservation.stateStr}</p>
-                                <p class="col-2 petittextsurnoir txtaucentre">/</p>
+                                <p class="col-1 desableText txtaucentre">ID n°${prereservation.reservation.idReservation}</p>
+                                <p class="col-2 desableText txtaucentre"><a target="_blank" class="linkBlanc" href="redirectionLivre?id=${prereservation.livrereserve.idLivre}">${prereservation.livrereserve.titreLivre}</a></p>
+                                <p class="col-2 desableText txtaucentre">${prereservation.dateResFR}</p>
+                                <p class="col-2 desableText txtaucentre">/</p>
+                                <p class="col-2 desableText txtaucentre">${prereservation.stateStr}</p>
+                                <p class="col-2 desableText txtaucentre">/</p>
                                 <div style="margin-left: auto; margin-right: auto">
                                     <!-- <a class="btn btn-secondary btn-sm" href="?resid=${prereservation.reservation.idReservation}#ModalConfirmationAnnulation"><i class="fas fa-times-circle"></i></a> -->
                                     <button class="btn btn-secondary btn-sm" disabled="true"><i class="fas fa-times"></i></button>

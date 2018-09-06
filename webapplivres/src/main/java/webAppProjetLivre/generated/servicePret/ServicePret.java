@@ -45,10 +45,10 @@ public interface ServicePret {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listerInfosPretUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretUtilisateur")
-    @ResponseWrapper(localName = "listerInfosPretUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretUtilisateurResponse")
-    @Action(input = "http://allplatform.webservice/ServicePret/listerInfosPretUtilisateurRequest", output = "http://allplatform.webservice/ServicePret/listerInfosPretUtilisateurResponse")
-    public List<Reservation> listerInfosPretUtilisateur(
+    @RequestWrapper(localName = "listerInfosPretLivre", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretLivre")
+    @ResponseWrapper(localName = "listerInfosPretLivreResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretLivreResponse")
+    @Action(input = "http://allplatform.webservice/ServicePret/listerInfosPretLivreRequest", output = "http://allplatform.webservice/ServicePret/listerInfosPretLivreResponse")
+    public List<Reservation> listerInfosPretLivre(
             @WebParam(name = "arg0", targetNamespace = "")
                     int arg0);
 
@@ -60,37 +60,10 @@ public interface ServicePret {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listerInfosPretLivre", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretLivre")
-    @ResponseWrapper(localName = "listerInfosPretLivreResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretLivreResponse")
-    @Action(input = "http://allplatform.webservice/ServicePret/listerInfosPretLivreRequest", output = "http://allplatform.webservice/ServicePret/listerInfosPretLivreResponse")
-    public List<Reservation> listerInfosPretLivre(
-            @WebParam(name = "arg0", targetNamespace = "")
-                    int arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "prolongerPret", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ProlongerPret")
-    @ResponseWrapper(localName = "prolongerPretResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ProlongerPretResponse")
-    @Action(input = "http://allplatform.webservice/ServicePret/prolongerPretRequest", output = "http://allplatform.webservice/ServicePret/prolongerPretResponse")
-    public void prolongerPret(
-            @WebParam(name = "arg0", targetNamespace = "")
-                    int arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns clientservices.generated.servicePret.Pret
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "etatPret", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.EtatPret")
-    @ResponseWrapper(localName = "etatPretResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.EtatPretResponse")
-    @Action(input = "http://allplatform.webservice/ServicePret/etatPretRequest", output = "http://allplatform.webservice/ServicePret/etatPretResponse")
-    public Pret etatPret(
+    @RequestWrapper(localName = "listerInfosPretUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretUtilisateur")
+    @ResponseWrapper(localName = "listerInfosPretUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ListerInfosPretUtilisateurResponse")
+    @Action(input = "http://allplatform.webservice/ServicePret/listerInfosPretUtilisateurRequest", output = "http://allplatform.webservice/ServicePret/listerInfosPretUtilisateurResponse")
+    public List<Reservation> listerInfosPretUtilisateur(
             @WebParam(name = "arg0", targetNamespace = "")
                     int arg0);
 
@@ -121,12 +94,39 @@ public interface ServicePret {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns clientservices.generated.servicePret.Pret
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "etatPret", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.EtatPret")
+    @ResponseWrapper(localName = "etatPretResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.EtatPretResponse")
+    @Action(input = "http://allplatform.webservice/ServicePret/etatPretRequest", output = "http://allplatform.webservice/ServicePret/etatPretResponse")
+    public Pret etatPret(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
+
+    /**
+     * 
+     * @param arg0
      */
     @WebMethod
     @RequestWrapper(localName = "retourPret", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.RetourPret")
     @ResponseWrapper(localName = "retourPretResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.RetourPretResponse")
     @Action(input = "http://allplatform.webservice/ServicePret/retourPretRequest", output = "http://allplatform.webservice/ServicePret/retourPretResponse")
     public void retourPret(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "prolongerPret", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ProlongerPret")
+    @ResponseWrapper(localName = "prolongerPretResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.servicePret.ProlongerPretResponse")
+    @Action(input = "http://allplatform.webservice/ServicePret/prolongerPretRequest", output = "http://allplatform.webservice/ServicePret/prolongerPretResponse")
+    public void prolongerPret(
             @WebParam(name = "arg0", targetNamespace = "")
                     int arg0);
 

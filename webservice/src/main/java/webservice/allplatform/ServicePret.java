@@ -14,6 +14,14 @@ import java.util.List;
 @WebService
 public class ServicePret extends Service{
 
+
+    @WebMethod
+    public ArrayList<Reservation> listerPretByDaysBeforeDateFinPret(int days){
+        ArrayList<Reservation> pretsApprocheFin = monDaoPret.listerPretByDaysBeforeDateFinPret(days);
+        return pretsApprocheFin;
+    }
+
+
     @WebMethod
     public void ajouterPret(int idexemplaire,int idutilisateur,String datedebutpret,boolean prolongepret,boolean rendupret){
         Pret newPretInput= new Pret();

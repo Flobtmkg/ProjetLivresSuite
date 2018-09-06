@@ -36,4 +36,19 @@ public class UpdateUtilisateurDao {
         accesUtilisateur.modifUtilisateur(utilisateurInput.getIdUtilisateur(),utilisateurInput.getNomUtilisateur(),utilisateurInput.getPrenomUtilisateur(),utilisateurInput.getEmailUtilisateur(),utilisateurInput.getMdpUtilisateur(),utilisateurInput.getDateNaissanceUtilisateur());
         //
     }
+
+    public void updateOptionRappel(int idUtilisateur, boolean optionRappel, String wsdlAdress){
+        try{
+            urlWsdl=new URL(wsdlAdress);
+        }catch(Exception e){
+
+        }
+        //
+        ServiceUtilisateurService monservice= new ServiceUtilisateurService(urlWsdl);
+        ServiceUtilisateur accesUtilisateur=monservice.getServiceUtilisateurPort();
+        //
+        accesUtilisateur.defOptionRappelUtilisateur(idUtilisateur,optionRappel);
+        //
+    }
+
 }

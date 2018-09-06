@@ -4,9 +4,10 @@ import webAppProjetLivre.classesTravail.EtatPreReservation;
 import webAppProjetLivre.generated.serviceLivre.Livre;
 import webAppProjetLivre.generated.serviceReservation.PreReservation;
 
+import javax.xml.datatype.DatatypeConstants;
 import java.util.GregorianCalendar;
 
-public class PreReservationExtend {
+public class PreReservationExtend implements Comparable<PreReservationExtend>{
 
     // datas
     EtatPreReservation state;
@@ -97,17 +98,25 @@ public class PreReservationExtend {
     }
 
     private void alimentationDesChamps(){
-        String d = String.valueOf(reservation.getDateReservation().toGregorianCalendar().get(GregorianCalendar.DAY_OF_MONTH));
-        String m = String.valueOf(reservation.getDateReservation().toGregorianCalendar().get(GregorianCalendar.MONTH));
-        String y = String.valueOf(reservation.getDateReservation().toGregorianCalendar().get(GregorianCalendar.YEAR));
+        String d = String.valueOf(reservation.getDateReservation().getDay());
+        String m = String.valueOf(reservation.getDateReservation().getMonth());
+        String y = String.valueOf(reservation.getDateReservation().getYear());
         if(d.length()<2){
-            d="0" + d;
+            d ="0" + d;
         }
         if(m.length()<2){
-            m="0" + m;
+            m ="0" + m;
         }
         this.dateResFR = d + "/" + m + "/" + y;
         this.stateStr = state.toString();
     }
 
+    @Override
+    public int compareTo(PreReservationExtend pre) {
+        if (pre.getReservation().getIdReservation()>this.getReservation().getIdReservation()){
+            return 1;
+        }else{
+            return -1;
+        }
+    }
 }

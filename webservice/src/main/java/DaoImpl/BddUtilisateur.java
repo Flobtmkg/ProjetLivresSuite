@@ -4,6 +4,7 @@ import DaoInterfaces.DaoUtilisateur;
 import ServicesBeans.Utilisateur;
 import classesTravail.CodageGuillemets;
 import jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -19,6 +20,58 @@ import java.util.Map;
 @Repository
 public class BddUtilisateur extends Impl implements DaoUtilisateur {
     //
+    @Autowired
+    private boolean defaultReminder;
+
+
+    private ArrayList<Utilisateur> utilisateurListMapper (List<Map<String,Object>> rows ){
+        ArrayList<Utilisateur> utilisateurList = new ArrayList<Utilisateur>();
+        for (Map row : rows) {
+            Utilisateur lUtilisateur=new Utilisateur();
+            lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
+            lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
+            lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+            lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+            lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
+            lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+
+            Object booleanObject = row.get("option_rappel");
+            // traitement du cas de nullité du boolean
+            if(booleanObject==null){
+                lUtilisateur.setOptionRappel(defaultReminder);
+            }else{
+                lUtilisateur.setOptionRappel((boolean) booleanObject);
+            }
+            utilisateurList.add(lUtilisateur);
+        }
+        //
+        return utilisateurList;
+    }
+    private Utilisateur utilisateurMapper (List<Map<String,Object>> rows ){
+        Utilisateur lUtilisateur=new Utilisateur();
+        for (Map row : rows) {
+            lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
+            lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
+            lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+            lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+            lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
+            lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+
+            Object booleanObject = row.get("option_rappel");
+            // traitement du cas de nullité du boolean
+            if(booleanObject==null){
+                lUtilisateur.setOptionRappel(defaultReminder);
+            }else{
+                lUtilisateur.setOptionRappel((boolean) booleanObject);
+            }
+        }
+        //
+        return lUtilisateur;
+    }
+
+
+
+
     @Override
     public Utilisateur autentifier(String emailInput, String mdpInput) {
         //
@@ -32,19 +85,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 final String AUTENTIFIER = "SELECT * FROM utilisateur WHERE emailutilisateur=?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(AUTENTIFIER,new Object[] {emailInput});
-                ArrayList<Utilisateur> multiAdressesPourTest = new ArrayList<Utilisateur>();
-                for (Map row : rows) {
-                    Utilisateur lUtilisateur=new Utilisateur();
-                    lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
-                    lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                    lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                    lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                    lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                    multiAdressesPourTest.add(lUtilisateur);
-                }
-                //
-                return multiAdressesPourTest;
+                return utilisateurListMapper(rows);
             }
         });
 
@@ -100,17 +141,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                     final String TESTEREMAIL = "SELECT * FROM utilisateur WHERE emailutilisateur=?;";
                     //
                     List<Map<String,Object>> rows = jdbcTemplate.queryForList(TESTEREMAIL,new Object[] {inputEmail});
-                    Utilisateur lUtilisateur=new Utilisateur();
-                    for (Map row : rows) {
-                        lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                        lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
-                        lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                        lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                        lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                        lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                    }
-                    //
-                    return lUtilisateur;
+                    return utilisateurMapper(rows);
                 }
             });
 
@@ -173,6 +204,20 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
     }
 
     @Override
+    public void defOptionRappel(int idUtilisateur, boolean optionRappel) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
+        vTransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+                final String DEFOPTIONRAPPEL = "UPDATE utilisateur SET option_rappel=? WHERE idutilisateur=? ;";
+                jdbcTemplate.update(DEFOPTIONRAPPEL,new Object[]{optionRappel,idUtilisateur});
+            }
+        });
+    }
+
+    @Override
     public Utilisateur getUserByID(int idUtilisateur) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
@@ -184,17 +229,7 @@ public class BddUtilisateur extends Impl implements DaoUtilisateur {
                 final String USERBYID = "SELECT * FROM utilisateur WHERE idutilisateur=?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(USERBYID,new Object[] {idUtilisateur});
-                Utilisateur lUtilisateur=new Utilisateur();
-                for (Map row : rows) {
-                    lUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    lUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("nomutilisateur"))));
-                    lUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                    lUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                    lUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                    lUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                }
-                //
-                return lUtilisateur;
+                return utilisateurMapper(rows);
             }
 
         });

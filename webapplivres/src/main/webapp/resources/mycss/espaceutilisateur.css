@@ -1,9 +1,12 @@
 body{background-repeat: no-repeat; background-attachment: fixed;min-width: 510px}
 legend{border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: rgba(0,0,0,0.1);margin-top: 15px}
 div#divdefond{position:fixed;height:100%;width:100%; top:0px; background-color:rgba(0, 0, 0, 0.7); z-index: -1}
+.linkBlanc{color:rgba(220, 220, 220, 1); text-shadow:0px 2px 4px rgba(0, 0, 0, 0.5);}
+.linkBlanc:hover{color:rgba(220, 220, 220, 1); text-shadow:0px 2px 4px rgba(255, 255, 255, 0.5);}
 .badRow{background-color: rgba(255, 0, 0, 0.05)!important;}
-.badRow2{background-color: rgba(255, 255, 255, 0.1)!important;}
+.badRow2{background-color: rgba(0, 0, 0, 0.2)!important;}
 .badText{color: lightcoral!important}
+.desableText{padding-left:0; color: rgba(255, 255, 255, 0.3)!important}
 .blockduHaut{margin-top: 20px;}
 .cadrephoto{height:200px;width:200px; float:left;}
 .cadrephoto2{height:200px;width:200px; float:left;margin-bottom: 20px}

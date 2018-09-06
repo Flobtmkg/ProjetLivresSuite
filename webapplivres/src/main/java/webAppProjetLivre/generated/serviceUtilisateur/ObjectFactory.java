@@ -32,6 +32,8 @@ public class ObjectFactory {
     private final static QName _Autentifier_QNAME = new QName("http://allplatform.webservice/", "autentifier");
     private final static QName _AjoutUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "ajoutUtilisateurResponse");
     private final static QName _ModifUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "modifUtilisateurResponse");
+    private final static QName _DefOptionRappelUtilisateur_QNAME = new QName("http://allplatform.webservice/", "defOptionRappelUtilisateur");
+    private final static QName _DefOptionRappelUtilisateurResponse_QNAME = new QName("http://allplatform.webservice/", "defOptionRappelUtilisateurResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: clientservices.generated.serviceUtilisateur
@@ -102,6 +104,22 @@ public class ObjectFactory {
      */
     public ModifUtilisateurResponse createModifUtilisateurResponse() {
         return new ModifUtilisateurResponse();
+    }
+
+    /**
+     * Create an instance of {@link DefOptionRappelUtilisateur }
+     * 
+     */
+    public DefOptionRappelUtilisateur createDefOptionRappelUtilisateur() {
+        return new DefOptionRappelUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link DefOptionRappelUtilisateurResponse }
+     * 
+     */
+    public DefOptionRappelUtilisateurResponse createDefOptionRappelUtilisateurResponse() {
+        return new DefOptionRappelUtilisateurResponse();
     }
 
     /**
@@ -182,6 +200,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "modifUtilisateurResponse")
     public JAXBElement<ModifUtilisateurResponse> createModifUtilisateurResponse(ModifUtilisateurResponse value) {
         return new JAXBElement<ModifUtilisateurResponse>(_ModifUtilisateurResponse_QNAME, ModifUtilisateurResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DefOptionRappelUtilisateur }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "defOptionRappelUtilisateur")
+    public JAXBElement<DefOptionRappelUtilisateur> createDefOptionRappelUtilisateur(DefOptionRappelUtilisateur value) {
+        return new JAXBElement<DefOptionRappelUtilisateur>(_DefOptionRappelUtilisateur_QNAME, DefOptionRappelUtilisateur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DefOptionRappelUtilisateurResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://allplatform.webservice/", name = "defOptionRappelUtilisateurResponse")
+    public JAXBElement<DefOptionRappelUtilisateurResponse> createDefOptionRappelUtilisateurResponse(DefOptionRappelUtilisateurResponse value) {
+        return new JAXBElement<DefOptionRappelUtilisateurResponse>(_DefOptionRappelUtilisateurResponse_QNAME, DefOptionRappelUtilisateurResponse.class, null, value);
     }
 
 }

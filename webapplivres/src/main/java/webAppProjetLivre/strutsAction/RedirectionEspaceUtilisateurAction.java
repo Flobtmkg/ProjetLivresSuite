@@ -253,6 +253,7 @@ public class RedirectionEspaceUtilisateurAction extends ActionSupport implements
             PreReservationExtend ext;
             ext = new PreReservationExtend(res,CalculEtatReservation.getEtatReservation(res),premiereDateFinPret,pos,currentLivre);
             reservationsExt.add(ext);
+            Collections.sort(reservationsExt);
         }
     }
 

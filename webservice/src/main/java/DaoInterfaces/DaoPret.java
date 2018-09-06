@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public interface DaoPret {
     void ajouterPret(Pret newPret);
+    ArrayList<Reservation> listerPretByDaysBeforeDateFinPret(int days);
     ArrayList<Reservation> listerInfosPretUtilisateur(int idutilisateur);
     ArrayList<Reservation> listerInfosPretLivre(int idLivre);
     ArrayList<Reservation> listerUtilisateursPretsNonRendus();

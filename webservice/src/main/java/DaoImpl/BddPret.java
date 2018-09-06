@@ -3,6 +3,7 @@ package DaoImpl;
 import DaoInterfaces.DaoPret;
 import ServicesBeans.*;
 import classesTravail.CodageGuillemets;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -18,6 +19,69 @@ import java.util.Map;
 @Repository
 public class BddPret extends Impl implements DaoPret {
     //
+    @Autowired
+    private boolean defaultReminder;
+
+    private ArrayList<Reservation> reservationListMapper (List<Map<String,Object>> rows ){
+        ArrayList<Reservation> lesReservations=new ArrayList<Reservation>();
+        for (Map row : rows) {
+            Reservation chaqueReservation=new Reservation();
+            //
+            Pret chaquePret=new Pret();
+            //
+            chaquePret.setIdPret((int)(row.get("idpret")));
+            chaquePret.setIdExemplaire((int)(row.get("idexemplaire")));
+            chaquePret.setIdUtilisateur((int)(row.get("idutilisateur")));
+            chaquePret.setDateDebutPret((Date)(row.get("datedebutpret")));
+            chaquePret.setDateFinPret((Date)(row.get("datefinpret")));
+            chaquePret.setProlongePret((boolean)(row.get("prolongepret")));
+            chaquePret.setRenduPret((boolean)(row.get("rendupret")));
+            //
+            Utilisateur chaqueUtilisateur=new Utilisateur();
+            //
+            chaqueUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
+            chaqueUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String) (row.get("nomutilisateur"))));
+            chaqueUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
+            chaqueUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
+            chaqueUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
+            chaqueUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
+            Object booleanObject = row.get("option_rappel");
+            // traitement du cas de nullité du boolean
+            if(booleanObject==null){
+                chaqueUtilisateur.setOptionRappel(defaultReminder);
+            }else{
+                chaqueUtilisateur.setOptionRappel((boolean) booleanObject);
+            }
+            //
+            Exemplaire chaqueExemplaire=new Exemplaire();
+            //
+            chaqueExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
+            chaqueExemplaire.setIdLivre((int)(row.get("idlivre")));
+            chaqueExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
+            chaqueExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
+            //
+            Livre chaqueLivre=new Livre();
+            //
+            chaqueLivre.setIdLivre((int)(row.get("idlivre")));
+            chaqueLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
+            chaqueLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
+            chaqueLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
+            chaqueLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
+            chaqueLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String) (row.get("indexationlivre"))));
+            //
+            chaqueReservation.setPretReservation(chaquePret);
+            chaqueReservation.setUtilisateurReservation(chaqueUtilisateur);
+            chaqueReservation.setExemplaireReservation(chaqueExemplaire);
+            chaqueReservation.setLivreReservation(chaqueLivre);
+            //
+            lesReservations.add(chaqueReservation);
+        }
+        //
+        return lesReservations;
+    }
+
+
+
     @Override
     public void ajouterPret(Pret newPret) {
         //Conversion de date
@@ -43,6 +107,24 @@ public class BddPret extends Impl implements DaoPret {
     }
 
     @Override
+    public ArrayList<Reservation> listerPretByDaysBeforeDateFinPret(int days) {
+        //
+        TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
+        vTransactionTemplate.setPropagationBehaviorName("PROPAGATION_REQUIRES_NEW");
+        //
+        ArrayList<Reservation> pretOutput2=vTransactionTemplate.execute(new TransactionCallback<ArrayList<Reservation>>() {
+            @Override
+            public ArrayList<Reservation> doInTransaction(TransactionStatus transactionStatus) {
+                final String LISTERPRET = "SELECT * FROM utilisateur FULL JOIN pret ON utilisateur.idutilisateur=pret.idutilisateur FULL JOIN exemplaire ON exemplaire.idexemplaire=pret.idexemplaire FULL JOIN livre ON exemplaire.idlivre=livre.idlivre WHERE pret.datefinpret >= now() AND pret.datefinpret < (now() + (interval '1 day' * ?)) AND pret.rendupret = false;";
+                //
+                List<Map<String,Object>> rows = jdbcTemplate.queryForList(LISTERPRET,new Object[] {days});
+                return reservationListMapper(rows);
+            }
+        });
+        return pretOutput2;
+    }
+
+    @Override
     public ArrayList<Reservation> listerInfosPretUtilisateur(int idutilisateur) {
         //
         TransactionTemplate vTransactionTemplate = new TransactionTemplate(ptm);
@@ -54,54 +136,7 @@ public class BddPret extends Impl implements DaoPret {
                 final String LISTERPRET = "SELECT * FROM utilisateur FULL JOIN pret ON utilisateur.idutilisateur=pret.idutilisateur FULL JOIN exemplaire ON exemplaire.idexemplaire=pret.idexemplaire FULL JOIN livre ON exemplaire.idlivre=livre.idlivre WHERE utilisateur.idutilisateur=?;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(LISTERPRET,new Object[] {idutilisateur});
-                ArrayList<Reservation> lesReservations=new ArrayList<Reservation>();
-                for (Map row : rows) {
-                    Reservation chaqueReservation=new Reservation();
-                    //
-                    Pret chaquePret=new Pret();
-                    //
-                    chaquePret.setIdPret((int)(row.get("idpret")));
-                    chaquePret.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaquePret.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaquePret.setDateDebutPret((Date)(row.get("datedebutpret")));
-                    chaquePret.setDateFinPret((Date)(row.get("datefinpret")));
-                    chaquePret.setProlongePret((boolean)(row.get("prolongepret")));
-                    chaquePret.setRenduPret((boolean)(row.get("rendupret")));
-                    //
-                    Utilisateur chaqueUtilisateur=new Utilisateur();
-                    //
-                    chaqueUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaqueUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String) (row.get("nomutilisateur"))));
-                    chaqueUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                    chaqueUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                    chaqueUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                    chaqueUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                    //
-                    Exemplaire chaqueExemplaire=new Exemplaire();
-                    //
-                    chaqueExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaqueExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    chaqueExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
-                    chaqueExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
-                    //
-                    Livre chaqueLivre=new Livre();
-                    //
-                    chaqueLivre.setIdLivre((int)(row.get("idlivre")));
-                    chaqueLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
-                    chaqueLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
-                    chaqueLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
-                    chaqueLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    chaqueLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String) (row.get("indexationlivre"))));
-                    //
-                    chaqueReservation.setPretReservation(chaquePret);
-                    chaqueReservation.setUtilisateurReservation(chaqueUtilisateur);
-                    chaqueReservation.setExemplaireReservation(chaqueExemplaire);
-                    chaqueReservation.setLivreReservation(chaqueLivre);
-                    //
-                    lesReservations.add(chaqueReservation);
-                }
-                //
-                return lesReservations;
+                return reservationListMapper(rows);
             }
         });
 
@@ -127,54 +162,7 @@ public class BddPret extends Impl implements DaoPret {
                         "ORDER BY datefinpret ASC;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(LISTERPRET,new Object[] {idLivre});
-                ArrayList<Reservation> lesReservations=new ArrayList<Reservation>();
-                for (Map row : rows) {
-                    Reservation chaqueReservation=new Reservation();
-                    //
-                    Pret chaquePret=new Pret();
-                    //
-                    chaquePret.setIdPret((int)(row.get("idpret")));
-                    chaquePret.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaquePret.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaquePret.setDateDebutPret((Date)(row.get("datedebutpret")));
-                    chaquePret.setDateFinPret((Date)(row.get("datefinpret")));
-                    chaquePret.setProlongePret((boolean)(row.get("prolongepret")));
-                    chaquePret.setRenduPret((boolean)(row.get("rendupret")));
-                    //
-                    Utilisateur chaqueUtilisateur=new Utilisateur();
-                    //
-                    chaqueUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaqueUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String) (row.get("nomutilisateur"))));
-                    chaqueUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                    chaqueUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                    chaqueUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                    chaqueUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                    //
-                    Exemplaire chaqueExemplaire=new Exemplaire();
-                    //
-                    chaqueExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaqueExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    chaqueExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
-                    chaqueExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
-                    //
-                    Livre chaqueLivre=new Livre();
-                    //
-                    chaqueLivre.setIdLivre((int)(row.get("idlivre")));
-                    chaqueLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
-                    chaqueLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
-                    chaqueLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
-                    chaqueLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    chaqueLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String) (row.get("indexationlivre"))));
-                    //
-                    chaqueReservation.setPretReservation(chaquePret);
-                    chaqueReservation.setUtilisateurReservation(chaqueUtilisateur);
-                    chaqueReservation.setExemplaireReservation(chaqueExemplaire);
-                    chaqueReservation.setLivreReservation(chaqueLivre);
-                    //
-                    lesReservations.add(chaqueReservation);
-                }
-                //
-                return lesReservations;
+                return reservationListMapper(rows);
             }
         });
 
@@ -195,54 +183,7 @@ public class BddPret extends Impl implements DaoPret {
                 final String LISTERRESERVATION = "SELECT * FROM utilisateur INNER JOIN pret ON utilisateur.idutilisateur=pret.idutilisateur INNER JOIN exemplaire ON exemplaire.idexemplaire=pret.idexemplaire INNER JOIN livre ON exemplaire.idlivre=livre.idlivre WHERE rendupret=false AND datefinpret<CURRENT_DATE;";
                 //
                 List<Map<String,Object>> rows = jdbcTemplate.queryForList(LISTERRESERVATION);
-                ArrayList<Reservation> lesReservations=new ArrayList<Reservation>();
-                for (Map row : rows) {
-                    Reservation chaqueReservation=new Reservation();
-                    //
-                    Pret chaquePret=new Pret();
-                    //
-                    chaquePret.setIdPret((int)(row.get("idpret")));
-                    chaquePret.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaquePret.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaquePret.setDateDebutPret((Date)(row.get("datedebutpret")));
-                    chaquePret.setDateFinPret((Date)(row.get("datefinpret")));
-                    chaquePret.setProlongePret((boolean)(row.get("prolongepret")));
-                    chaquePret.setRenduPret((boolean)(row.get("rendupret")));
-                    //
-                    Utilisateur chaqueUtilisateur=new Utilisateur();
-                    //
-                    chaqueUtilisateur.setIdUtilisateur((int)(row.get("idutilisateur")));
-                    chaqueUtilisateur.setNomUtilisateur(CodageGuillemets.getTexteDecode((String) (row.get("nomutilisateur"))));
-                    chaqueUtilisateur.setPrenomUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("prenomutilisateur"))));
-                    chaqueUtilisateur.setEmailUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("emailutilisateur"))));
-                    chaqueUtilisateur.setMdpUtilisateur(CodageGuillemets.getTexteDecode((String)(row.get("mdputilisateur"))));
-                    chaqueUtilisateur.setDateNaissanceUtilisateur((Date)(row.get("datenaissanceutilisateur")));
-                    //
-                    Exemplaire chaqueExemplaire=new Exemplaire();
-                    //
-                    chaqueExemplaire.setIdExemplaire((int)(row.get("idexemplaire")));
-                    chaqueExemplaire.setIdLivre((int)(row.get("idlivre")));
-                    chaqueExemplaire.setCoteExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("coteexemplaire"))));
-                    chaqueExemplaire.setRemarqueExemplaire(CodageGuillemets.getTexteDecode((String) (row.get("remarqueexemplaire"))));
-                    //
-                    Livre chaqueLivre=new Livre();
-                    //
-                    chaqueLivre.setIdLivre((int)(row.get("idlivre")));
-                    chaqueLivre.setTitreLivre(CodageGuillemets.getTexteDecode((String) (row.get("titrelivre"))));
-                    chaqueLivre.setAuteurLivre(CodageGuillemets.getTexteDecode((String)(row.get("auteurlivre"))));
-                    chaqueLivre.setEditeurLivre(CodageGuillemets.getTexteDecode((String)(row.get("editeurlivre"))));
-                    chaqueLivre.setDatepublicationLivre((Date)(row.get("datepublicationlivre")));
-                    chaqueLivre.setIndexationLivre(CodageGuillemets.getTexteDecode((String) (row.get("indexationlivre"))));
-                    //
-                    chaqueReservation.setPretReservation(chaquePret);
-                    chaqueReservation.setUtilisateurReservation(chaqueUtilisateur);
-                    chaqueReservation.setExemplaireReservation(chaqueExemplaire);
-                    chaqueReservation.setLivreReservation(chaqueLivre);
-                    //
-                    lesReservations.add(chaqueReservation);
-                }
-                //
-                return lesReservations;
+                return reservationListMapper(rows);
             }
         });
 

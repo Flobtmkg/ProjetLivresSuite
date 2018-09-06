@@ -24,6 +24,11 @@
         <!---->
         <!--Actions spécifiques-->
         <!---->
+        <action name="defOptionRappel" class="optionRappelBean">
+            <result name="success" type="redirect">
+                <param name="location">${commandPage}</param>
+            </result>
+        </action>
         <action name="AnnulerReservation" class="annulerReservationBean">
             <result name="success" type="redirect">
                 <param name="location">${commandPage}</param>

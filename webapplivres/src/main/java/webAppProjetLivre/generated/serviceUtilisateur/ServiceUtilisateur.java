@@ -28,6 +28,48 @@ public interface ServiceUtilisateur {
      * 
      * @param arg1
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "defOptionRappelUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.DefOptionRappelUtilisateur")
+    @ResponseWrapper(localName = "defOptionRappelUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.DefOptionRappelUtilisateurResponse")
+    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/defOptionRappelUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/defOptionRappelUtilisateurResponse")
+    public void defOptionRappelUtilisateur(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    boolean arg1);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "modifUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateur")
+    @ResponseWrapper(localName = "modifUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateurResponse")
+    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurResponse")
+    public void modifUtilisateur(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    int arg0,
+            @WebParam(name = "arg1", targetNamespace = "")
+                    String arg1,
+            @WebParam(name = "arg2", targetNamespace = "")
+                    String arg2,
+            @WebParam(name = "arg3", targetNamespace = "")
+                    String arg3,
+            @WebParam(name = "arg4", targetNamespace = "")
+                    String arg4,
+            @WebParam(name = "arg5", targetNamespace = "")
+                    String arg5);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
      * @return
      *     returns clientservices.generated.serviceUtilisateur.Utilisateur
      */
@@ -68,33 +110,6 @@ public interface ServiceUtilisateur {
                     String arg3,
             @WebParam(name = "arg4", targetNamespace = "")
                     String arg4);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "modifUtilisateur", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateur")
-    @ResponseWrapper(localName = "modifUtilisateurResponse", targetNamespace = "http://allplatform.webservice/", className = "clientservices.generated.serviceUtilisateur.ModifUtilisateurResponse")
-    @Action(input = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurRequest", output = "http://allplatform.webservice/ServiceUtilisateur/modifUtilisateurResponse")
-    public void modifUtilisateur(
-            @WebParam(name = "arg0", targetNamespace = "")
-                    int arg0,
-            @WebParam(name = "arg1", targetNamespace = "")
-                    String arg1,
-            @WebParam(name = "arg2", targetNamespace = "")
-                    String arg2,
-            @WebParam(name = "arg3", targetNamespace = "")
-                    String arg3,
-            @WebParam(name = "arg4", targetNamespace = "")
-                    String arg4,
-            @WebParam(name = "arg5", targetNamespace = "")
-                    String arg5);
 
     /**
      * 

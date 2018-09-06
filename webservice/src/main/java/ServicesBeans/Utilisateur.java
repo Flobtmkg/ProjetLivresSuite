@@ -12,7 +12,17 @@ public class Utilisateur {
     private String emailUtilisateur;
     private String mdpUtilisateur;
     private String dateNaissanceUtilisateur;
+    private boolean optionRappel;
     //
+
+
+    public boolean isOptionRappel() {
+        return optionRappel;
+    }
+
+    public void setOptionRappel(boolean optionRappel) {
+        this.optionRappel = optionRappel;
+    }
 
     public int getIdUtilisateur() {
         return idUtilisateur;

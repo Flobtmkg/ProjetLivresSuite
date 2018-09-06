@@ -12,6 +12,9 @@
     <!--
     Beans Actions
     -->
+    <bean id="optionRappelBean" class="webAppProjetLivre.strutsAction.optionRappelAction">
+        <property name="accesUtilisateur" ref="accesModifUtilisateurDao"/>
+    </bean>
     <bean id="annulerReservationBean" class="webAppProjetLivre.strutsAction.AnnulerReservationAction">
         <property name="accesReservation" ref="reservationDao"/>
     </bean>

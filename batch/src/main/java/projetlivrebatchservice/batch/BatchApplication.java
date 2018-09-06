@@ -48,6 +48,8 @@ public class BatchApplication { //implements SchedulingConfigurer
     private String wsdlLocationPret;
     @Value("${WSDLLocationReservation}")
     private String wsdlLocationReservation;
+    @Value("${nbJoursAvantRappel}")
+    private int joursAvantRappel;
     //
 
     public static void main(String[] args) {
@@ -64,6 +66,10 @@ public class BatchApplication { //implements SchedulingConfigurer
     //public TaskScheduler taskScheduler() {
     //return new ConcurrentTaskScheduler(); //single threaded by default
     //}
+    @Bean
+    public int nbJoursRappelAvantDateFinPret(){
+        return joursAvantRappel;
+    }
 
     @Bean
     public WsdlLocationObject configWsdl(){

@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="idUtilisateur" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="mdpUtilisateur" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="nomUtilisateur" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="optionRappel" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="prenomUtilisateur" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "idUtilisateur",
     "mdpUtilisateur",
     "nomUtilisateur",
+    "optionRappel",
     "prenomUtilisateur"
 })
 public class Utilisateur {
@@ -46,6 +48,7 @@ public class Utilisateur {
     protected int idUtilisateur;
     protected String mdpUtilisateur;
     protected String nomUtilisateur;
+    protected boolean optionRappel;
     protected String prenomUtilisateur;
 
     /**
@@ -158,6 +161,22 @@ public class Utilisateur {
      */
     public void setNomUtilisateur(String value) {
         this.nomUtilisateur = value;
+    }
+
+    /**
+     * Obtient la valeur de la propri�t� optionRappel.
+     * 
+     */
+    public boolean isOptionRappel() {
+        return optionRappel;
+    }
+
+    /**
+     * D�finit la valeur de la propri�t� optionRappel.
+     * 
+     */
+    public void setOptionRappel(boolean value) {
+        this.optionRappel = value;
     }
 
     /**

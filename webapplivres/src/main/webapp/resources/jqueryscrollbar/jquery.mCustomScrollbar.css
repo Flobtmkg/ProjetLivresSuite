@@ -51,7 +51,7 @@ y-axis
 ------------------------------------------------------------------------------------------------------------------------
 */
 
-	.mCSB_inside > .mCSB_container{ margin-right: 30px; }
+	.mCSB_inside > .mCSB_container{ margin-right: 0px; }
 
 	.mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden{ margin-right: 0; } /* non-visible scrollbar */
 	
@@ -68,7 +68,7 @@ y-axis
 		height: auto;
 		left: auto;
 		top: 0;
-		right: 0;
+		right: -6px;
 		bottom: 0;
 	}
 

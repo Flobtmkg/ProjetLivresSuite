@@ -26,7 +26,15 @@ public class Application {
     private String jdbcUsername;
     @Value("${dureeReferencePret}")
     private String weekReferenceDuration;
+    @Value("${defaultreminder}")
+    private String rappelDefault;
     //
+
+    @Bean
+    public boolean defaultReminder(){
+        boolean boo = Boolean.valueOf(rappelDefault);
+        return boo;
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

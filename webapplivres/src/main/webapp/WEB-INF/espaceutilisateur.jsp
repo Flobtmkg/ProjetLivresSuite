@@ -333,7 +333,7 @@
 <div class="container-fluid">
     <div class="blockduHaut">
         <!-- imgPath -->
-            <div class="offset-sm-1 cadrephoto2" style="background: url(/resources/img/user.jpg) center no-repeat; background-size: 100% auto; background-color:rgba(0, 0, 0, 0.6)">
+            <div class="offset-sm-1 cadrephoto2" style="background: url('./resources/img/user.jpg') center no-repeat; background-size: 100% auto; background-color:rgba(0, 0, 0, 0.6)">
                 <img class="photo cadrephoto" style="background: center no-repeat; background-size: 100% auto; background-color:rgba(0, 0, 0, 0)">
             </div>
         <!-- imgPath -->

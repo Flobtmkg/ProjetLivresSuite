@@ -47,7 +47,7 @@
 </div>
 <!-- Espace de definition des blocks -->
 <div class="container-fluid">
-    <div id="cadrephoto" class="offset-sm-1 col-9 col-sm-5 col-lg-3 col-xl-2" style="background: url(/resources/img/livre8.png) center no-repeat; background-size: 100% auto;"></div>
+    <div id="cadrephoto" class="offset-sm-1 col-9 col-sm-5 col-lg-3 col-xl-2" style="background: url('./resources/img/livre8.png') center no-repeat; background-size: 100% auto;"></div>
     <div id="blockTransparent"></div>
     <div id="presentation" class="offset-0 offset-sm-1 offset-lg-0 col-lg-6 col-sm-10 col-12">
         <legend class="label2">Livre ID ${livreAAfficher.idLivre}</legend>

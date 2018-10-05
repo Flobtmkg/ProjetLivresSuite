@@ -220,6 +220,7 @@ public class RedirectionEspaceUtilisateurAction extends ActionSupport implements
                 pos=1;
                 //ext.setPositionListAttente(1);
             }else{
+                getEnv=System.getenv("WSDLLocationReservation");
                 List<PreReservation> listAttente;
                 if(getEnv!=null && getEnv.equals("")==false) {
                     listAttente=reservations.getListeAttente(res.getIdLivre(), getEnv);

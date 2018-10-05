@@ -219,6 +219,7 @@ public class RedirectionEspaceUtilisateurAction extends ActionSupport implements
             if(CalculEtatReservation.getEtatReservation(res).equals(EtatPreReservation.EFFECTIF)){
                 pos=1;
                 //ext.setPositionListAttente(1);
+
             }else{
                 getEnv=System.getenv("WSDLLocationReservation");
                 List<PreReservation> listAttente;
